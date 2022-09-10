@@ -1,14 +1,14 @@
 #ifndef APIMINILIBX_H
 # define APIMINILIBX_H
 
-# include "minilibx.h"
+# include "mlx.h"
 # if __APPLE__
-#  define "stdlib.h"
+#  include "stdlib.h"
 # else
-#  define "malloc.h"
+#  include "malloc.h"
 # endif
 
-typedef unsigned int    int;
+typedef unsigned int    uint;
 typedef void*           t_mlx;
 
 typedef struct s_image
@@ -30,10 +30,10 @@ typedef struct s_window
     const char  *str;
 }   t_window;
 
-t_window    *create_window(t_mlx *mlx, uint x, uint y);
-void        destroy_window(t_window *win);
-t_image     *create_image(t_mlx *mlx, uint x, uint y);
-void        *destroy_image(t_image *img);
-void        mlx_pixel_put(t_image *img, uint x, uint y, uint color)
+t_window    *create_window(t_mlx mlx, uint x, uint y, const char *str);
+void        destroy_window(t_mlx mlx, t_window *win);
+t_image     *create_image(t_mlx mlx, uint x, uint y);
+void        *destroy_image(t_mlx mlx, t_image *img);
+void        ee_mlx_pixel_put(t_image *img, uint x, uint y, uint color);
 
 #endif
