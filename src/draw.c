@@ -1,6 +1,7 @@
 #include "miniRT.h"
 
 
+
 void    draw(t_window *win, t_image *img, void)
 {
     uint    x;
@@ -10,6 +11,7 @@ void    draw(t_window *win, t_image *img, void)
     while (x < img->x)
         while (y < img->y)
         {
-            put_pixel(x, y, color);
+            color = trace_ray(x, y);
+            ee_mlx_pixel_put(img, x, y, color);
         }
 }
