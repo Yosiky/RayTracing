@@ -55,9 +55,7 @@ void        *destroy_image(t_mlx mlx, t_image *img)
     free(img);
 }
 
-void    ee_mlx_pixel_put(t_image *img, uint x, uint y, int color)
+void    ee_mlx_pixel_put(t_image *img, uint x, uint y, uint color)
 {
-    uint  *arr = img->addr;
-
-    arr[y * img->line_length + x] = color;
+    img->addr[y * img->line_length + x] = color;
 }

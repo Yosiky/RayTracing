@@ -14,7 +14,7 @@ typedef void*           t_mlx;
 typedef struct s_image
 {
     void    *img;
-    char    *addr;
+    uint    *addr;
     int     bits_per_pixel;
     int     line_length;
     int     endian;
@@ -34,6 +34,6 @@ t_window    *create_window(t_mlx mlx, uint x, uint y, const char *str);
 void        destroy_window(t_mlx mlx, t_window *win);
 t_image     *create_image(t_mlx mlx, uint x, uint y);
 void        *destroy_image(t_mlx mlx, t_image *img);
-void        ee_mlx_pixel_put(t_image *img, uint x, uint y, int color);
+void        ee_mlx_pixel_put(t_image *img, uint x, uint y, uint color);
 
 #endif
