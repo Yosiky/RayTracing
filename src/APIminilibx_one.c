@@ -41,6 +41,7 @@ t_image     *create_image(t_mlx mlx, uint x, uint y)
         free(image);
         return (NULL);
     }
+    img->img = image;
     img->x = x;
     img->y = y;
     img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
@@ -55,7 +56,7 @@ void        *destroy_image(t_mlx mlx, t_image *img)
 
 void    ee_mlx_pixel_put(t_image *img, uint x, uint y, int color)
 {
-    static int  *arr = img->addr;
+    int  *arr = img->addr;
 
     img->addr[y * img->line_length + x] = color;
 }

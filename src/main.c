@@ -6,7 +6,7 @@
 /*   By: eestelle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 14:25:22 by eestelle          #+#    #+#             */
-/*   Updated: 2022/09/10 16:28:12 by eestelle         ###   ########.fr       */
+/*   Updated: 2022/09/10 17:01:35 by eestelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int main(void)
         ee_error(1, "Can't init mlx");
     ptr_window = create_window(ptr_mlx, WINDOW_X, WINDOW_Y, WINDOW_NAME);
     ptr_image = create_image(ptr_mlx, IMG_X, IMG_Y);
-    
     destroy_window(ptr_mlx, ptr_window);
     destroy_image(ptr_mlx, ptr_image);
     return (0);

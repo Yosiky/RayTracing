@@ -27,13 +27,13 @@ typedef struct s_window
     void        *window;
     uint        x;
     uint        y;
-    const char  *str;
+    const char  *name;
 }   t_window;
 
 t_window    *create_window(t_mlx mlx, uint x, uint y, const char *str);
 void        destroy_window(t_mlx mlx, t_window *win);
 t_image     *create_image(t_mlx mlx, uint x, uint y);
 void        *destroy_image(t_mlx mlx, t_image *img);
-void        ee_mlx_pixel_put(t_image *img, uint x, uint y, uint color);
+void        ee_mlx_pixel_put(t_image *img, uint x, uint y, int color);
 
 #endif
