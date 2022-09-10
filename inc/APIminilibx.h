@@ -24,7 +24,7 @@ typedef struct s_image
 
 typedef struct s_window
 {
-    void        *window;
+    void        *win;
     uint        x;
     uint        y;
     const char  *name;

@@ -43,10 +43,15 @@ $(NAME):	$(addprefix $(HEADER_DIR)/,$(HEADER))		\
 	$(CC) $(OBJ) $(LIB) -o $@
 
 clean:
-	@print "Remove object files\n"
+	@printf "Remove miniRT object files\n"
 	@rm -rf $(OBJ_DIR)
+	# @printf "Remove minilibx object files\n"
+	# @rm -rf $(MINILIBX_DIR)/*.o
 
 fclean: clean
-	rm -rf $(NAME)
+	@printf "Remove minilibx\n"
+	@rm -rf $(MINILIBX_DIR)/$(MINILIBX)
+	@printf "Remove miniRT\n"
+	@rm -rf $(NAME)
 
-re: fclean clean
+re: fclean all

@@ -16,14 +16,14 @@ t_window    *create_window(t_mlx mlx, uint x, uint y, const char *str)
     }
     win->x = x;
     win->y = y;
-    win->window = window;
+    win->win = window;
     win->name = str;
     return (win);
 }
 
 void        destroy_window(t_mlx mlx, t_window *win)
 {
-    mlx_destroy_window(mlx, win->window);
+    mlx_destroy_window(mlx, win->win);
     free(win);
 }
 
@@ -45,6 +45,7 @@ t_image     *create_image(t_mlx mlx, uint x, uint y)
     img->x = x;
     img->y = y;
     img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
+    img->line_length /= img->bits_per_pixel / 8;
     return (img);
 }
 
@@ -56,7 +57,7 @@ void        *destroy_image(t_mlx mlx, t_image *img)
 
 void    ee_mlx_pixel_put(t_image *img, uint x, uint y, int color)
 {
-    int  *arr = img->addr;
+    uint  *arr = img->addr;
 
-    img->addr[y * img->line_length + x] = color;
+    arr[y * img->line_length + x] = color;
 }
