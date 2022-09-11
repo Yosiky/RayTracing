@@ -9,6 +9,8 @@
 # include <math.h>
 # include <unistd.h>
 
+#include <stdio.h>
+
 # define WINDOW_NAME "miniRT"
 # define WINDOW_X 1000
 # define WINDOW_Y 1000
@@ -30,7 +32,7 @@ typedef struct s_work_with_figure
 }   t_work_figure;
 
 void    ee_error(int code, const char *str);
-
+void    draw_on_img(t_image *img, t_eelist *lst, t_work_figure *funcs);
 uint        get_color_sphere(t_eelist *lst);
 t_vector3   intersect_ray_sphere(t_vector3 *o, t_vector3 *d, t_eelist *lst);
 

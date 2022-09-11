@@ -1,6 +1,6 @@
 #include "miniRT.h"
 
-uint    trace_ray(t_vector3 *o, t_vector3 *d, t_vector3 minimum, t_eelist *lst, t_work_figure *funcs)
+static uint    trace_ray(t_vector3 *o, t_vector3 *d, t_vector3 minimum, t_eelist *lst, t_work_figure *funcs)
 {
     t_vector3   min;
     float       res;
@@ -11,17 +11,20 @@ uint    trace_ray(t_vector3 *o, t_vector3 *d, t_vector3 minimum, t_eelist *lst, 
     while (lst != NULL)
     {
         min = funcs->intersect_ray(o, d, lst);
-        if (min.x < res + EPS && min.x > minimum.x && min.x < minimum.y)
+        printf("%lf %lf\n", min.x, min.y);
+        if (min.x < res + EPS && min.x + EPS > minimum.x && min.x < minimum.y + EPS)
         {
             res = min.x;
             ptr_obj = lst;
         }
-        if (min.y < res + EPS && min.y > minimum.x && min.y < minimum.y)
+        if (min.y < res + EPS && min.y + EPS > minimum.x && min.y < minimum.y + EPS)
         {
             res = min.y;
             ptr_obj = lst;
         }
+        lst = lst->next;
     }
+    printf("%u\n", funcs->get_color(ptr_obj));
     if (ptr_obj == NULL)
         return (COLOR_BACKGROUND);
     return (funcs->get_color(ptr_obj));
