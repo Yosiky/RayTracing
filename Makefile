@@ -40,14 +40,14 @@ $(MINILIBX_DIR)/$(MINILIBX):
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile						\
 				$(addprefix $(HEADER_DIR)/,$(HEADER))		\
 				$(MINILIBX_DIR)/$(MINILIBX)
-	$(CC) $< -g -I$(MINILIBX_DIR) -I$(HEADER_DIR) -c -o $@
+	$(CC) $< $(CFLAGS) -g -I$(MINILIBX_DIR) -I$(HEADER_DIR) -c -o $@
 
 $(OBJ_DIR):
 	mkdir -p $@
 
 $(NAME):	$(addprefix $(HEADER_DIR)/,$(HEADER))		\
 			$(OBJ) $(addprefix $(SRC_DIR)/,$(SRC))
-	$(CC) $(OBJ) $(LIB) -o $@
+	$(CC) $(OBJ) $(LIB) $(CFLAGS) -o $@
 
 clean:
 	@printf "Remove miniRT object files\n"

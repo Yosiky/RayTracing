@@ -5,7 +5,7 @@ t_window    *create_window(t_mlx mlx, uint x, uint y, const char *str)
     void        *window;
     t_window    *win;
 
-    window = (void *)mlx_new_window(mlx, x, y, str);
+    window = (void *)mlx_new_window(mlx, x, y, (char *)str);
     if (window == NULL)
         return (NULL);
     win = (t_window *)malloc(sizeof(t_window));
@@ -44,12 +44,12 @@ t_image     *create_image(t_mlx mlx, uint x, uint y)
     img->img = image;
     img->x = x;
     img->y = y;
-    img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
+    img->addr = (uint *)mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
     img->line_length /= img->bits_per_pixel / 8;
     return (img);
 }
 
-void        *destroy_image(t_mlx mlx, t_image *img)
+void        destroy_image(t_mlx mlx, t_image *img)
 {
     mlx_destroy_image(mlx, img->img);
     free(img);

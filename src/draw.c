@@ -36,13 +36,16 @@ void    draw_on_img(t_image *img, t_eelist *lst, t_work_figure *funcs)
     t_vector3   d;
 
     set_coordinates(&o, (float []){0, 0, 0});
+    x = 0;
     while (x < img->x)
     {
+        y = 0;
         while (y < img->y)
         {
             set_coordinates(&d, (float []){ x / WINDOW_X * SCREEN_IMG_X, y / WINDOW_Y * SCREEN_IMG_Y, 1});
             color = trace_ray(&o, &d, (t_vector3){1, INT_MAX, 0}, lst, funcs);
-            ee_mlx_pixel_put(img, x, y, color);
+            ee_mlx_pixel_put(img, x, y++, color);
         }
+        ++x;
     }
 }

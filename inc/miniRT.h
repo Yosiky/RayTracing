@@ -7,6 +7,7 @@
 # include "sphere.h"
 # include <limits.h>
 # include <math.h>
+# include <unistd.h>
 
 # define WINDOW_NAME "miniRT"
 # define WINDOW_X 1000
