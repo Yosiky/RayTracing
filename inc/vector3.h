@@ -9,5 +9,7 @@ typedef struct s_vector3
 }   t_vector3;
 
 void    set_coordinates(t_vector3 *ptr_point, const float const arr[3]);
+void    vector3_minus(t_vector3 *a, const t_vector3 *b, const t_vector3 *c);
+float   vector3_dot(const t_vector3 *a, const t_vector3 *b);
 
 #endif

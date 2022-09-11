@@ -6,14 +6,21 @@ NAME			=	miniRT
 SRC_DIR			=	src
 SRC				=	main.c					\
 					APIminilibx_one.c		\
-					ee_error.c
+					ee_error.c				\
+					draw.c					\
+					ee_list.c				\
+					sphere.c				\
+					vector3.c
 
 OBJ_DIR			=	obj
 OBJ				=	$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 
 HEADER_DIR		=	inc
 HEADER			=	miniRT.h			\
-					APIminilibx.h
+					APIminilibx.h		\
+					ee_list.h			\
+					sphere.h			\
+					vector3.h
 
 MINILIBX_DIR	=	minilibx
 MINILIBX		=	libmlx.a
