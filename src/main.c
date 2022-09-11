@@ -6,7 +6,7 @@
 /*   By: eestelle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 14:25:22 by eestelle          #+#    #+#             */
-/*   Updated: 2022/09/10 17:35:32 by eestelle         ###   ########.fr       */
+/*   Updated: 2022/09/11 15:53:01 by eestelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main(void)
 {
-    const t_mlx *ptr_mlx = mlx_init();
+    t_mlx *ptr_mlx = mlx_init();
     t_window    *ptr_window;
     t_image     *ptr_image;
 
