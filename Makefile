@@ -11,7 +11,8 @@ SRC				=	main.c					\
 					draw.c					\
 					ee_list.c				\
 					sphere.c				\
-					vector3.c
+					vector3.c				\
+					light.c
 
 OBJ_DIR			=	obj
 OBJ				=	$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
@@ -21,7 +22,8 @@ HEADER			=	miniRT.h			\
 					APIminilibx.h		\
 					ee_list.h			\
 					sphere.h			\
-					vector3.h
+					vector3.h			\
+					light.h
 
 MINILIBX_DIR	=	minilibx
 MINILIBX		=	libmlx.a

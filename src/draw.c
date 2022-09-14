@@ -1,8 +1,37 @@
 #include "miniRT.h"
 
-static uint    trace_ray(t_vector3 *o, t_vector3 *d, t_vector3 minimum, t_eelist *lst, t_work_figure *funcs)
+static float    compute_lighting(t_vector3 *p, t_vector3 *n, t_eelist *lst)
+{
+    t_vector3   l;
+    float       n_dot_l;
+    float       res;
+    uint        type;
+
+    res = 0;
+    while (lst)
+    {
+        type = get_light_type(lst->data);
+        if (type == AMBIENT)
+            res += ((t_light *)lst->data)->intensity;
+        else 
+        {
+            if (type == POINT)
+                vector3_minus(&l, &((t_light *)lst->data)->position, p);
+            else
+                l = ((t_light *)lst->data)->position;
+            n_dot_l = vector3_dot(n, &l);
+            if (n_dot_l > 0)
+                res += ((t_light *)lst->data)->intensity * n_dot_l / (vector3_length(n) * vector3_length(&l));
+        }
+    }
+    return (res);
+}
+
+static uint trace_ray(t_vector3 *o, t_vector3 *d, t_vector3 minimum, t_eelist *lst, t_work_figure *funcs)
 {
     t_vector3   min;
+    t_vector3   p;
+    t_vector3   n;
     float       res;
     t_eelist    *ptr_obj;
 
@@ -27,7 +56,9 @@ static uint    trace_ray(t_vector3 *o, t_vector3 *d, t_vector3 minimum, t_eelist
     /* printf("%u\n", funcs->get_color(ptr_obj)); */
     if (ptr_obj == NULL)
         return (COLOR_BACKGROUND);
-    return (funcs->get_color(ptr_obj));
+    set_coordinates(&p, (float []){o->x + res * d->x, o->y + res * d->y, o->z + res * d->z});
+    funcs->get_normal(&n, &p, ptr_obj);
+    return (funcs->get_color(ptr_obj) * compute_lighting(&p, &n, get_light_all(NULL)));
 }
 
 void    draw_on_img(t_image *img, t_eelist *lst, t_work_figure *funcs)
@@ -39,7 +70,6 @@ void    draw_on_img(t_image *img, t_eelist *lst, t_work_figure *funcs)
     uint        color;
     t_vector3   o;
     t_vector3   d;
-
 
     set_coordinates(&o, (float []){0, 0, 0});
     y = -width_y;

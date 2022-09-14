@@ -6,7 +6,7 @@
 /*   By: eestelle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 14:25:22 by eestelle          #+#    #+#             */
-/*   Updated: 2022/09/14 14:20:01 by eestelle         ###   ########.fr       */
+/*   Updated: 2022/09/14 16:47:10 by eestelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,12 @@ int main(void)
     t_eelist    *test = ee_list_create((void *)sphere_create((t_vector3){0, -1, 3}, 1, 0x00ff0000));
     test->next = ee_list_create((void *)sphere_create((t_vector3){2, 0, 4}, 1, 0x000000ff));
     test->next->next = ee_list_create((void *)sphere_create((t_vector3){-2, 0, 4}, 1, 0x0000ff00));
-    t_work_figure   functions = {intersect_ray_sphere, get_color_sphere};
+    t_work_figure   functions = {intersect_ray_sphere, get_color_sphere, get_normal_sphere};
+
+
+
+
+
 /* void    draw_on_img(t_image *img, t_eelist *lst, t_work_figure *funcs) */
     draw_on_img(ptr_image, test, &functions);
     mlx_put_image_to_window(ptr_mlx, ptr_window->win, ptr_image->img, 0, 0);
