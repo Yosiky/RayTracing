@@ -29,5 +29,5 @@ t_vector3   intersect_ray_sphere(t_vector3 *o, t_vector3 *d, t_eelist *lst)
 void    get_normal_sphere(t_vector3 *res, const t_vector3 *a, t_eelist *lst)
 {
     vector3_minus(res, a, &(((t_sphere *)lst->data)->center));
-    vector3_div(res, res, vector3_length(res));
+    vector3_normalized(res);
 }

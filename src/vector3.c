@@ -26,7 +26,14 @@ float   vector3_length(const t_vector3 *a)
 
 void    vector3_div(t_vector3 *dst, const t_vector3 *src, const float len)
 {
-    dst->x = src->x / len;
-    dst->y = src->y / len;
-    dst->z = src->z / len;
+    const float inv_len = 1 / len;
+
+    dst->x = src->x * inv_len;
+    dst->y = src->y * inv_len;
+    dst->z = src->z * inv_len;
+}
+
+void    vector3_normalized(t_vector3 *src)
+{
+    vector3_div(src, src, vector3_length(src));
 }

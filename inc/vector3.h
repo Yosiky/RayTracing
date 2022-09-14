@@ -15,5 +15,6 @@ void    vector3_minus(t_vector3 *a, const t_vector3 *b, const t_vector3 *c);
 float   vector3_dot(const t_vector3 *restrict a, const t_vector3 *restrict b);
 float   vector3_length(const t_vector3 *a);
 void    vector3_div(t_vector3 *dst, const t_vector3 *src, const float len);
+void    vector3_normalized(t_vector3 *src);
 
 #endif

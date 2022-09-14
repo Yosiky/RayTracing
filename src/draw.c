@@ -12,7 +12,7 @@ static uint color_transform(uint color, float intensity)
     res.color = color;
     i = -1;
     while (++i < 4)
-        res.c[i] = (float)res.c[i] * intensity;
+        res.c[i] = (unsigned char)((float)res.c[i] * intensity);
     return (res.color);
 }
 
@@ -32,12 +32,15 @@ static float    compute_lighting(t_vector3 *p, t_vector3 *n, t_eelist *lst)
         else 
         {
             if (type == POINT)
+            {
                 vector3_minus(&l, &((t_light *)lst->data)->position, p);
+                vector3_normalized(&l);
+            }
             else
                 l = ((t_light *)lst->data)->position;
             n_dot_l = vector3_dot(n, &l);
             if (n_dot_l > 0)
-                res += ((t_light *)lst->data)->intensity * n_dot_l / (vector3_length(n) * vector3_length(&l));
+                res += ((t_light *)lst->data)->intensity * n_dot_l;
         }
         lst = lst->next;
     }
@@ -89,15 +92,16 @@ void    draw_on_img(t_image *img, t_eelist *lst, t_work_figure *funcs)
     t_vector3   d;
 
     set_coordinates(&o, (float []){0, 0, 0});
-    y = -width_y;
-    while (y < width_y)
+    y = 0;
+    while (y < img->y)
     {
-        x = -width_x;
-        while (x < width_x)
+        x = 0;
+        while (x < img->x)
         {
-            set_coordinates(&d, (float []){ (float)x * 1 / WINDOW_X, (float)y * 1 / WINDOW_Y, 1});
+            set_coordinates(&d, (float []){ (float)(x - width_x) * 1 / WINDOW_X, (float)(y - width_y) * 1 / WINDOW_Y, 1});
+            vector3_normalized(&d);
             color = trace_ray(&o, &d, (t_vector3){1, INT_MAX, 0}, lst, funcs);
-            ee_mlx_pixel_put(img, (x++) + width_x, -y + width_y, color);
+            ee_mlx_pixel_put(img, (x++), y, color);
         }
         ++y;
     }
