@@ -6,13 +6,13 @@
 /*   By: eestelle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 14:25:22 by eestelle          #+#    #+#             */
-/*   Updated: 2022/09/11 20:25:36 by eestelle         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:20:01 by eestelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_sphere    *sphere_create(t_vector3 a, uint r, uint color)
+t_sphere    *sphere_create(t_vector3 a, float r, uint color)
 {
     t_sphere    *res = (t_sphere *)malloc(sizeof(t_sphere));
 

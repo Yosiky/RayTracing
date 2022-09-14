@@ -1,5 +1,6 @@
 CC				=	gcc
-CFLAGS			=	-Wall -Wextra -Werror -g
+CFLAGS			=	-Wall -Wextra -Werror -g		\
+					# -pedantic-errors -Wfloat-equal -Wshadow -Wcast-qual -Wconversion -Wsign-conversion
 
 NAME			=	miniRT
 

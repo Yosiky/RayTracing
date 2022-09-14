@@ -3,3 +3,4 @@ miniRT
 */*.a
 src/*.h
 test
+output.txt
