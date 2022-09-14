@@ -9,7 +9,7 @@ t_eelist    *get_light_all(t_eelist *lst)
 {
     static t_eelist *res;
 
-    if (lst == NULL)
+    if (lst != NULL)
         res = lst;
     return (res);
 }

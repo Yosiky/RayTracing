@@ -21,7 +21,7 @@ float   vector3_dot(const t_vector3 *restrict a, const t_vector3 *restrict b)
 
 float   vector3_length(const t_vector3 *a)
 {
-    return (vector3_dot(a, a));
+    return (sqrt(vector3_dot(a, a)));
 }
 
 void    vector3_div(t_vector3 *dst, const t_vector3 *src, const float len)

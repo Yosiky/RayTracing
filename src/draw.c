@@ -1,5 +1,21 @@
 #include "miniRT.h"
 
+static uint color_transform(uint color, float intensity)
+{
+    union
+    {
+        uint            color;
+        unsigned char   c[4];
+    }   res;
+    int i;
+
+    res.color = color;
+    i = -1;
+    while (++i < 4)
+        res.c[i] = (float)res.c[i] * intensity;
+    return (res.color);
+}
+
 static float    compute_lighting(t_vector3 *p, t_vector3 *n, t_eelist *lst)
 {
     t_vector3   l;
@@ -10,7 +26,7 @@ static float    compute_lighting(t_vector3 *p, t_vector3 *n, t_eelist *lst)
     res = 0;
     while (lst)
     {
-        type = get_light_type(lst->data);
+        type = get_light_type(lst);
         if (type == AMBIENT)
             res += ((t_light *)lst->data)->intensity;
         else 
@@ -23,6 +39,7 @@ static float    compute_lighting(t_vector3 *p, t_vector3 *n, t_eelist *lst)
             if (n_dot_l > 0)
                 res += ((t_light *)lst->data)->intensity * n_dot_l / (vector3_length(n) * vector3_length(&l));
         }
+        lst = lst->next;
     }
     return (res);
 }
@@ -58,7 +75,7 @@ static uint trace_ray(t_vector3 *o, t_vector3 *d, t_vector3 minimum, t_eelist *l
         return (COLOR_BACKGROUND);
     set_coordinates(&p, (float []){o->x + res * d->x, o->y + res * d->y, o->z + res * d->z});
     funcs->get_normal(&n, &p, ptr_obj);
-    return (funcs->get_color(ptr_obj) * compute_lighting(&p, &n, get_light_all(NULL)));
+    return (color_transform(funcs->get_color(ptr_obj), compute_lighting(&p, &n, get_light_all(NULL))));
 }
 
 void    draw_on_img(t_image *img, t_eelist *lst, t_work_figure *funcs)
