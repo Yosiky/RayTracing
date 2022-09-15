@@ -1,3 +1,5 @@
+TARGET			=	$(shell uname | sed 's/[A-Z]/\L&/g')
+
 CC				=	gcc
 # CFLAGS			=	-Wall -Wextra -Werror -g		\
 					# -pedantic-errors -Wfloat-equal -Wshadow -Wcast-qual -Wconversion -Wsign-conversion
@@ -17,7 +19,12 @@ SRC				=	main.c					\
 OBJ_DIR			=	obj
 OBJ				=	$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 
+MINILIBX_DIR	=	minilibx_$(TARGET)
+MINILIBX		=	libmlx.a
+
 HEADER_DIR		=	inc
+MAKE_HEADER		=	$(addprefix -I,$(HEADER_DIR))	\
+					$(addprefix -I,$(MINILIBX_DIR))
 HEADER			=	miniRT.h			\
 					APIminilibx.h		\
 					ee_list.h			\
@@ -25,10 +32,11 @@ HEADER			=	miniRT.h			\
 					vector3.h			\
 					light.h
 
-MINILIBX_DIR	=	minilibx
-MINILIBX		=	libmlx.a
 
-LIB				=	-L$(MINILIBX_DIR) -lmlx				\
+LIB_linux		=	 -L$(MINILIBX_DIR) -lmlx 			\
+					 -L/usr/lib -I$() -lXext -lX11 -lm -lz 
+
+LIB_macos		=	-L$(MINILIBX_DIR) -lmlx				\
 					-framework OpenGL					\
 					-framework AppKit
 
@@ -39,18 +47,20 @@ all:	$(OBJ_DIR) $(MINILIBX_DIR)/$(MINILIBX) $(NAME)
 $(MINILIBX_DIR)/$(MINILIBX):
 	@printf	"Assembling minilibx\n"
 	@$(MAKE) -C $(MINILIBX_DIR)
+	@echo  $(addprefix $(HEADER_DIR)/,$(HEADER))
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile						\
 				$(addprefix $(HEADER_DIR)/,$(HEADER))		\
 				$(MINILIBX_DIR)/$(MINILIBX)
-	$(CC) $< $(CFLAGS) -g -I$(MINILIBX_DIR) -I$(HEADER_DIR) -c -o $@
+	@printf "create %s\n" $@
+	@$(CC) $< $(CFLAGS) -g $(MAKE_HEADER) -c -o $@
 
 $(OBJ_DIR):
 	mkdir -p $@
 
 $(NAME):	$(addprefix $(HEADER_DIR)/,$(HEADER))		\
 			$(OBJ) $(addprefix $(SRC_DIR)/,$(SRC))
-	$(CC) $(OBJ) $(LIB) $(CFLAGS) -o $@
+	$(CC) $(OBJ) $(LIB_$(TARGET)) $(CFLAGS) -o $@
 
 clean:
 	@printf "Remove miniRT object files\n"
@@ -60,7 +70,8 @@ clean:
 
 fclean: clean
 	@printf "Remove minilibx\n"
-	@rm -rf $(MINILIBX_DIR)/$(MINILIBX)
+	# @(MAKE) -C $(MINILIBX_DIR)
+	# @rm -rf $(MINILIBX_DIR)/$(MINILIBX)
 	@printf "Remove miniRT\n"
 	@rm -rf $(NAME)
 
