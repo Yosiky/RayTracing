@@ -98,8 +98,8 @@ void    draw_on_img(t_image *img, t_eelist *lst, t_work_figure *funcs)
         x = 0;
         while (x < img->x)
         {
-            set_coordinates(&d, (float []){ (float)(x - width_x) * 1 / WINDOW_X, (float)(y - width_y) * 1 / WINDOW_Y, 1});
-            vector3_normalized(&d);
+            set_coordinates(&d, (float []){ (float)(x - width_x) * 1 / WINDOW_X, (float)(-y + width_y) * 1 / WINDOW_Y, 1});
+            //vector3_normalized(&d);
             color = trace_ray(&o, &d, (t_vector3){1, INT_MAX, 0}, lst, funcs);
             ee_mlx_pixel_put(img, (x++), y, color);
         }

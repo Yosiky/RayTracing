@@ -14,7 +14,7 @@ void    vector3_minus(t_vector3 *a, const t_vector3 *b, const t_vector3 *c)
     a->z = b->z - c->z;
 }
 
-float   vector3_dot(const t_vector3 *restrict a, const t_vector3 *restrict b)
+float   vector3_dot(const t_vector3 *a, const t_vector3 *b)
 {
     return (a->x * b->x + a->y * b->y + a->z * b->z);
 }

@@ -36,7 +36,7 @@ HEADER			=	miniRT.h			\
 LIB_linux		=	 -L$(MINILIBX_DIR) -lmlx 			\
 					 -L/usr/lib -I$() -lXext -lX11 -lm -lz 
 
-LIB_macos		=	-L$(MINILIBX_DIR) -lmlx				\
+LIB_LDarwin		=	-L$(MINILIBX_DIR) -lmlx				\
 					-framework OpenGL					\
 					-framework AppKit
 
