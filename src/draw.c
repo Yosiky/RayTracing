@@ -2,17 +2,19 @@
 
 static uint color_transform(uint color, float intensity)
 {
-    union
-    {
+    union {
         uint            color;
         unsigned char   c[4];
     }   res;
     int i;
 
-    res.color = color;
+    res.color = 0xffffffff;
     i = -1;
     while (++i < 4)
-        res.c[i] = (unsigned char)((float)res.c[i] * intensity);
+    {
+        float   value = res.c[i];
+        res.c[i] = (unsigned char)(value * intensity);
+    }
     return (res.color);
 }
 
@@ -92,16 +94,18 @@ void    draw_on_img(t_image *img, t_eelist *lst, t_work_figure *funcs)
     t_vector3   d;
 
     set_coordinates(&o, (float []){0, 0, 0});
-    y = 0;
-    while (y < img->y)
+    y = -width_y;
+    while (y < width_y)
     {
-        x = 0;
-        while (x < img->x)
+        x = -width_x;
+        while (x < width_x)
         {
-            set_coordinates(&d, (float []){ (float)(x - width_x) * 1 / WINDOW_X, (float)(-y + width_y) * 1 / WINDOW_Y, 1});
+            set_coordinates(&d, (float []){ (float)(x) * 1 / WINDOW_X, (float)(y) * 1 / WINDOW_Y, 1});
             //vector3_normalized(&d);
             color = trace_ray(&o, &d, (t_vector3){1, INT_MAX, 0}, lst, funcs);
-            ee_mlx_pixel_put(img, (x++), y, color);
+            ee_mlx_pixel_put(img, width_x + x, width_y - y, color);
+            ++x;
+            /* ee_mlx_pixel_put(img, (x++), y, color); */
         }
         ++y;
     }
