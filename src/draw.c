@@ -58,7 +58,7 @@ static uint trace_ray(t_vector3 *o, t_vector3 *d, t_vector3 minimum, t_eelist *l
     t_eelist    *ptr_obj;
 
     ptr_obj = NULL;
-    res = INT_MAX;
+    res = INFINITY;
     while (lst != NULL)
     {
         min = funcs->intersect_ray(o, d, lst);
@@ -67,7 +67,7 @@ static uint trace_ray(t_vector3 *o, t_vector3 *d, t_vector3 minimum, t_eelist *l
             res = min.x;
             ptr_obj = lst;
         }
-        if (min.y < res && minimum.y < min.y && min.y < minimum.y)
+        if (min.y < res && minimum.x < min.y && min.y < minimum.y)
         {
             res = min.y;
             ptr_obj = lst;
@@ -101,7 +101,7 @@ void    draw_on_img(t_image *img, t_eelist *lst, t_work_figure *funcs)
         {
             set_coordinates(&d, (float []){ (float)(x) * 1 / WINDOW_X, (float)(y) * 1 / WINDOW_Y, 1});
             //vector3_normalized(&d);
-            color = trace_ray(&o, &d, (t_vector3){1, INT_MAX, 0}, lst, funcs);
+            color = trace_ray(&o, &d, (t_vector3){1, INFINITY, 0}, lst, funcs);
             ee_mlx_pixel_put(img, width_x + x, width_y - y, color);
             ++x;
             /* ee_mlx_pixel_put(img, (x++), y, color); */
