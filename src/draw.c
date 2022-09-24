@@ -1,5 +1,12 @@
 #include "miniRT.h"
 
+typedef struct s_some_struct
+{
+    void *ptr;
+    float   value;
+}   t_some_struct;
+
+
 static uint color_transform(uint color, float intensity)
 {
     union {
@@ -8,7 +15,7 @@ static uint color_transform(uint color, float intensity)
     }   res;
     int i;
 
-    res.color = color; //0xffffffff;
+    res.color = color;
     i = -1;
     while (++i < 4)
     {
@@ -18,12 +25,34 @@ static uint color_transform(uint color, float intensity)
     return (res.color);
 }
 
-static float    compute_lighting(t_vector3 *p, t_vector3 *n, t_vector3 *v, uint s, t_eelist *lst)
+static t_some_struct    closestIntersection(t_vector3 *o, t_vector3 *d, t_eelist *lst, t_work_figure *funcs)
+{
+    float   res;
+    float   min_value;
+    void        *ptr_obj;
+
+    ptr_obj = NULL;
+    res = INFINITY;
+    while (lst != NULL)
+    {
+        min_value = funcs->intersect_ray(o, d, lst->data);
+        if (min_value < res)
+        {
+            res = min_value;
+            ptr_obj = lst->data;
+        }
+        lst = lst->next;
+    }
+    return ((t_some_struct){ptr_obj, res});
+}
+
+static float    compute_lighting(t_vector3 *p, t_vector3 *n, t_vector3 *v, uint s, t_eelist *lst, t_work_figure *funcs)
 {
     t_vector3   l;
     float       n_dot_l;
     float       res;
     uint        type;
+    float       max;
 
     res = 0;
     while (lst)
@@ -37,9 +66,19 @@ static float    compute_lighting(t_vector3 *p, t_vector3 *n, t_vector3 *v, uint 
             {
                 vector3_minus(&l, &((t_light *)lst->data)->position, p);
                 vector3_normalized(&l);
+                max = 1;
             }
             else
+            {
                 l = ((t_light *)lst->data)->position;
+                max = INFINITY;
+            }
+            t_some_struct   some = closestIntersection(p, &l, lst, funcs);
+            if (some.ptr != NULL)
+            {
+                lst = lst->next;
+                continue ;
+            }
             n_dot_l = vector3_dot(n, &l);
             if (n_dot_l > 0)
                 res += ((t_light *)lst->data)->intensity * n_dot_l;
@@ -64,28 +103,16 @@ static uint trace_ray(t_vector3 *o, t_vector3 *d, t_eelist *lst, t_work_figure *
     t_vector3   p;
     t_vector3   n;
     float       min;
-    float       res;
-    void        *ptr_obj;
+    t_some_struct res;
 
-    ptr_obj = NULL;
-    res = INFINITY;
-    while (lst != NULL)
-    {
-        min = funcs->intersect_ray(o, d, lst->data);
-        if (min < res)
-        {
-            res = min;
-            ptr_obj = lst->data;
-        }
-        lst = lst->next;
-    }
-    if (ptr_obj == NULL)
+    res = closestIntersection(o, d, lst, funcs);
+    if (res.ptr == NULL)
         return (COLOR_BACKGROUND);
-    t_vector3 arr = {o->x + res * d->x, o->y + res * d->y, o->z + res * d->z};
+    t_vector3 arr = {o->x + res.value * d->x, o->y + res.value * d->y, o->z + res.value * d->z};
     set_coordinates(&p, arr);
-    funcs->get_normal(&n, &p, ptr_obj);
+    funcs->get_normal(&n, &p, res.ptr);
     vector3_mul(d, d, -1);
-    return (color_transform(funcs->get_color(ptr_obj), compute_lighting(&p, &n, d, funcs->get_specular(ptr_obj), get_light_all(NULL))));
+    return (color_transform(funcs->get_color(res.ptr), compute_lighting(&p, &n, d, funcs->get_specular(res.ptr), get_light_all(NULL), funcs)));
 }
 
 void    draw_on_img(t_image *img, t_eelist *lst, t_work_figure *funcs)
