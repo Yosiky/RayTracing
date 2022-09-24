@@ -8,7 +8,7 @@ static uint color_transform(uint color, float intensity)
     }   res;
     int i;
 
-    res.color = 0xffffffff;
+    res.color = color; //0xffffffff;
     i = -1;
     while (++i < 4)
     {
@@ -62,23 +62,22 @@ static uint trace_ray(t_vector3 *o, t_vector3 *d, t_vector3 minimum, t_eelist *l
     while (lst != NULL)
     {
         min = funcs->intersect_ray(o, d, lst);
-        /* printf("%lf %lf\n", min.x, min.y); */
         if (min.x < res && minimum.x < min.x && min.x < minimum.y)
         {
             res = min.x;
             ptr_obj = lst;
         }
-        if (min.y < res && minimum.y < min.x && min.y < minimum.y)
+        if (min.y < res && minimum.y < min.y && min.y < minimum.y)
         {
             res = min.y;
             ptr_obj = lst;
         }
         lst = lst->next;
     }
-    /* printf("%u\n", funcs->get_color(ptr_obj)); */
     if (ptr_obj == NULL)
         return (COLOR_BACKGROUND);
     set_coordinates(&p, (float []){o->x + res * d->x, o->y + res * d->y, o->z + res * d->z});
+    vector3_normalized(&p);
     funcs->get_normal(&n, &p, ptr_obj);
     return (color_transform(funcs->get_color(ptr_obj), compute_lighting(&p, &n, get_light_all(NULL))));
 }

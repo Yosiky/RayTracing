@@ -16,13 +16,8 @@ t_vector3   intersect_ray_sphere(t_vector3 *o, t_vector3 *d, t_eelist *lst)
     k[1] = 2 * vector3_dot(&oc, d);
     k[2] = vector3_dot(&oc, &oc) - ptr_sphere->r * ptr_sphere->r;
     k[3] = k[1] * k[1] - 4 * k[0] * k[2];
-    /* printf("%f\n", k[0]); */
-    /* printf("%f\n", k[1]); */
-    /* printf("%f\n", k[2]); */
-    /* printf("%f\n", k[3]); */
     if (k[3] < 0)
         return ((t_vector3){INT_MAX, INT_MAX, 0});
-    /* printf("color: %u\n", get_color_sphere(lst)); */
     return ((t_vector3){(-k[1] + sqrt(k[3])) / (2 * k[0]), (-k[1] - sqrt(k[3])) / (2 * k[0]), 0});
 }
 

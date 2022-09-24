@@ -6,7 +6,7 @@
 /*   By: eestelle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 14:25:22 by eestelle          #+#    #+#             */
-/*   Updated: 2022/09/23 13:13:56 by eestelle         ###   ########.fr       */
+/*   Updated: 2022/09/24 18:30:29 by eestelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,11 @@ int main(void)
     t_light derectional = {DERECTIONAL, 0.2, {1, 4, 4}};
 
     vector3_normalized(&derectional.position);
-    /* t_eelist   *test_light = ee_list_create(&ambient); */
-    /* test_light->next = ee_list_create(&point); */
-    /* test_light->next->next = ee_list_create(&derectional); */
-    /*t_eelist    *test_light = ee_list_create(&ambient); */
-    t_eelist *test_light = ee_list_create(&point);
+    t_eelist   *test_light = ee_list_create(&ambient);
+    test_light->next = ee_list_create(&point);
+    test_light->next->next = ee_list_create(&derectional);
+    /* t_eelist    *test_light = ee_list_create(&ambient); */
+    /* t_eelist *test_light = ee_list_create(&point); */
     /* t_eelist *test_light = ee_list_create(&derectional); */
 
     get_light_all(test_light);
