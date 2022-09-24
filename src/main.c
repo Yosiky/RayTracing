@@ -6,21 +6,22 @@
 /*   By: eestelle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 14:25:22 by eestelle          #+#    #+#             */
-/*   Updated: 2022/09/24 18:58:58 by eestelle         ###   ########.fr       */
+/*   Updated: 2022/09/24 20:14:00 by eestelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_sphere    *sphere_create(t_vector3 a, float r, uint color)
+t_sphere    *sphere_create(t_vector3 a, float r, uint color, uint specular)
 {
     t_sphere    *res = (t_sphere *)malloc(sizeof(t_sphere));
 
     if (res == NULL)
         return (NULL);
-    res->color = color;
     res->center = a;
     res->r = r;
+    res->color = color;
+    res->specular = specular;
     return (res);
 }
 
@@ -46,12 +47,12 @@ int main(void)
     ptr_window = create_window(ptr_mlx, WINDOW_X, WINDOW_Y, WINDOW_NAME);
     ptr_image = create_image(ptr_mlx, IMG_X, IMG_Y);
 
-    t_eelist    *test = ee_list_create((void *)sphere_create((t_vector3){0, -1, 3}, 1, 0x00ff0000));
-    test->next = ee_list_create((void *)sphere_create((t_vector3){2, 0, 4}, 1, 0x000000ff));
-    test->next->next = ee_list_create((void *)sphere_create((t_vector3){-2, 0, 4}, 1, 0x0000ff00));
-    test->next->next->next = ee_list_create((void *)sphere_create((t_vector3){0, -5001, 0}, 5000, 0x00ffff00));
+    t_eelist    *test = ee_list_create((void *)sphere_create((t_vector3){0, -1, 3}, 1, 0x00ff0000, 500));
+    test->next = ee_list_create((void *)sphere_create((t_vector3){2, 0, 4}, 1, 0x000000ff, 500));
+    test->next->next = ee_list_create((void *)sphere_create((t_vector3){-2, 0, 4}, 1, 0x0000ff00, 10));
+    test->next->next->next = ee_list_create((void *)sphere_create((t_vector3){0, -5001, 0}, 5000, 0x00ffff00, 1000));
 
-    t_work_figure   functions = {intersect_ray_sphere, get_color_sphere, get_normal_sphere};
+    t_work_figure   functions = {intersect_ray_sphere, get_color_sphere, get_normal_sphere, get_specular_sphere};
 
     t_light ambient = {AMBIENT, 0.2, {0, 0, 0}};
     t_light point = {POINT, 0.6, {2, 1, 0}};

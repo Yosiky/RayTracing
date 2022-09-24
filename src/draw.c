@@ -18,7 +18,7 @@ static uint color_transform(uint color, float intensity)
     return (res.color);
 }
 
-static float    compute_lighting(t_vector3 *p, t_vector3 *n, t_eelist *lst)
+static float    compute_lighting(t_vector3 *p, t_vector3 *n, t_vector3 *v, uint s, t_eelist *lst)
 {
     t_vector3   l;
     float       n_dot_l;
@@ -43,44 +43,49 @@ static float    compute_lighting(t_vector3 *p, t_vector3 *n, t_eelist *lst)
             n_dot_l = vector3_dot(n, &l);
             if (n_dot_l > 0)
                 res += ((t_light *)lst->data)->intensity * n_dot_l;
+            if (s != -1)
+            {
+                t_vector3 R;
+
+                vector3_mul(n, n, 2 * vector3_dot(n, &l));
+                vector3_minus(&R, n, &l);
+                float r_dot_v = vector3_dot(&R, v);
+                if (r_dot_v > 0)
+                    res = fmin(1, res + ((t_light *)lst->data)->intensity * pow(r_dot_v / (vector3_length(&R) * vector3_length(v)), s));
+            }
         }
         lst = lst->next;
     }
     return (res);
 }
 
-static uint trace_ray(t_vector3 *o, t_vector3 *d, t_vector3 minimum, t_eelist *lst, t_work_figure *funcs)
+static uint trace_ray(t_vector3 *o, t_vector3 *d, t_eelist *lst, t_work_figure *funcs)
 {
-    t_vector3   min;
     t_vector3   p;
     t_vector3   n;
+    float       min;
     float       res;
-    t_eelist    *ptr_obj;
+    void        *ptr_obj;
 
     ptr_obj = NULL;
     res = INFINITY;
     while (lst != NULL)
     {
-        min = funcs->intersect_ray(o, d, lst);
-        if (min.x < res && minimum.x < min.x && min.x < minimum.y)
+        min = funcs->intersect_ray(o, d, lst->data);
+        if (min < res)
         {
-            res = min.x;
-            ptr_obj = lst;
-        }
-        if (min.y < res && minimum.x < min.y && min.y < minimum.y)
-        {
-            res = min.y;
-            ptr_obj = lst;
+            res = min;
+            ptr_obj = lst->data;
         }
         lst = lst->next;
     }
     if (ptr_obj == NULL)
         return (COLOR_BACKGROUND);
-    float arr[3] = {o->x + res * d->x, o->y + res * d->y, o->z + res * d->z};
+    t_vector3 arr = {o->x + res * d->x, o->y + res * d->y, o->z + res * d->z};
     set_coordinates(&p, arr);
-    /* vector3_normalized(&p); */
     funcs->get_normal(&n, &p, ptr_obj);
-    return (color_transform(funcs->get_color(ptr_obj), compute_lighting(&p, &n, get_light_all(NULL))));
+    vector3_mul(d, d, -1);
+    return (color_transform(funcs->get_color(ptr_obj), compute_lighting(&p, &n, d, funcs->get_specular(ptr_obj), get_light_all(NULL))));
 }
 
 void    draw_on_img(t_image *img, t_eelist *lst, t_work_figure *funcs)
@@ -93,16 +98,15 @@ void    draw_on_img(t_image *img, t_eelist *lst, t_work_figure *funcs)
     t_vector3   o;
     t_vector3   d;
 
-    set_coordinates(&o, (float []){0, 0, 0});
+    set_coordinates(&o, (t_vector3){0, 0, 0});
     y = -width_y;
     while (y < width_y)
     {
         x = -width_x;
         while (x < width_x)
         {
-            set_coordinates(&d, (float []){ (float)(x) * 1 / WINDOW_X, (float)(y) * 1 / WINDOW_Y, 1});
-            //vector3_normalized(&d);
-            color = trace_ray(&o, &d, (t_vector3){1, INFINITY, 0}, lst, funcs);
+            set_coordinates(&d, (t_vector3){ (float)(x) * 1 / WINDOW_X, (float)(y) * 1 / WINDOW_Y, 1});
+            color = trace_ray(&o, &d, lst, funcs);
             ee_mlx_pixel_put(img, width_x + x, width_y - y, color);
             ++x;
             /* ee_mlx_pixel_put(img, (x++), y, color); */

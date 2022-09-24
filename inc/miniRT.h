@@ -23,15 +23,17 @@
 # define COLOR_BACKGROUND   0X00000000
 # define EPS                0.00001
 
-typedef t_vector3   (*t_intersect_ray)(t_vector3 *o, t_vector3 *d, t_eelist *lst);
-typedef uint        (*t_get_color)(t_eelist *lst);
-typedef void        (*t_get_normal)(t_vector3 *res, const t_vector3 *a, t_eelist *lst);
+typedef float       (*t_intersect_ray)(t_vector3 *o, t_vector3 *d, void *data);
+typedef uint        (*t_get_color)(void *data);
+typedef void        (*t_get_normal)(t_vector3 *res, const t_vector3 *a, void *data);
+typedef uint        (*t_get_specular)(void *data);
 
 typedef struct s_work_with_figure
 {
     t_intersect_ray intersect_ray;
     t_get_color     get_color;
     t_get_normal    get_normal;
+    t_get_specular  get_specular;
 }   t_work_figure;
 
 void    ee_error(int code, const char *str);
