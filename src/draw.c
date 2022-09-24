@@ -76,8 +76,9 @@ static uint trace_ray(t_vector3 *o, t_vector3 *d, t_vector3 minimum, t_eelist *l
     }
     if (ptr_obj == NULL)
         return (COLOR_BACKGROUND);
-    set_coordinates(&p, (float []){o->x + res * d->x, o->y + res * d->y, o->z + res * d->z});
-    vector3_normalized(&p);
+    float arr[3] = {o->x + res * d->x, o->y + res * d->y, o->z + res * d->z};
+    set_coordinates(&p, arr);
+    /* vector3_normalized(&p); */
     funcs->get_normal(&n, &p, ptr_obj);
     return (color_transform(funcs->get_color(ptr_obj), compute_lighting(&p, &n, get_light_all(NULL))));
 }
