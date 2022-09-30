@@ -38,5 +38,9 @@ void    get_normal_sphere(t_vector3 *res, const t_vector3 *a, void *data)
 uint    get_specular_sphere(void *data)
 {
     return (((t_sphere *)data)->specular);
+}
 
+double  get_reflect_sphere(void *data)
+{
+    return (((t_sphere *)data)->reflective);
 }
