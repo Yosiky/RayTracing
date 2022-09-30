@@ -21,9 +21,8 @@
 # define SCREEN_IMG_Y 1024
 
 # define COLOR_BACKGROUND   0X00000000
-# define EPS                0.00001
 
-typedef float       (*t_intersect_ray)(t_vector3 *o, t_vector3 *d, void *data);
+typedef double       (*t_intersect_ray)(t_vector3 *o, t_vector3 *d, void *data);
 typedef uint        (*t_get_color)(void *data);
 typedef void        (*t_get_normal)(t_vector3 *res, const t_vector3 *a, void *data);
 typedef uint        (*t_get_specular)(void *data);

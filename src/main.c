@@ -12,7 +12,7 @@
 
 #include "miniRT.h"
 
-t_sphere    *sphere_create(t_vector3 a, float r, uint color, uint specular)
+t_sphere    *sphere_create(t_vector3 a, double r, uint color, uint specular)
 {
     t_sphere    *res = (t_sphere *)malloc(sizeof(t_sphere));
 
