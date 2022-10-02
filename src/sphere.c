@@ -1,10 +1,5 @@
 #include "sphere.h"
 
-uint    get_color_sphere(void *data)
-{
-    return (((t_sphere *)data)->color);
-}
-
 double   intersect_ray_sphere(t_vector3 *o, t_vector3 *d, void *data)
 {
     const t_sphere  *ptr_sphere = (t_sphere *)data;
@@ -32,15 +27,5 @@ double   intersect_ray_sphere(t_vector3 *o, t_vector3 *d, void *data)
 void    get_normal_sphere(t_vector3 *res, const t_vector3 *a, void *data)
 {
     vector3_minus(res, a, &(((t_sphere *)data)->center));
-    vector3_normalized(res);
-}
-
-uint    get_specular_sphere(void *data)
-{
-    return (((t_sphere *)data)->specular);
-}
-
-double  get_reflect_sphere(void *data)
-{
-    return (((t_sphere *)data)->reflective);
+    vector3_div(res, res, ((t_sphere *)data)->r);
 }

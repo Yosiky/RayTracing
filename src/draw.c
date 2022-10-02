@@ -152,7 +152,7 @@ static uint trace_ray(t_vector3 *o, t_vector3 *d, t_eelist *lst, t_work_figure *
     return (get_right_color(local_color, reflect_color, r));
 }
 
-void    draw_on_img(t_image *img, t_eelist *lst, t_work_figure *funcs)
+void    draw_on_img(t_image *img, t_object *objects)
 {
     int         x;
     int         y;
@@ -170,8 +170,8 @@ void    draw_on_img(t_image *img, t_eelist *lst, t_work_figure *funcs)
         while (x < width_x)
         {
             set_coordinates(&d, (t_vector3){ (double)(x) * 1 / WINDOW_X, (double)(y) * 1 / WINDOW_Y, 1});
-            color = trace_ray(&o, &d, lst, funcs, RECURSIVE_DEPTH);
-            ee_mlx_pixel_put(img, width_x + x, width_y - y, color);
+            color = trace_ray(&o, &d, objects, RECURSIVE_DEPTH);
+                ee_mlx_pixel_put(img, width_x + x, width_y - y, color);
             ++x;
             /* ee_mlx_pixel_put(img, (x++), y, color); */
         }

@@ -21,7 +21,7 @@ typedef struct s_light
     t_vector3           position;
 }   t_light;
 
-uint get_light_type(t_eelist *lst);
-t_eelist    *get_light_all(t_eelist *lst);
+uint    get_light_type(t_eelist *lst);
+t_light **get_light_all(t_light **light);
 
 #endif

@@ -5,12 +5,11 @@ uint get_light_type(t_eelist *lst)
     return (((t_light *)lst->data)->type);
 }
 
-t_eelist    *get_light_all(t_eelist *lst)
+t_light **get_light_all(t_light **arr)
 {
-    static t_eelist *res;
+    static t_light  **light;
 
-    if (lst != NULL)
-        res = lst;
-    return (res);
+    if (arr != NULL)
+        light = arr;
+    return (light);
 }
-
