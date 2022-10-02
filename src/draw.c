@@ -171,9 +171,8 @@ void    draw_on_img(t_image *img, t_object *objects)
         {
             set_coordinates(&d, (t_vector3){ (double)(x) * 1 / WINDOW_X, (double)(y) * 1 / WINDOW_Y, 1});
             color = trace_ray(&o, &d, objects, RECURSIVE_DEPTH);
-                ee_mlx_pixel_put(img, width_x + x, width_y - y, color);
+            ee_mlx_pixel_put(img, width_x + x, width_y - y, color);
             ++x;
-            /* ee_mlx_pixel_put(img, (x++), y, color); */
         }
         ++y;
     }
