@@ -6,7 +6,7 @@
 /*   By: eestelle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 14:25:22 by eestelle          #+#    #+#             */
-/*   Updated: 2022/09/30 20:41:14 by eestelle         ###   ########.fr       */
+/*   Updated: 2022/10/02 16:26:15 by eestelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ int main(void)
     ptr_window = create_window(ptr_mlx, WINDOW_X, WINDOW_Y, WINDOW_NAME);
     ptr_image = create_image(ptr_mlx, IMG_X, IMG_Y);
 
-    t_eelist    *test = ee_list_create((void *)sphere_create((t_vector3){0, -1, 7}, 1, 0x00ff0000, 500, 0.2));
-    test->next = ee_list_create((void *)sphere_create((t_vector3){2, 0, 8}, 1, 0x000000ff, 500, 0.3));
-    test->next->next = ee_list_create((void *)sphere_create((t_vector3){-2, 0, 8}, 1, 0x0000ff00, 10, 0.4));
+    t_eelist    *test = ee_list_create((void *)sphere_create((t_vector3){0, -1, 3}, 1, 0x00ff0000, 500, 0.2));
+    test->next = ee_list_create((void *)sphere_create((t_vector3){2, 0, 4}, 1, 0x000000ff, 500, 0.3));
+    test->next->next = ee_list_create((void *)sphere_create((t_vector3){-2, 0, 4}, 1, 0x0000ff00, 10, 0.4));
     test->next->next->next = ee_list_create((void *)sphere_create((t_vector3){0, -5001, 0}, 5000, 0x00ffff00, 1000, 0.5));
 
     t_work_figure   functions = {intersect_ray_sphere, get_color_sphere, get_normal_sphere, get_specular_sphere, get_reflect_sphere};

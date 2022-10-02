@@ -144,10 +144,8 @@ static uint trace_ray(t_vector3 *o, t_vector3 *d, t_eelist *lst, t_work_figure *
     vector3_mul(d, d, -1);
     local_color = color_transform(funcs->get_color(res.ptr), compute_lighting(&p, &n, d, funcs->get_specular(res.ptr), get_light_all(NULL), funcs, lst));
     double  r = funcs->get_reflect(res.ptr);
-    if (depth < 0 || r <= EPS)
+    if (depth <= 0 || r <= EPS)
         return (local_color);
-    /* vector3_normalized(d); */
-    /* vector3_normalized(&n); */
     t_vector3 vec_r = reflect_ray(d, &n);
     vector3_normalized(&vec_r);
     uint reflect_color = trace_ray(&p, &vec_r, lst, funcs, depth - 1);
