@@ -93,9 +93,10 @@ static double    compute_lighting(t_vector3 *p, t_vector3 *n, t_vector3 *v, uint
             if (s != -1)
             {
                 t_vector3 R;
+                t_vector3 some;
 
-                vector3_mul(n, n, 2 * vector3_dot(n, &l));
-                vector3_minus(&R, n, &l);
+                vector3_mul(&some, n, 2 * vector3_dot(n, &l));
+                vector3_minus(&R, &some, &l);
                 double r_dot_v = vector3_dot(&R, v);
                 if (r_dot_v > 0)
                     res = fmin(1, res + ((t_light *)lst->data)->intensity * pow(r_dot_v / (vector3_length(&R) * vector3_length(v)), s));
@@ -145,7 +146,10 @@ static uint trace_ray(t_vector3 *o, t_vector3 *d, t_eelist *lst, t_work_figure *
     double  r = funcs->get_reflect(res.ptr);
     if (depth < 0 || r <= EPS)
         return (local_color);
+    /* vector3_normalized(d); */
+    /* vector3_normalized(&n); */
     t_vector3 vec_r = reflect_ray(d, &n);
+    vector3_normalized(&vec_r);
     uint reflect_color = trace_ray(&p, &vec_r, lst, funcs, depth - 1);
     return (get_right_color(local_color, reflect_color, r));
 }
