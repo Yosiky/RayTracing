@@ -2,8 +2,8 @@
 
 typedef struct s_some_struct
 {
-    void *ptr;
-    double   value;
+    t_object    *ptr;
+    double      value;
 }   t_some_struct;
 
 t_vector3   reflect_ray(t_vector3 *r, t_vector3 *n)
@@ -33,78 +33,80 @@ static uint color_transform(uint color, double intensity)
     return (res.color);
 }
 
-static t_some_struct    closestIntersection(t_vector3 *o, t_vector3 *d, t_eelist *lst, t_work_figure *funcs)
+static t_some_struct    closestIntersection(t_vector3 *o, t_vector3 *d, t_object *objects)
 {
-    double   res;
-    double   min_value;
-    void        *ptr_obj;
+    double      res;
+    double      min_value;
+    t_object    *ptr_obj;
 
     ptr_obj = NULL;
     res = INFINITY;
-    while (lst != NULL)
+    while (objects->type != -1)
     {
-        min_value = funcs->intersect_ray(o, d, lst->data);
+        min_value = intersect_ray(o, d, objects);
         if (min_value < res)
         {
             res = min_value;
-            ptr_obj = lst->data;
+            ptr_obj = objects;
         }
-        lst = lst->next;
+        ++objects;
     }
     return ((t_some_struct){ptr_obj, res});
 }
 
-static double    compute_lighting(t_vector3 *p, t_vector3 *n, t_vector3 *v, uint s, t_eelist *lst, t_work_figure *funcs, t_eelist *lst_figure)
+static double    compute_lighting(t_vector3 *p, t_vector3 *n, t_vector3 *v, uint s, t_object *objects)
 {
-    t_vector3   l;
+    static t_light      **light = NULL;
+    static int          indx;
+    static double       intensity;
+    static double       max;
+    static t_vector3    *l;
     double       n_dot_l;
-    double       res;
-    uint        type;
-    double       max;
 
-    res = 0;
-    while (lst)
+    intensity = 0;
+    indx = -1;
+    if (light == NULL)
+        light = get_light_all(NULL);
+    while (light[++indx] != NULL)
     {
-        type = get_light_type(lst);
-        if (type == AMBIENT)
-            res += ((t_light *)lst->data)->intensity;
+        if (light[indx]->type == AMBIENT)
+            intensity += light[indx]->intensity;
         else 
         {
-            if (type == POINT)
+            if (light[indx]->type == POINT)
             {
-                vector3_minus(&l, &((t_light *)lst->data)->position, p);
-                vector3_normalized(&l);
+                vector3_minus(l, &(light[indx]->position), p);
+                vector3_normalized(l);
                 max = 1;
             }
             else
             {
-                l = ((t_light *)lst->data)->position;
+                l = &(light[indx]->position);
                 max = INFINITY;
             }
-            t_some_struct   some = closestIntersection(p, &l, lst_figure, funcs);
-            if (some.ptr != NULL)
+           ;
+            if ((closestIntersection(p, l, objects)).ptr != NULL)
             {
-                lst = lst->next;
+                ++indx;
                 continue ;
             }
-            n_dot_l = vector3_dot(n, &l);
+            n_dot_l = vector3_dot(n, l);
             if (n_dot_l > 0)
-                res += ((t_light *)lst->data)->intensity * n_dot_l;
+                intensity += light[indx]->intensity * n_dot_l;
             if (s != -1)
             {
                 t_vector3 R;
                 t_vector3 some;
 
-                vector3_mul(&some, n, 2 * vector3_dot(n, &l));
-                vector3_minus(&R, &some, &l);
+                vector3_mul(&some, n, 2 * vector3_dot(n, l));
+                vector3_minus(&R, &some, l);
                 double r_dot_v = vector3_dot(&R, v);
                 if (r_dot_v > 0)
-                    res = fmin(1, res + ((t_light *)lst->data)->intensity * pow(r_dot_v / (vector3_length(&R) * vector3_length(v)), s));
+                    intensity = fmin(1, intensity + light[indx]->intensity * pow(r_dot_v / (vector3_length(&R) * vector3_length(v)), s));
             }
         }
-        lst = lst->next;
     }
-    return (res);
+    return (intensity);
 }
 
 uint    get_right_color(uint a, uint b, double c)
@@ -127,7 +129,7 @@ uint    get_right_color(uint a, uint b, double c)
     return (res.color);
 }
 
-static uint trace_ray(t_vector3 *o, t_vector3 *d, t_eelist *lst, t_work_figure *funcs, int depth)
+static uint trace_ray(t_vector3 *o, t_vector3 *d, t_object *objects, int depth)
 {
     t_vector3   p;
     t_vector3   n;
@@ -135,20 +137,20 @@ static uint trace_ray(t_vector3 *o, t_vector3 *d, t_eelist *lst, t_work_figure *
     t_some_struct res;
     uint        local_color;
 
-    res = closestIntersection(o, d, lst, funcs);
+    res = closestIntersection(o, d, objects);
     if (res.ptr == NULL)
         return (COLOR_BACKGROUND);
     t_vector3 arr = {o->x + res.value * d->x, o->y + res.value * d->y, o->z + res.value * d->z};
     set_coordinates(&p, arr);
-    funcs->get_normal(&n, &p, res.ptr);
+    get_normal(&n, &p, res.ptr);// todo
     vector3_mul(d, d, -1);
-    local_color = color_transform(funcs->get_color(res.ptr), compute_lighting(&p, &n, d, funcs->get_specular(res.ptr), get_light_all(NULL), funcs, lst));
-    double  r = funcs->get_reflect(res.ptr);
+    local_color = color_transform(res.ptr->color, compute_lighting(&p, &n, d, res.ptr->specular, objects));
+    double  r = res.ptr->reflective;
     if (depth <= 0 || r <= EPS)
         return (local_color);
     t_vector3 vec_r = reflect_ray(d, &n);
     vector3_normalized(&vec_r);
-    uint reflect_color = trace_ray(&p, &vec_r, lst, funcs, depth - 1);
+    uint reflect_color = trace_ray(&p, &vec_r, objects, depth - 1);
     return (get_right_color(local_color, reflect_color, r));
 }
 

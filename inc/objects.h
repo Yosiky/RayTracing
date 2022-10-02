@@ -16,8 +16,13 @@ typedef struct s_object
     double      reflective;
     union
     {
+        void        *start;
         t_sphere    *sphere;
+        
     }   obj;
 } __attribute__((__packed__, __aligned__(8)))   t_object;
+
+double intersect_ray(t_vector3 *o, t_vector3 *d, t_object *obj);
+void    get_normal(t_vector3 *dst, t_vector3 *one, t_object *obj);
 
 #endif

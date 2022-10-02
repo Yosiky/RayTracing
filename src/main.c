@@ -6,7 +6,7 @@
 /*   By: eestelle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 14:25:22 by eestelle          #+#    #+#             */
-/*   Updated: 2022/10/02 18:48:13 by eestelle         ###   ########.fr       */
+/*   Updated: 2022/10/02 19:44:16 by eestelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,10 @@ int main(void)
     t_light ambient = {AMBIENT, 0.2, {0, 0, 0}};
     t_light point = {POINT, 0.6, {2, 1, 0}};
     t_light derectional = {DERECTIONAL, 0.2, {1, 4, 4}};
-    t_light *light[3] = {&ambient, &point, &derectional};
-    t_object    *figures = (t_object *)malloc(sizeof(t_object) * 4);
+    t_light *light[4] = {&ambient, &point, &derectional, NULL};
+    t_object    *figures = (t_object *)malloc(sizeof(t_object) * 5);
 
+    figures[5].type = -1;
     create_sphere(&figures[0], (t_vector3){0, -1, 3}, 1, 0x00ff0000, 500, 0.2);
     create_sphere(&figures[1], (t_vector3){2, 0, 4}, 1, 0x000000ff, 500, 0.3);
     create_sphere(&figures[2], (t_vector3){-2, 0, 4}, 1, 0x0000ff00, 10, 0.4);
