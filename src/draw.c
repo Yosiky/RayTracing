@@ -60,7 +60,7 @@ static double    compute_lighting(t_vector3 *p, t_vector3 *n, t_vector3 *v, uint
     static int          indx;
     static double       intensity;
     static double       max;
-    static t_vector3    *l;
+    static t_vector3    l;
     double       n_dot_l;
 
     intensity = 0;
@@ -75,22 +75,19 @@ static double    compute_lighting(t_vector3 *p, t_vector3 *n, t_vector3 *v, uint
         {
             if (light[indx]->type == POINT)
             {
-                vector3_minus(l, &(light[indx]->position), p);
-                vector3_normalized(l);
+                vector3_minus(&l, &(light[indx]->position), p);
+                vector3_normalized(&l);
                 max = 1;
             }
             else
             {
-                l = &(light[indx]->position);
+                l = light[indx]->position;
                 max = INFINITY;
             }
            ;
-            if ((closestIntersection(p, l, objects)).ptr != NULL)
-            {
-                ++indx;
+            if ((closestIntersection(p, &l, objects)).ptr != NULL)
                 continue ;
-            }
-            n_dot_l = vector3_dot(n, l);
+            n_dot_l = vector3_dot(n, &l);
             if (n_dot_l > 0)
                 intensity += light[indx]->intensity * n_dot_l;
             if (s != -1)
@@ -98,8 +95,8 @@ static double    compute_lighting(t_vector3 *p, t_vector3 *n, t_vector3 *v, uint
                 t_vector3 R;
                 t_vector3 some;
 
-                vector3_mul(&some, n, 2 * vector3_dot(n, l));
-                vector3_minus(&R, &some, l);
+                vector3_mul(&some, n, 2 * vector3_dot(n, &l));
+                vector3_minus(&R, &some, &l);
                 double r_dot_v = vector3_dot(&R, v);
                 if (r_dot_v > 0)
                     intensity = fmin(1, intensity + light[indx]->intensity * pow(r_dot_v / (vector3_length(&R) * vector3_length(v)), s));
