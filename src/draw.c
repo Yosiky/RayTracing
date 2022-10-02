@@ -33,7 +33,7 @@ static uint color_transform(uint color, double intensity)
     return (res.color);
 }
 
-static t_some_struct    closestIntersection(t_vector3 *o, t_vector3 *d, t_object *objects)
+static t_some_struct    closestIntersection(t_vector3 *o, t_vector3 *d, t_object *objects, char flag)
 {
     double      res;
     double      min_value;
@@ -48,6 +48,8 @@ static t_some_struct    closestIntersection(t_vector3 *o, t_vector3 *d, t_object
         {
             res = min_value;
             ptr_obj = objects;
+            if (flag)
+                return ((t_some_struct){ptr_obj, res});
         }
         ++objects;
     }
@@ -84,8 +86,7 @@ static double    compute_lighting(t_vector3 *p, t_vector3 *n, t_vector3 *v, uint
                 l = light[indx]->position;
                 max = INFINITY;
             }
-           ;
-            if ((closestIntersection(p, &l, objects)).ptr != NULL)
+            if ((closestIntersection(p, &l, objects, 1)).ptr != NULL)
                 continue ;
             n_dot_l = vector3_dot(n, &l);
             if (n_dot_l > 0)
@@ -134,7 +135,7 @@ static uint trace_ray(t_vector3 *o, t_vector3 *d, t_object *objects, int depth)
     t_some_struct res;
     uint        local_color;
 
-    res = closestIntersection(o, d, objects);
+    res = closestIntersection(o, d, objects, 0);
     if (res.ptr == NULL)
         return (COLOR_BACKGROUND);
     t_vector3 arr = {o->x + res.value * d->x, o->y + res.value * d->y, o->z + res.value * d->z};
