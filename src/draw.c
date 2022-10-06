@@ -90,7 +90,7 @@ static double    compute_lighting(t_vector3 *p, t_vector3 *n, t_vector3 *v, uint
                 continue ;
             n_dot_l = vector3_dot(n, &l);
             if (n_dot_l > 0)
-                intensity += light[indx]->intensity * n_dot_l;
+                intensity = fmin(1, intensity + light[indx]->intensity * n_dot_l);
             if (s != -1)
             {
                 t_vector3 R;
