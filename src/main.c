@@ -6,12 +6,11 @@
 /*   By: eestelle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 14:25:22 by eestelle          #+#    #+#             */
-/*   Updated: 2022/10/06 16:05:35 by eestelle         ###   ########.fr       */
+/*   Updated: 2022/10/06 18:27:32 by eestelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-
 
 void    create_sphere(t_object *elem, t_vector3 c, uint r, uint color, uint specular, double ref)
 {
@@ -69,9 +68,15 @@ t_mlx    *get_mlx(t_mlx *ptr)
     return (obj);
 }
 
+int ee_exit(void)
+{
+    exit(0);
+}
+
 void    init_hook(t_window *ptr_window)
 {
     mlx_key_hook(ptr_window->win, event_move, NULL);
+    mlx_hook(ptr_window->win, 17, 0, ee_exit, NULL);
 }
 
 

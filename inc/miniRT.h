@@ -11,8 +11,8 @@
 # include <limits.h>
 # include <math.h>
 # include <unistd.h>
+# include <stdlib.h>
 
-#include <stdio.h>
 
 # define WINDOW_NAME "miniRT"
 # define WINDOW_X 1000
@@ -28,7 +28,7 @@
 void    ee_error(int code, const char *str);
 void    draw_on_img(t_image *img, t_object *objects);
 int event_move(int key, void *arg);
-void    rotate(t_vector3 *d, int x, int y);
+void    rotate(t_vector3 *d, int x, int y, int flag);
 t_object    *get_object(t_object *ptr);
 t_image    *get_image(t_image *ptr);
 t_window    *get_window(t_window *ptr);

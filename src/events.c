@@ -9,6 +9,7 @@
 #define KEY_F 3
 #define KEY_Q 12
 #define KEY_E 14
+#define KEY_ESCAPE 53
 
 #define PI 3.14
 
@@ -36,18 +37,18 @@ void    rotate_y(t_vector3 *d, int a)
 
 typedef void    (*t_rotate)(t_vector3 *, int a);
 
-void    rotate(t_vector3 *d, int x, int y)
+void    rotate(t_vector3 *d, int x, int y, int flag)
 {
     static const t_rotate   rot[] = {rotate_x, rotate_y};
     static int rotx = 0;
     static int roty = 0;
 
-    if (d == NULL)
+    if (flag)
     {
         rotx = x;
         roty = y;
     }
-    else 
+    if (d != NULL)
     {
         rot[0](d, rotx);
         rot[1](d, roty);
@@ -77,8 +78,9 @@ int event_move(int key, __attribute__((__unused__))void *arg)
         o.x += 0.1;
     if (key == KEY_A)
         o.x -= 0.1;
-    rotate(NULL, rotx, roty);
-    rotate(&o, 0, 0);
+    if (key == KEY_ESCAPE)
+        exit(0);
+    rotate(&o, rotx, roty, 1);
     vector3_plus(&o, &o, get_viewer(NULL));
     get_viewer(&o);
     draw_on_img(get_image(NULL), get_object(NULL));
