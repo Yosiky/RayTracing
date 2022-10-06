@@ -16,7 +16,8 @@ SRC				=	main.c					\
 					sphere.c				\
 					vector3.c				\
 					light.c					\
-					objects.c
+					objects.c				\
+					events.c
 
 OBJ_DIR			=	obj
 OBJ				=	$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))

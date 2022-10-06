@@ -44,3 +44,10 @@ void    vector3_mul(t_vector3 *dst, const t_vector3 *src, const double value)
     dst->y = src->y * value;
     dst->z = src->z * value;
 }
+
+void    vector3_mulv(t_vector3 *dst, const t_vector3 *src)
+{
+    dst->x *= src->x;
+    dst->y *= src->y;
+    dst->z *= src->z;
+}

@@ -20,7 +20,7 @@ typedef struct s_image
     int     endian;
     uint    x;
     uint    y;
-}   t_image;
+} __attribute__((__packed__, __aligned__(8)))   t_image;
 
 typedef struct s_window
 {
@@ -28,7 +28,7 @@ typedef struct s_window
     uint        x;
     uint        y;
     const char  *name;
-}   t_window;
+}  __attribute__((__packed__, __aligned__(8))) t_window;
 
 t_window    *create_window(t_mlx mlx, uint x, uint y, const char *str);
 void        destroy_window(t_mlx mlx, t_window *win);
