@@ -1,9 +1,9 @@
 TARGET			=	$(shell uname | sed 's/[A-Z]/\L&/g')
 
-CC				=	gcc
-CFLAGS			=	-Wall -Wextra -Werror -g		\
+CC				=	clang
+CFLAGS			=	-Wall -Wextra -Werror 	\
 					-pedantic-errors -Wfloat-equal -Wshadow -Wcast-qual -Wconversion -Wsign-conversion
-CFLAGS			=	-g
+CFLAGS			=	-g -O3 -ffast-math
 
 NAME			=	miniRT
 
@@ -57,7 +57,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile						\
 				$(addprefix $(HEADER_DIR)/,$(HEADER))		\
 				$(MINILIBX_DIR)/$(MINILIBX)
 	@printf "create %s\n" $@
-	@$(CC) $< $(CFLAGS) -g $(MAKE_HEADER) -c -o $@
+	@$(CC) $< $(CFLAGS) $(MAKE_HEADER) -c -o $@
 
 $(OBJ_DIR):
 	mkdir -p $@
