@@ -170,8 +170,8 @@ void    draw_on_img(t_image *img, t_object *objects)
         while (x < width_x)
         {
             set_coordinates(&d, (t_vector3){ (double)(x) * 1 / WINDOW_X, (double)(y) * 1 / WINDOW_Y, 1});
-            rotate(&d, 0, 0, 0);
-            color = trace_ray(&o, &d, objects, RECURSIVE_DEPTH);
+            rotate(&d, 0, 0);
+            color = trace_ray(get_viewer(NULL), &d, objects, RECURSIVE_DEPTH);
             ee_mlx_pixel_put(img, width_x + x, width_y - y, color);
             ++x;
         }

@@ -6,7 +6,7 @@
 /*   By: eestelle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 14:25:22 by eestelle          #+#    #+#             */
-/*   Updated: 2022/10/06 14:44:48 by eestelle         ###   ########.fr       */
+/*   Updated: 2022/10/06 16:05:35 by eestelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,15 @@ void    create_sphere(t_object *elem, t_vector3 c, uint r, uint color, uint spec
     elem->obj.sphere = (t_sphere *)malloc(sizeof(t_sphere));
     elem->obj.sphere->r = r;
     elem->obj.sphere->center = c;
+}
+
+t_vector3    *get_viewer(t_vector3 *ptr)
+{
+    static t_vector3 obj = {0, 0, 0};
+
+    if (ptr != NULL)
+        obj = *ptr;
+    return (&obj);
 }
 
 t_object    *get_object(t_object *ptr)
