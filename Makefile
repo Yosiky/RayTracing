@@ -17,7 +17,8 @@ SRC				=	main.c					\
 					vector3.c				\
 					light.c					\
 					objects.c				\
-					events.c
+					events.c				\
+					plane.c
 
 OBJ_DIR			=	obj
 OBJ				=	$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
@@ -34,7 +35,8 @@ HEADER			=	miniRT.h			\
 					sphere.h			\
 					vector3.h			\
 					light.h				\
-					objects.h
+					objects.h			\
+					plane.h
 
 
 LIB_linux		=	 -L$(MINILIBX_DIR) -lmlx 			\

@@ -13,11 +13,47 @@
 
 #define PI 3.14
 
+double get_cos(int ind)
+{
+    static const double pi = PI / 180;
+    static double   *arr = NULL;
+    int             i;
+
+    if (ind < 0)
+        ind = 360 - ind;
+    if (arr == NULL)
+    {
+        arr = (double *)malloc(sizeof(double) * 360);
+        i = -1;
+        while (++i < 360)
+            arr[i] = cos(pi * i);
+    }
+    return (arr[ind]);
+}
+
+double get_sin(int ind)
+{
+    static const double pi = PI / 180;
+    static double   *arr = NULL;
+    int             i;
+
+    if (ind < 0)
+        ind = 360 - ind;
+    if (arr == NULL)
+    {
+        arr = (double *)malloc(sizeof(double) * 360);
+        i = -1;
+        while (++i < 360)
+            arr[i] = sin(pi * i);
+    }
+    return (arr[ind]);
+}
+
 void    rotate_x(t_vector3 *d, int a)
 {
     const t_vector3 copy = *d;
-    const double cos1 = cos(a * PI / 180);
-    const double sin1 = sin(a * PI / 180);
+    const double cos1 = cos(a * PI / 180);//get_cos(a);
+    const double sin1 = sin(a * PI / 180);//get_sin(a);
 
     d->x = 1 * d->x;
     d->y = d->y * cos1 - d->z * sin1;
@@ -28,7 +64,7 @@ void    rotate_y(t_vector3 *d, int a)
 {
     const t_vector3 copy = *d;
     const double cos1 = cos(a * PI / 180);
-    const double sin1 = sin(a * PI / 180);
+    const double sin1 = sin(a * PI / 180);;
 
     d->x = copy.x * cos1 + copy.z * sin1;
     d->y = copy.y;
@@ -61,7 +97,6 @@ int event_move(int key, __attribute__((__unused__))void *arg)
     static int rotx = 0;
     static int roty = 0;
 
-    write(1, "1", 1);
     if (key == KEY_R)
         rotx -= 1;
     if (key == KEY_F)
@@ -85,6 +120,5 @@ int event_move(int key, __attribute__((__unused__))void *arg)
     get_viewer(&o);
     draw_on_img(get_image(NULL), get_object(NULL));
     mlx_put_image_to_window(get_mlx(NULL), get_window(NULL)->win, get_image(NULL)->img, 0, 0);
-    write(1, "0", 1);
     return (0);
 }
