@@ -15,12 +15,12 @@ union   fast_vector3
 
 typedef struct s_plane
 {
-    union fast_vector3    points[3];
+    t_vector3   a, b, c;
+    t_vector3   n;
 } __attribute__((__packed__, __aligned__(8)))   t_plane;
 
 double   intersect_ray_plane(t_vector3 *restrict o, t_vector3 *restrict d,
         void *data);
-void    get_normal_plane(t_vector3 *restrict res, const t_vector3 *restrict a,
-        void *data);
+void    get_normal_plane(t_vector3 *restrict res, t_vector3 *restrict a, void *data);
 
 #endif

@@ -6,11 +6,23 @@
 /*   By: eestelle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 14:25:22 by eestelle          #+#    #+#             */
-/*   Updated: 2022/10/06 18:27:32 by eestelle         ###   ########.fr       */
+/*   Updated: 2022/10/08 20:58:24 by eestelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
+
+void    create_plane(t_object *elem, t_vector3 a, t_vector3 b, t_vector3 c, uint color, uint specular, double ref)
+{
+    elem->type = 1;
+    elem->color = color;
+    elem->obj.plane = (t_plane *)malloc(sizeof(t_plane));
+    elem->obj.plane->a = a;
+    elem->obj.plane->b = b;
+    elem->obj.plane->c = c;
+    elem->specular = specular;
+    elem->reflective = ref;
+}
 
 void    create_sphere(t_object *elem, t_vector3 c, uint r, uint color, uint specular, double ref)
 {
@@ -106,7 +118,8 @@ int main(void)
     create_sphere(&figures[0], (t_vector3){0, -1, 3}, 1, 0x00ff0000, 500, 0.2);
     create_sphere(&figures[1], (t_vector3){2, 0, 4}, 1, 0x000000ff, 500, 0.3);
     create_sphere(&figures[2], (t_vector3){-2, 0, 4}, 1, 0x0000ff00, 10, 0.4);
-    create_sphere(&figures[3], (t_vector3){0, -5001, 0}, 5000, 0x00ffff00, 1000, 0.5);
+    /* create_sphere(&figures[3], (t_vector3){0, -5001, 0}, 5000, 0x00ffff00, 1000, 0.5); */
+    create_plane(&figures[3], (t_vector3){0, 0, 0}, (t_vector3){0, 0, 1}, (t_vector3){1, 0, 0}, 0x00ffff00, 1000, 0.5);
     vector3_normalized(&derectional.position);
     get_light_all(light);
     draw_on_img(ptr_image, figures);

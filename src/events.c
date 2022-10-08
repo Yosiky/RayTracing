@@ -93,6 +93,7 @@ void    rotate(t_vector3 *d, int x, int y, int flag)
 
 int event_move(int key, __attribute__((__unused__))void *arg)
 {
+    write(1, "1", 1);
     t_vector3    o = {0, 0, 0};
     static int rotx = 0;
     static int roty = 0;
@@ -120,5 +121,6 @@ int event_move(int key, __attribute__((__unused__))void *arg)
     get_viewer(&o);
     draw_on_img(get_image(NULL), get_object(NULL));
     mlx_put_image_to_window(get_mlx(NULL), get_window(NULL)->win, get_image(NULL)->img, 0, 0);
+    write(1, "0", 1);
     return (0);
 }
