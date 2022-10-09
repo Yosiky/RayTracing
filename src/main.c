@@ -128,7 +128,7 @@ int main(void)
     create_sphere(&figures[2], (t_vector3){-2, 0, 4}, 1, 0x0000ff00, 10, 1);
     /* create_sphere(&figures[3], (t_vector3){0, -5001, 0}, 5000, 0x00ffff00, 1000, 0.5); */
     create_plane(&figures[3], (t_vector3){-2, -1, -2}, (t_vector3){0, -1, 0}, (t_vector3){1, -1, 10}, 0x00ffff00, 1000, 0);
-    create_plane(&figures[4], (t_vector3){-4, 1, 10}, (t_vector3){-4, 0, 0}, (t_vector3){-4, 0, 4}, 0x00ff00ff, 1000, 1);
+    create_plane(&figures[4], (t_vector3){-4, 1, 10}, (t_vector3){-4, 0, 0}, (t_vector3){-4, 0, 4}, 0x00ff00ff, 1000, 0.5);
     figures[5].type = -1;
     vector3_normalized(&derectional.position);
     get_light_all(light);
