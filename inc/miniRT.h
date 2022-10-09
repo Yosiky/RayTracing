@@ -15,12 +15,12 @@
 
 
 # define WINDOW_NAME "miniRT"
-# define WINDOW_X 1000
-# define WINDOW_Y 1000
-# define IMG_X 1000
-# define IMG_Y 1000
-# define SCREEN_IMG_X 1900
-# define SCREEN_IMG_Y 1024
+# define WINDOW_X 500
+# define WINDOW_Y 500
+# define IMG_X 500
+# define IMG_Y 500
+# define SCREEN_IMG_X WINDOW_X
+# define SCREEN_IMG_Y WINDOW_Y
 
 # define RECURSIVE_DEPTH 5
 # define COLOR_BACKGROUND   0X00000000
