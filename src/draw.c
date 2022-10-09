@@ -89,8 +89,9 @@ static double    compute_lighting(t_vector3 *p, t_vector3 *n, t_vector3 *v, uint
             if ((closestIntersection(p, &l, objects, 1)).ptr != NULL)
                 continue ;
             n_dot_l = vector3_dot(n, &l);
-            if (n_dot_l > 0)
-                intensity = fmin(1, intensity + light[indx]->intensity * n_dot_l);
+            if (n_dot_l < 0)
+                n_dot_l *= -1; // ?????
+            intensity = fmin(1, intensity + light[indx]->intensity * n_dot_l);
             if (s != -1)
             {
                 t_vector3 R;
@@ -169,7 +170,7 @@ void    draw_on_img(t_image *img, t_object *objects)
         {
             set_coordinates(&d, (t_vector3){ (double)(x) * 1 / WINDOW_X, (double)(y) * 1 / WINDOW_Y, 1});
             rotate(&d, 0, 0, 0);
-            color = trace_ray(get_viewer(NULL), &d, objects, 0);
+            color = trace_ray(get_viewer(NULL), &d, objects, RECURSIVE_DEPTH);
             ee_mlx_pixel_put(img, width_x + x, width_y - y, color);
             ++x;
         }
