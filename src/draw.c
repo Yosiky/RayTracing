@@ -64,6 +64,7 @@ static double    compute_lighting(t_vector3 *p, t_vector3 *n, t_vector3 *v, uint
     static double       max;
     static t_vector3    l;
     double       n_dot_l;
+    t_vector3           len;
 
     intensity = 0;
     indx = -1;
@@ -80,18 +81,21 @@ static double    compute_lighting(t_vector3 *p, t_vector3 *n, t_vector3 *v, uint
                 vector3_minus(&l, &(light[indx]->position), p);
                 vector3_normalized(&l);
                 max = 1;
+                vector3_minus(&len, p, &(light[indx]->position));
             }
             else
             {
                 l = light[indx]->position;
                 max = INFINITY;
             }
-            if ((closestIntersection(p, &l, objects, 1)).ptr != NULL)
+            t_some_struct   va = closestIntersection(p, &l, objects, 1);
+            if (va.ptr != NULL && ((light[indx]->type == POINT && vector3_length(&len) > va.value) || light[indx]->type == DERECTIONAL))
                 continue ;
             n_dot_l = vector3_dot(n, &l);
-            if (n_dot_l < 0)
+            if (n_dot_l < EPS)
                 n_dot_l *= -1; // ?????
-            intensity = fmin(1, intensity + light[indx]->intensity * n_dot_l);
+            if (n_dot_l > EPS)
+                intensity = fmin(1, intensity + light[indx]->intensity * n_dot_l);
             if (s != -1)
             {
                 t_vector3 R;
