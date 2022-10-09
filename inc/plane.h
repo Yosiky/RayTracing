@@ -1,6 +1,7 @@
 #ifndef PLANE_H
 # define PLANE_H
 
+# include "constants.h"
 # include "vector3.h"
 # include <sys/types.h>
 # include "ee_list.h"

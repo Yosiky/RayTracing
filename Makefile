@@ -36,7 +36,8 @@ HEADER			=	miniRT.h			\
 					vector3.h			\
 					light.h				\
 					objects.h			\
-					plane.h
+					plane.h				\
+					constants.h
 
 
 LIB_linux		=	 -L$(MINILIBX_DIR) -lmlx 			\

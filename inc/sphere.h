@@ -6,8 +6,8 @@
 # include "ee_list.h"
 # include "math.h"
 # include "limits.h"
+# include "constants.h"
 
-# define EPS 0.001
 
 typedef struct s_sphere
 {
