@@ -7,7 +7,6 @@
 # include "light.h"
 
 # include "objects.h"
-# include "sphere.h"
 # include <limits.h>
 # include <math.h>
 # include <unistd.h>

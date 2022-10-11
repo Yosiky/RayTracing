@@ -3,7 +3,7 @@ TARGET			=	$(shell uname | sed 's/[A-Z]/\L&/g')
 CC				=	clang
 CFLAGS			=	-Wall -Wextra -Werror 	\
 					-pedantic-errors -Wfloat-equal -Wshadow -Wcast-qual -Wconversion -Wsign-conversion
-CFLAGS			=	-g -O3 -ffast-math
+CFLAGS			=	-g -O1 -ffast-math
 
 NAME			=	miniRT
 
@@ -18,7 +18,8 @@ SRC				=	main.c					\
 					light.c					\
 					objects.c				\
 					events.c				\
-					plane.c
+					plane.c					\
+					cilinder.c
 
 OBJ_DIR			=	obj
 OBJ				=	$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
@@ -37,7 +38,8 @@ HEADER			=	miniRT.h			\
 					light.h				\
 					objects.h			\
 					plane.h				\
-					constants.h
+					constants.h			\
+					cilinder.h
 
 
 LIB_linux		=	 -L$(MINILIBX_DIR) -lmlx 			\
