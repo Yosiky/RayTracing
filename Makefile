@@ -50,12 +50,18 @@ LIB_LDarwin		=	-L$(MINILIBX_DIR) -lmlx				\
 
 .PHONY:	all clean fclean re
 
+
+
 all:	$(OBJ_DIR) $(MINILIBX_DIR)/$(MINILIBX) $(NAME)
 
 $(MINILIBX_DIR)/$(MINILIBX):
 	@printf	"Assembling minilibx\n"
 	@$(MAKE) -C $(MINILIBX_DIR)
 	@echo  $(addprefix $(HEADER_DIR)/,$(HEADER))
+
+create_link_on_header:
+	ln inc/*.h src/
+	ln $(MINILIBX_DIR)/mlx.h src/
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile						\
 				$(addprefix $(HEADER_DIR)/,$(HEADER))		\
