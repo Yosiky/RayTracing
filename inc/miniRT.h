@@ -1,6 +1,7 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 
+# include "constants.h"
 # include "APIminilibx.h"
 # include "vector3.h"
 # include "ee_list.h"
