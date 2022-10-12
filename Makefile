@@ -40,8 +40,7 @@ HEADER			=	miniRT.h			\
 					constants.h
 
 
-LIB_linux		=	 -L$(MINILIBX_DIR) -lmlx 			\
-					 -L/usr/lib -I$() -lXext -lX11 -lm -lz 
+LIB_linux		=	-L$(MINILIBX_DIR) -lmlx -lXext -lX11 -lm -lz 
 
 LIB_LDarwin		=	-L$(MINILIBX_DIR) -lmlx				\
 					-framework OpenGL					\
