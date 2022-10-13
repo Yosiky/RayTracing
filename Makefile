@@ -19,7 +19,7 @@ SRC				=	main.c					\
 					objects.c				\
 					events.c				\
 					plane.c					\
-					cilinder.c
+					cylinder.c
 
 OBJ_DIR			=	obj
 OBJ				=	$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
@@ -39,7 +39,7 @@ HEADER			=	miniRT.h			\
 					objects.h			\
 					plane.h				\
 					constants.h			\
-					cilinder.h
+					cylinder.h
 
 
 LIB_linux		=	-L$(MINILIBX_DIR) -lmlx -lXext -lX11 -lm -lz 

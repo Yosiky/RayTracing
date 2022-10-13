@@ -1,10 +1,10 @@
-#include "cilinder.h"
+#include "cylinder.h"
 #include <stdio.h>
 
-double   intersect_ray_cilinder(t_vector3 *restrict o, t_vector3 *restrict d,
+double   intersect_ray_cylinder(t_vector3 *restrict o, t_vector3 *restrict d,
         void *data)
 {
-    t_cilinder  *ptr = (t_cilinder *)data;
+    t_cylinder  *ptr = (t_cylinder *)data;
     t_vector3   oc;
     t_vector3   a;
     t_vector3   b;
@@ -31,9 +31,9 @@ double   intersect_ray_cilinder(t_vector3 *restrict o, t_vector3 *restrict d,
     return (res);
 }
 
-void    get_normal_cilinder(t_vector3 *restrict res, t_vector3 *restrict a, void *data)
+void    get_normal_cylinder(t_vector3 *restrict res, t_vector3 *restrict a, void *data)
 {
-    t_cilinder  *ptr = (t_cilinder *)data;
+    t_cylinder  *ptr = (t_cylinder *)data;
     t_vector3   b;
 
     vector3_cross(&b, a, &ptr->normal);

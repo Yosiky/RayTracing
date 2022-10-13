@@ -43,17 +43,17 @@ void    create_sphere(t_object *elem, t_vector3 c, uint r, uint color, uint spec
     elem->obj.sphere->center = c;
 }
 
-void    create_cilinder(t_object *elem, t_vector3 center, t_vector3 normal, double hight, double diameter, uint color, uint specular, double ref)
+void    create_cylinder(t_object *elem, t_vector3 center, t_vector3 normal, double hight, double diameter, uint color, uint specular, double ref)
 {
     elem->type = 2;
-    elem->obj.cilinder = (t_cilinder *)malloc(sizeof(t_cilinder));
+    elem->obj.cylinder = (t_cylinder *)malloc(sizeof(t_cylinder));
     elem->color = color;
     elem->specular = specular;
     elem->reflective = ref;
-    elem->obj.cilinder->center = center;
-    elem->obj.cilinder->normal = normal;
-    elem->obj.cilinder->r = diameter / 2;
-    elem->obj.cilinder->hight = hight;
+    elem->obj.cylinder->center = center;
+    elem->obj.cylinder->normal = normal;
+    elem->obj.cylinder->r = diameter / 2;
+    elem->obj.cylinder->hight = hight;
 }
 
 t_vector3    *get_viewer(t_vector3 *ptr)
@@ -141,7 +141,7 @@ int main(void)
     /* create_sphere(&figures[3], (t_vector3){0, -5001, 0}, 5000, 0x00ffff00, 1000, 0.5); */
     /* create_plane(&figures[1], (t_vector3){-2, -1, -2}, (t_vector3){0, -1, 0}, (t_vector3){1, -1, 10}, 0x00ffff00, 1000, 0); */
     /* create_plane(&figures[0], (t_vector3){-4, 1, 10}, (t_vector3){-4, 0, 0}, (t_vector3){-4, 0, 4}, 0x00ff00ff, 1000, 0.5); */
-    create_cilinder(&figures[1], (t_vector3){-5, 0, 5}, (t_vector3){1, 0, 0}, 1, 1, 0x00ff0000, 1000, 0.5);
+    create_cylinder(&figures[1], (t_vector3){-5, 0, 5}, (t_vector3){1, 0, 0}, 1, 1, 0x00ff0000, 1000, 0.5);
     figures[2].type = -1;
     vector3_normalized(&derectional.position);
     get_light_all(light);
