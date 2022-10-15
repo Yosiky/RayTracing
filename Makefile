@@ -3,7 +3,7 @@ TARGET			=	$(shell uname | sed 's/[A-Z]/\L&/g')
 CC				=	clang
 CFLAGS			=	-Wall -Wextra -Werror 	\
 					-pedantic-errors -Wfloat-equal -Wshadow -Wcast-qual -Wconversion -Wsign-conversion
-CFLAGS			=	-g -O3 -ffast-math
+CFLAGS			=	-g -O1 -ffast-math
 
 NAME			=	miniRT
 
@@ -18,7 +18,8 @@ SRC				=	main.c					\
 					objects.c				\
 					events.c				\
 					plane.c					\
-					parser.c
+					cylinder.c				\
+					parser.c				
 
 OBJ_DIR			=	obj
 OBJ				=	$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
@@ -43,6 +44,7 @@ HEADER			=	miniRT.h			\
 					objects.h			\
 					plane.h				\
 					constants.h			\
+					cylinder.h			\
 					parser.h
 
 LIB_linux		=	-L$(MINILIBX_DIR) -lmlx -lXext -lX11 -lm -lz 
@@ -64,6 +66,10 @@ $(LIBFT_DIR)/$(LIBFT):
 $(MINILIBX_DIR)/$(MINILIBX):
 	@printf	"Assembling minilibx\n"
 	@$(MAKE) -C $(MINILIBX_DIR)
+
+create_link_on_header:
+	ln inc/*.h src/
+	ln $(MINILIBX_DIR)/mlx.h src/
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile						\
 				$(addprefix $(HEADER_DIR)/,$(HEADER))		\
