@@ -20,6 +20,7 @@ typedef struct s_light
     enum e_TYPE_LIGHT   type;
     double              intensity;
     t_vector3           position;
+    uint                color;
 }   t_light;
 
 t_light *get_light(t_light *light);

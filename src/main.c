@@ -98,18 +98,99 @@ void    init_hook(t_window *ptr_window)
     mlx_hook(ptr_window->win, 17, 0, ee_exit, NULL);
 }
 
+uint    ee_color_parse(char *str)
+{
+    uint    dst;
+    int     i;
+
+    dst = 0;
+    i = 2;
+    while (i >= 0)
+    {
+        dst += ft_atoi(str) << (2 * i--);
+        while (*str != ',')
+            ++str;
+        ++str;
+    }
+}
+
 typedef void    (*t_func_creator)(const char *str, void *dst);
 
-void    create_light(const char *str, void *dst);
-/* { */
-/*     char const  **arg = (char const **)ft_split(str, ' '); */
+void    create_light(const char *str, void *dst)
+{
+    t_light * const light = (t_light * const)dst;
+    char * const    *arg = (char * const *)ft_split(str, ' ');
+    const uint      count = (const uint)ee_split_count((char **)str);
+    uint            i;
 
-/* } */
+    if (count != 3 || count != 4)
+        ee_error(2, "ERROR: invalid data in file");
+    i = 0;
+    light->type = get_type_line(arg[i++]) - PARSE_AMBIENT;
+    if (light->type == LIGHT_POINT)
+        light->position = vector3_parse(arg[i++]);
+    light->intensity = atof(arg[i++]); // todo atof forbidden
+    light->color = ee_color_parse(arg[i]);
+    ee_split_clear((char **)arg);
+}
 
 void    create_camera(const char *str, void *dst);
-void    create_sphere(const char *str, void *dst);
-void    create_plane(const char *str, void *dst);
-void    create_cylinder(const char *str, void *dst);
+void    create_sphere(const char *str, void *dst)
+{
+    t_object *const    data = (t_object *const)dst;
+    char *const    *arg = (char *const *)ft_split(str, ' ');
+    const uint      count = (const uint)ee_split_count((char **)str);
+
+    if (count != 4)
+        ee_error(2, "ERROR: invalid data in file");
+    data->obj.sphere = (t_sphere *)ee_malloc(sizeof(t_sphere));
+    data->obj.sphere->center = vector3_parse(arg[1]);
+    data->obj.sphere->r = atof(arg[2]) / 2;
+    data->type = OBJ_SPHERE;
+    data->reflective = 0;
+    data->specular = 0;
+    data->color = ee_color_parse(arg[3]);
+    ee_split_clear((char **)arg);
+}
+void    create_plane(const char *str, void *dst)
+{
+    t_object *const    data = (t_object *const)dst;
+    char *const    *arg = (char *const *)ft_split(str, ' ');
+    const uint      count = (const uint)ee_split_count((char **)str);
+    t_vector3       a;
+    t_vector3       b;
+
+    if (count != 5)
+        ee_error(2, "ERROR: invalid data in file");
+    data->obj.plane = (t_plane *)ee_malloc(sizeof(t_plane));
+    data->obj.plane->a = vector3_parse(arg[1]);
+    data->obj.plane->b = vector3_parse(arg[2]);
+    data->obj.plane->c = vector3_parse(arg[3]);
+    data->type = OBJ_PLANE;
+    data->specular = 0;
+    data->reflective = 0;
+    data->color = ee_color_parse(arg[4]);
+    ee_split_clear((char **)arg);
+    vector3_minus(&a, &data->obj.plane->a, &data->obj.plane->b);
+    vector3_minus(&b, &data->obj.plane->c, &data->obj.plane->b);
+    vector3_cross(&data->obj.plane->n, &a, &b);
+    vector3_normalized(&data->obj.plane->n);
+}
+
+void    create_cylinder(const char *str, void *dst)
+{
+    t_object *const    data = (t_object *const)dst;
+    char *const    *arg = (char *const *)ft_split(str, ' ');
+    const uint      count = (const uint)ee_split_count((char **)str);
+
+    if (count != 6)
+        ee_error(2, "ERROR: invalid data in file");
+    data->obj.cylinder = (t_cylinder *)ee_malloc(sizeof(t_cylinder));
+    data->type = OBJ_CYLINDER;
+    data->specular = 0;
+    data->reflective = 0;
+    data->color = ee_color_parse(arg[5]);
+}
 
 
 void    parse_data(t_file *ptr)

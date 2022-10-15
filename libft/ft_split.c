@@ -6,11 +6,31 @@
 /*   By: eestelle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 18:40:02 by eestelle          #+#    #+#             */
-/*   Updated: 2021/10/14 20:58:49 by eestelle         ###   ########.fr       */
+/*   Updated: 2022/10/15 23:00:21 by eestelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+uint    ee_split_count(char **str)
+{
+    uint    i;
+
+    i = 0;
+    while (str[i] != NULL)
+        ++i;
+    return (i);
+}
+
+void    ee_split_clear(char **str)
+{
+    char    **copy;
+
+    copy = str;
+    while (*copy != NULL)
+        free(*(copy++));
+    free(str);
+}
 
 static size_t	find_count(char const *s, char c)
 {
