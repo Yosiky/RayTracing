@@ -11,6 +11,7 @@
 # include "constants.h"
 
 # include "objects.h"
+# include <stdint.h>
 # include <limits.h>
 # include <math.h>
 # include <unistd.h>

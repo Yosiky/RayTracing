@@ -70,6 +70,7 @@ $(MINILIBX_DIR)/$(MINILIBX):
 create_link_on_header:
 	ln inc/*.h src/
 	ln $(MINILIBX_DIR)/mlx.h src/
+	ln $(LIBFT_DIR)/*.h src/
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile						\
 				$(addprefix $(HEADER_DIR)/,$(HEADER))		\

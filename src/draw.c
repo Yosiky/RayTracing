@@ -58,7 +58,7 @@ static t_some_struct    closestIntersection(t_vector3 *o, t_vector3 *d, t_object
 
 static double    compute_lighting(t_vector3 *p, t_vector3 *n, t_vector3 *v, uint s, t_object *objects)
 {
-    static t_light      **light = NULL;
+    static t_light      *light = NULL;
     static int          indx;
     static double       intensity;
     static double       max;
@@ -69,33 +69,33 @@ static double    compute_lighting(t_vector3 *p, t_vector3 *n, t_vector3 *v, uint
     intensity = 0;
     indx = -1;
     if (light == NULL)
-        light = get_light_all(NULL);
-    while (light[++indx] != NULL)
+        light = get_light(NULL);
+    while (light[++indx].type != LIGHT_NONE)
     {
-        if (light[indx]->type == AMBIENT)
-            intensity += light[indx]->intensity;
+        if (light[indx].type == LIGHT_AMBIENT)
+            intensity += light[indx].intensity;
         else 
         {
-            if (light[indx]->type == POINT)
+            if (light[indx].type == LIGHT_POINT)
             {
-                vector3_minus(&l, &(light[indx]->position), p);
+                vector3_minus(&l, &(light[indx].position), p);
                 vector3_normalized(&l);
                 max = 1;
-                vector3_minus(&len, p, &(light[indx]->position));
+                vector3_minus(&len, p, &(light[indx].position));
             }
             else
             {
-                l = light[indx]->position;
+                l = light[indx].position;
                 max = INFINITY;
             }
             t_some_struct   va = closestIntersection(p, &l, objects, 1);
-            if (va.ptr != NULL && ((light[indx]->type == POINT && vector3_length(&len) > va.value) || light[indx]->type == DERECTIONAL))
+            if (va.ptr != NULL && ((light[indx].type == LIGHT_POINT && vector3_length(&len) > va.value) || light[indx].type == LIGHT_DERECTIONAL))
                 continue ;
             n_dot_l = vector3_dot(n, &l);
             if (n_dot_l < EPS)
                 n_dot_l *= -1; // ?????
             if (n_dot_l > EPS)
-                intensity = fmin(1, intensity + light[indx]->intensity * n_dot_l);
+                intensity = fmin(1, intensity + light[indx].intensity * n_dot_l);
             if (s != -1)
             {
                 t_vector3 R;
@@ -105,7 +105,7 @@ static double    compute_lighting(t_vector3 *p, t_vector3 *n, t_vector3 *v, uint
                 vector3_minus(&R, &some, &l);
                 double r_dot_v = vector3_dot(&R, v);
                 if (r_dot_v > 0)
-                    intensity = fmin(1, intensity + light[indx]->intensity * pow(r_dot_v / (vector3_length(&R) * vector3_length(v)), s));
+                    intensity = fmin(1, intensity + light[indx].intensity * pow(r_dot_v / (vector3_length(&R) * vector3_length(v)), s));
             }
         }
     }

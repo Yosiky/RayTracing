@@ -7,20 +7,21 @@
 
 typedef unsigned int uint;
 
-typedef enum    e_TYPE_LIGHT
+enum    e_TYPE_LIGHT
 {
-    AMBIENT = 0,
-    POINT,
-    DERECTIONAL
-}   t_TYPE_LIGHT;
+    LIGHT_NONE = -1,
+    LIGHT_AMBIENT,
+    LIGHT_POINT,
+    LIGHT_DERECTIONAL
+};
 
 typedef struct s_light
 {
     enum e_TYPE_LIGHT   type;
-    double               intensity;
+    double              intensity;
     t_vector3           position;
 }   t_light;
 
-t_light **get_light_all(t_light **light);
+t_light *get_light(t_light *light);
 
 #endif
