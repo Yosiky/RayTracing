@@ -36,7 +36,9 @@ SRC =		\
 			ft_tolower		\
 			ft_toupper		\
 			get_next_line	\
-			get_next_line_utils
+			get_next_line_utils	\
+			ee_malloc		\
+			ee_error
 
 OBJS_DIR =	objects
 
@@ -49,7 +51,7 @@ CFLAGS =	-Wall -Wextra -Werror
 CC =		gcc
 
 $(OBJS_DIR)/%.o: %.c		
-	@${CC} ${CFLAGS} -c $< -o $@
+	${CC} ${CFLAGS} -c $< -o $@
 
 $(NAME):	${OBJS_DIR} ${OBJ}
 	@ar cr $@ ${OBJ}

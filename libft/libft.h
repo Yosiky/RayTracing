@@ -6,7 +6,7 @@
 /*   By: eestelle <eestelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 21:04:32 by eestelle          #+#    #+#             */
-/*   Updated: 2022/03/18 15:51:37 by eestelle         ###   ########.fr       */
+/*   Updated: 2022/10/15 18:33:08 by eestelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdlib.h>
 # include <stddef.h>
 # include <limits.h>
+
+# define SIZE_ALLOC_MEM 10
 
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
@@ -54,4 +56,6 @@ void	*ft_calloc(size_t count, size_t size);
 char	*ft_strdup(const char *s1);
 char	**ft_split(char const *s, char c);
 
+void    *ee_malloc(size_t count);
+void    ee_error(int code, const char *str);
 #endif
