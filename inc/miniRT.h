@@ -5,9 +5,11 @@
 # include "vector3.h"
 # include "ee_list.h"
 # include "light.h"
+# include "parser.h"
+# include "libft.h"
+# include "constants.h"
 
 # include "objects.h"
-# include "sphere.h"
 # include <limits.h>
 # include <math.h>
 # include <unistd.h>
@@ -25,7 +27,6 @@
 # define RECURSIVE_DEPTH 5
 # define COLOR_BACKGROUND   0X00000000
 
-void    ee_error(int code, const char *str);
 void    draw_on_img(t_image *img, t_object *objects);
 int event_move(int key, void *arg);
 void    rotate(t_vector3 *d, int x, int y, int flag);

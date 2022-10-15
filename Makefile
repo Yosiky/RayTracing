@@ -10,7 +10,6 @@ NAME			=	miniRT
 SRC_DIR			=	src
 SRC				=	main.c					\
 					APIminilibx_one.c		\
-					ee_error.c				\
 					draw.c					\
 					ee_list.c				\
 					sphere.c				\
@@ -18,7 +17,8 @@ SRC				=	main.c					\
 					light.c					\
 					objects.c				\
 					events.c				\
-					plane.c
+					plane.c					\
+					parser.c
 
 OBJ_DIR			=	obj
 OBJ				=	$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
@@ -42,7 +42,8 @@ HEADER			=	miniRT.h			\
 					light.h				\
 					objects.h			\
 					plane.h				\
-					constants.h
+					constants.h			\
+					parser.h
 
 LIB_linux		=	-L$(MINILIBX_DIR) -lmlx -lXext -lX11 -lm -lz 
 
