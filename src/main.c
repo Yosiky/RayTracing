@@ -102,16 +102,20 @@ uint    ee_color_parse(char *str)
 {
     uint    dst;
     int     i;
+    const uint  ind[] = {16, 8, 0};
 
     dst = 0;
     i = 2;
+    printf("start parse color:\n");
     while (i >= 0)
     {
-        dst += ft_atoi(str) << (2 * i--);
-        while (*str != ',')
+        dst += ft_atoi(str) << ind[i--];
+        printf("i = %d, dst = %x\n", i, dst);
+        while (*str != ',' && *str != '\n')
             ++str;
         ++str;
     }
+    return (dst);
 }
 
 typedef void    (*t_func_creator)(const char *str, void *dst);
@@ -123,7 +127,7 @@ void    create_light(const char *str, void *dst)
     const uint      count = (const uint)ee_split_count((char **)str);
     uint            i;
 
-    if (count != 3 || count != 4)
+    if (count != 3 && count != 4)
         ee_error(2, "ERROR: invalid data in file");
     i = 0;
     light->type = get_type_line(arg[i++]) - PARSE_AMBIENT;
@@ -134,7 +138,10 @@ void    create_light(const char *str, void *dst)
     ee_split_clear((char **)arg);
 }
 
-void    create_camera(const char *str, void *dst);
+void    create_camera(const char *str, void *dst)
+{
+}
+
 void    create_sphere(const char *str, void *dst)
 {
     t_object *const    data = (t_object *const)dst;
@@ -186,6 +193,10 @@ void    create_cylinder(const char *str, void *dst)
     if (count != 6)
         ee_error(2, "ERROR: invalid data in file");
     data->obj.cylinder = (t_cylinder *)ee_malloc(sizeof(t_cylinder));
+    data->obj.cylinder->center = vector3_parse(arg[1]);
+    data->obj.cylinder->normal = vector3_parse(arg[2]);
+    data->obj.cylinder->r = atof(arg[3]) / 2; // todo
+    data->obj.cylinder->hight = atof(arg[3]); // todo
     data->type = OBJ_CYLINDER;
     data->specular = 0;
     data->reflective = 0;
@@ -205,7 +216,7 @@ void    parse_data(t_file *ptr)
     count[0] = count_type_in_file(ptr);
     count[1] = count[0] >> 32;
     count[2] = count[0] & 0xffffffff;
-    obj = (t_object *)ee_malloc(sizeof(t_object) * count[1]);
+    obj = (t_object *)ee_malloc(sizeof(t_object) * (count[1] + 1));
     light = (t_light *)ee_malloc(sizeof(t_light) * (count[2] + 1));
     get_object(obj);
     get_light(light);
@@ -213,12 +224,14 @@ void    parse_data(t_file *ptr)
     while (i < ptr->count)
     {
         type = get_type_line(ptr->data[i]);
+        printf("i = %d, type = %d\n", i, type);
         if (type == PARSE_AMBIENT || type == PARSE_POINT)
             func[type](ptr->data[i], (void *)&light[--count[2]]);
         else if (type == PARSE_CAMERA)
             func[type](ptr->data[i], NULL);
         else if (type > PARSE_CAMERA)
             func[type](ptr->data[i], (void *)&obj[--count[1]]);
+        ++i;
     }
 }
 
@@ -265,12 +278,23 @@ int main(int argc, char **argv)
 {
     t_file  *ptr_file;
 
-
     if (argc == 2)
     {
         ptr_file = read_file(argv[1]);
         parse_data(ptr_file);
         t_file_clean(ptr_file);
+        t_object *obj = get_object(NULL);
+        t_light *light = get_light(NULL);
+        for (int i = 0; 1; ++i)
+        {
+            if (obj[i].type == OBJ_NONE)
+                break ;
+        }
+        for (int i = 0; 1; ++i)
+        {
+            if (obj[i].type == LIGHT_NONE)
+                break ;
+        }
     }
     else
         ee_error(3, "Error: not valid count arg");

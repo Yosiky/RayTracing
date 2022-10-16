@@ -6,7 +6,7 @@
 /*   By: eestelle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 18:40:02 by eestelle          #+#    #+#             */
-/*   Updated: 2022/10/15 23:00:21 by eestelle         ###   ########.fr       */
+/*   Updated: 2022/10/16 18:14:17 by eestelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ uint    ee_split_count(char **str)
 
 void    ee_split_clear(char **str)
 {
-    char    **copy;
+    uint    i;
 
-    copy = str;
-    while (*copy != NULL)
-        free(*(copy++));
+    i = 0;
+    while (str[i] != NULL)
+        free(str[i++]);
     free(str);
 }
 
@@ -83,4 +83,4 @@ char	**ft_split(char const *s, char c)
 		s = iter;
 	}
 	return (result);
-}
+pp}

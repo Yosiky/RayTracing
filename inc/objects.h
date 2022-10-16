@@ -11,7 +11,8 @@ typedef void    (*t_get_normal)(t_vector3 *, const t_vector3 *, void *);
 
 enum e_TYPE_OBJECT
 {
-    OBJ_SPHERE = 0,
+    OBJ_NONE = -1,
+    OBJ_SPHERE,
     OBJ_PLANE,
     OBJ_CYLINDER
 };
