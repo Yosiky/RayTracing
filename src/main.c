@@ -106,11 +106,9 @@ uint    ee_color_parse(char *str)
 
     dst = 0;
     i = 2;
-    printf("start parse color:\n");
     while (i >= 0)
     {
         dst += ft_atoi(str) << ind[i--];
-        printf("i = %d, dst = %x\n", i, dst);
         while (*str != ',' && *str != '\n')
             ++str;
         ++str;
@@ -124,7 +122,7 @@ void    create_light(const char *str, void *dst)
 {
     t_light * const light = (t_light * const)dst;
     char * const    *arg = (char * const *)ft_split(str, ' ');
-    const uint      count = (const uint)ee_split_count((char **)str);
+    const uint      count = (const uint)ee_split_count((char **)arg);
     uint            i;
 
     if (count != 3 && count != 4)
@@ -146,7 +144,7 @@ void    create_sphere(const char *str, void *dst)
 {
     t_object *const    data = (t_object *const)dst;
     char *const    *arg = (char *const *)ft_split(str, ' ');
-    const uint      count = (const uint)ee_split_count((char **)str);
+    const uint      count = (const uint)ee_split_count((char **)arg);
 
     if (count != 4)
         ee_error(2, "ERROR: invalid data in file");
@@ -159,24 +157,24 @@ void    create_sphere(const char *str, void *dst)
     data->color = ee_color_parse(arg[3]);
     ee_split_clear((char **)arg);
 }
+
 void    create_plane(const char *str, void *dst)
 {
     t_object *const    data = (t_object *const)dst;
     char *const    *arg = (char *const *)ft_split(str, ' ');
-    const uint      count = (const uint)ee_split_count((char **)str);
+    const uint      count = (const uint)ee_split_count((char **)arg);
     t_vector3       a;
     t_vector3       b;
 
-    if (count != 5)
+    if (count != 4)
         ee_error(2, "ERROR: invalid data in file");
     data->obj.plane = (t_plane *)ee_malloc(sizeof(t_plane));
-    data->obj.plane->a = vector3_parse(arg[1]);
-    data->obj.plane->b = vector3_parse(arg[2]);
-    data->obj.plane->c = vector3_parse(arg[3]);
+    data->obj.plane->center = vector3_parse(arg[1]);
+    data->obj.plane->normal = vector3_parse(arg[2]);
     data->type = OBJ_PLANE;
     data->specular = 0;
     data->reflective = 0;
-    data->color = ee_color_parse(arg[4]);
+    data->color = ee_color_parse(arg[3]);
     ee_split_clear((char **)arg);
     vector3_minus(&a, &data->obj.plane->a, &data->obj.plane->b);
     vector3_minus(&b, &data->obj.plane->c, &data->obj.plane->b);
@@ -188,7 +186,7 @@ void    create_cylinder(const char *str, void *dst)
 {
     t_object *const    data = (t_object *const)dst;
     char *const    *arg = (char *const *)ft_split(str, ' ');
-    const uint      count = (const uint)ee_split_count((char **)str);
+    const uint      count = (const uint)ee_split_count((char **)arg);
 
     if (count != 6)
         ee_error(2, "ERROR: invalid data in file");
@@ -196,7 +194,7 @@ void    create_cylinder(const char *str, void *dst)
     data->obj.cylinder->center = vector3_parse(arg[1]);
     data->obj.cylinder->normal = vector3_parse(arg[2]);
     data->obj.cylinder->r = atof(arg[3]) / 2; // todo
-    data->obj.cylinder->hight = atof(arg[3]); // todo
+    data->obj.cylinder->hight = atof(arg[4]); // todo
     data->type = OBJ_CYLINDER;
     data->specular = 0;
     data->reflective = 0;
@@ -218,6 +216,8 @@ void    parse_data(t_file *ptr)
     count[2] = count[0] & 0xffffffff;
     obj = (t_object *)ee_malloc(sizeof(t_object) * (count[1] + 1));
     light = (t_light *)ee_malloc(sizeof(t_light) * (count[2] + 1));
+    obj[--count[1]].type = OBJ_NONE;
+    light[--count[2]].type = LIGHT_NONE;
     get_object(obj);
     get_light(light);
     i = 0;
@@ -235,45 +235,6 @@ void    parse_data(t_file *ptr)
     }
 }
 
-/* int main(void) */
-/* { */
-/*     t_mlx *ptr_mlx = mlx_init(); */
-/*     t_window    *ptr_window; */
-/*     t_image     *ptr_image; */
-
-/*     if (ptr_mlx == NULL) */
-/*         ee_error(1, "Can't init mlx"); */
-/*     ptr_window = create_window(ptr_mlx, WINDOW_X, WINDOW_Y, WINDOW_NAME); */
-/*     ptr_image = create_image(ptr_mlx, IMG_X, IMG_Y); */
-/*     init_hook(ptr_window); */
-
-/*     t_light light[] = {{LIGHT_AMBIENT, 0.2, {0, 0, 0}}, */
-/*                         {LIGHT_POINT, 0.6, {2, 1, 0}}, */
-/*                         {LIGHT_DERECTIONAL, 0.2, {1, 4, 4}}, */
-/*                         {LIGHT_NONE, 0, {0, 0, 0}}}; */
-/*     t_object    *figures = (t_object *)malloc(sizeof(t_object) * 6); */
-
-/*     get_object(figures); */
-/*     get_image(ptr_image); */
-/*     get_window(ptr_window); */
-/*     get_mlx(ptr_mlx); */
-/*     create_sphere(&figures[0], (t_vector3){0, -1, 3}, 1, 0x00ff0000, 500, 0.2); */
-/*     create_sphere(&figures[1], (t_vector3){2, 0, 4}, 1, 0x000000ff, 500, 0.3); */
-/*     create_sphere(&figures[2], (t_vector3){-2, 0, 4}, 1, 0x0000ff00, 10, 1); */
-/*     /1* create_sphere(&figures[3], (t_vector3){0, -5001, 0}, 5000, 0x00ffff00, 1000, 0.5); *1/ */
-/*     create_plane(&figures[3], (t_vector3){-2, -1, -2}, (t_vector3){0, -1, 0}, (t_vector3){1, -1, 10}, 0x00ffff00, 1000, 0); */
-/*     create_plane(&figures[4], (t_vector3){-4, 1, 10}, (t_vector3){-4, 0, 0}, (t_vector3){-4, 0, 4}, 0x00ff00ff, 1000, 0.5); */
-/*     figures[5].type = -1; */
-/*     vector3_normalized(&light[2].position); */
-/*     get_light(light); */
-/*     draw_on_img(ptr_image, figures); */
-/*     mlx_put_image_to_window(ptr_mlx, ptr_window->win, ptr_image->img, 0, 0); */
-/*     mlx_loop(ptr_mlx); */
-/*     destroy_window(ptr_mlx, ptr_window); */
-/*     destroy_image(ptr_mlx, ptr_image); */
-/*     return (0); */
-/* } */
-
 int main(int argc, char **argv)
 {
     t_file  *ptr_file;
@@ -285,16 +246,21 @@ int main(int argc, char **argv)
         t_file_clean(ptr_file);
         t_object *obj = get_object(NULL);
         t_light *light = get_light(NULL);
-        for (int i = 0; 1; ++i)
-        {
-            if (obj[i].type == OBJ_NONE)
-                break ;
-        }
-        for (int i = 0; 1; ++i)
-        {
-            if (obj[i].type == LIGHT_NONE)
-                break ;
-        }
+
+        t_mlx *ptr_mlx = mlx_init();
+        t_window    *ptr_window;
+        t_image     *ptr_image;
+        if (ptr_mlx == NULL)
+            ee_error(1, "Can't init mlx");
+        ptr_window = create_window(ptr_mlx, WINDOW_X, WINDOW_Y, WINDOW_NAME);
+        ptr_image = create_image(ptr_mlx, IMG_X, IMG_Y);
+        init_hook(ptr_window);
+        get_image(ptr_image);
+        get_window(ptr_window);
+        get_mlx(ptr_mlx);
+        draw_on_img(ptr_image, get_object(NULL));
+        mlx_put_image_to_window(ptr_mlx, ptr_window->win, ptr_image->img, 0, 0);
+        mlx_loop(ptr_mlx);
     }
     else
         ee_error(3, "Error: not valid count arg");
