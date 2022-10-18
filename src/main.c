@@ -142,8 +142,8 @@ void    create_camera(const char *str, void *dst)
 
 void    create_sphere(const char *str, void *dst)
 {
-    t_object *const    data = (t_object *const)dst;
-    char *const    *arg = (char *const *)ft_split(str, ' ');
+    t_object *const data = (t_object *const)dst;
+    char *const     *arg = (char *const *)ft_split(str, ' ');
     const uint      count = (const uint)ee_split_count((char **)arg);
 
     if (count != 4)
@@ -224,7 +224,7 @@ void    parse_data(t_file *ptr)
     while (i < ptr->count)
     {
         type = get_type_line(ptr->data[i]);
-        printf("i = %d, type = %d\n", i, type);
+        printf("i = %ld, type = %u\n", i, type);
         if (type == PARSE_AMBIENT || type == PARSE_POINT)
             func[type](ptr->data[i], (void *)&light[--count[2]]);
         else if (type == PARSE_CAMERA)
@@ -233,6 +233,45 @@ void    parse_data(t_file *ptr)
             func[type](ptr->data[i], (void *)&obj[--count[1]]);
         ++i;
     }
+}
+
+void    print_sphere(void *ptr)
+{
+    t_sphere    *obj = (t_sphere *)ptr;
+    
+    printf("sphere\n");
+    printf("\tcenter = {%lf, %lf, %lf}\n\tr = %lf\n", obj->center.x, obj->center.y, obj->center.z, obj->r);
+}
+
+void    print_plane(void *ptr)
+{
+    t_plane    *obj = (t_plane *)ptr;
+
+    printf("plane\n");
+    printf("\tcenter = {%lf, %lf, %lf}\n\tnormal = {%lf, %lf, %lf}\n", obj->center.x, obj->center.y, obj->center.z, obj->normal.x, obj->normal.y, obj->normal.z);
+}
+
+void    print_cylinder(void *ptr)
+{
+    t_cylinder    *obj = (t_cylinder *)ptr;
+
+    printf("cylinder\n");
+    printf("\tcenter = {%lf, %lf, %lf}\n\tnormal = {%lf, %lf, %lf}\n\tr = %lf\n", obj->center.x, obj->center.y, obj->center.z, obj->normal.x, obj->normal.y, obj->normal.z, obj->r);
+}
+
+typedef void    (*t_func_ptrint)(void *ptr);
+
+void    print_obj(t_object *ptr)
+{
+    static t_func_ptrint    func[] = {print_sphere, print_plane, print_cylinder};
+
+    printf("type = %u\n", ptr->type);
+    printf("color = %06x\n", ptr->color);
+    printf("reflective = %lf\n", ptr->reflective);
+    printf("specular = %d\n", ptr->specular);
+    // print default value struct
+   func[ptr->type](ptr->obj.start);
+
 }
 
 int main(int argc, char **argv)
@@ -246,6 +285,11 @@ int main(int argc, char **argv)
         t_file_clean(ptr_file);
         t_object *obj = get_object(NULL);
         t_light *light = get_light(NULL);
+
+        for (int i = 0; obj[i].type != OBJ_NONE; ++i)
+        {
+            print_obj(&obj[i]);
+        }
 
         t_mlx *ptr_mlx = mlx_init();
         t_window    *ptr_window;
