@@ -19,7 +19,8 @@ SRC				=	main.c					\
 					events.c				\
 					plane.c					\
 					cylinder.c				\
-					parser.c				
+					parser.c				\
+					get_func.c
 
 OBJ_DIR			=	obj
 OBJ				=	$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))

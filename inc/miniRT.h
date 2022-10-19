@@ -33,9 +33,9 @@ void    draw_on_img(t_image *img, t_object *objects);
 int event_move(int key, void *arg);
 void    rotate(t_vector3 *d, int x, int y, int flag);
 t_object    *get_object(t_object *ptr);
-t_image    *get_image(t_image *ptr);
+t_image     *get_image(t_image *ptr);
 t_window    *get_window(t_window *ptr);
-t_mlx    *get_mlx(t_mlx *ptr);
-t_vector3    *get_viewer(t_vector3 *ptr);
+t_mlx       *get_mlx(t_mlx *ptr);
+t_vector3   *get_viewer(t_vector3 *ptr);
 
 #endif

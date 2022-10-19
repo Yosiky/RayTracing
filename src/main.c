@@ -1,92 +1,5 @@
 #include "miniRT.h"
 
-/* void    create_plane(t_object *elem, t_vector3 a, t_vector3 b, t_vector3 c, uint color, uint specular, double ref) */
-/* { */
-/*     elem->type = 1; */
-/*     elem->color = color; */
-/*     elem->obj.plane = (t_plane *)malloc(sizeof(t_plane)); */
-/*     elem->obj.plane->a = a; */
-/*     elem->obj.plane->b = b; */
-/*     elem->obj.plane->c = c; */
-/*     elem->specular = specular; */
-/*     elem->reflective = ref; */
-/*     t_vector3   one, two; */
-
-/*     vector3_minus(&one, &a, &b); */
-/*     vector3_minus(&two, &c, &b); */
-
-/*     vector3_cross(&elem->obj.plane->n, &one, &two); */
-/*     vector3_normalized(&elem->obj.plane->n); */
-/* } */
-
-/* void    create_sphere(t_object *elem, t_vector3 c, uint r, uint color, uint specular, double ref) */
-/* { */
-/*     elem->type = 0; */
-/*     elem->color = color; */
-/*     elem->specular = specular; */
-/*     elem->reflective = ref; */
-/*     elem->obj.sphere = (t_sphere *)malloc(sizeof(t_sphere)); */
-/*     elem->obj.sphere->r = r; */
-/*     elem->obj.sphere->center = c; */
-/* } */
-
-/* void    create_cylinder(t_object *elem, t_vector3 center, t_vector3 normal, double hight, double diameter, uint color, uint specular, double ref) */
-/* { */
-/*     elem->type = 2; */
-/*     elem->obj.cylinder = (t_cylinder *)malloc(sizeof(t_cylinder)); */
-/*     elem->color = color; */
-/*     elem->specular = specular; */
-/*     elem->reflective = ref; */
-/*     elem->obj.cylinder->center = center; */
-/*     elem->obj.cylinder->normal = normal; */
-/*     elem->obj.cylinder->r = diameter / 2; */
-/*     elem->obj.cylinder->hight = hight; */
-/* } */
-
-t_vector3    *get_viewer(t_vector3 *ptr)
-{
-    static t_vector3 obj = {0, 0, 0};
-
-    if (ptr != NULL)
-        obj = *ptr;
-    return (&obj);
-}
-
-t_object    *get_object(t_object *ptr)
-{
-    static t_object *obj = NULL;
-
-    if (ptr != NULL)
-        obj = ptr;
-    return (obj);
-}
-
-t_image    *get_image(t_image *ptr)
-{
-    static t_image *obj = NULL;
-
-    if (ptr != NULL)
-        obj = ptr;
-    return (obj);
-}
-
-t_window    *get_window(t_window *ptr)
-{
-    static t_window *obj = NULL;
-
-    if (ptr != NULL)
-        obj = ptr;
-    return (obj);
-}
-
-t_mlx    *get_mlx(t_mlx *ptr)
-{
-    static t_mlx *obj = NULL;
-
-    if (ptr != NULL)
-        obj = ptr;
-    return (obj);
-}
 int ee_exit(void)
 {
     exit(0);
@@ -268,7 +181,6 @@ void    print_obj(t_object *ptr)
     printf("color = %06x\n", ptr->color);
     printf("reflective = %lf\n", ptr->reflective);
     printf("specular = %d\n", ptr->specular);
-    // print default value struct
    func[ptr->type](ptr->obj.start);
 
 }
