@@ -6,7 +6,7 @@
 /*   By: eestelle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 18:40:02 by eestelle          #+#    #+#             */
-/*   Updated: 2022/10/16 18:14:17 by eestelle         ###   ########.fr       */
+/*   Updated: 2022/10/20 00:01:44 by eestelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,4 @@ char	**ft_split(char const *s, char c)
 		s = iter;
 	}
 	return (result);
-pp}
+}

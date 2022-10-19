@@ -6,7 +6,7 @@
 /*   By: eestelle <eestelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 21:04:32 by eestelle          #+#    #+#             */
-/*   Updated: 2022/10/15 22:59:18 by eestelle         ###   ########.fr       */
+/*   Updated: 2022/10/20 00:02:49 by eestelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t count, size_t size);
 char	*ft_strdup(const char *s1);
 char	**ft_split(char const *s, char c);
+double  ft_atof(const char *str);
 
 void    *ee_malloc(size_t count);
 void    ee_error(int code, const char *str);

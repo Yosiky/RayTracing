@@ -131,7 +131,7 @@ void    create_light(const char *str, void *dst)
     light->type = get_type_line(arg[i++]) - PARSE_AMBIENT;
     if (light->type == LIGHT_POINT)
         vector3_parse(&light->position, arg[i++]);
-    light->intensity = atof(arg[i++]); // todo atof forbidden
+    light->intensity = ft_atof(arg[i++]); // todo ft_atof forbidden
     light->color = ee_color_parse(arg[i]);
     ee_split_clear((char **)arg);
 }
@@ -150,7 +150,7 @@ void    create_sphere(const char *str, void *dst)
         ee_error(2, "ERROR: invalid data in file");
     data->obj.sphere = (t_sphere *)ee_malloc(sizeof(t_sphere));
     vector3_parse(&data->obj.sphere->center, arg[1]);
-    data->obj.sphere->r = atof(arg[2]) / 2;
+    data->obj.sphere->r = ft_atof(arg[2]) / 2;
     data->type = OBJ_SPHERE;
     data->reflective = 0;
     data->specular = 0;
@@ -193,8 +193,8 @@ void    create_cylinder(const char *str, void *dst)
     data->obj.cylinder = (t_cylinder *)ee_malloc(sizeof(t_cylinder));
     vector3_parse(&data->obj.cylinder->center, arg[1]);
     vector3_parse(&data->obj.cylinder->normal, arg[2]);
-    data->obj.cylinder->r = atof(arg[3]) / 2; // todo
-    data->obj.cylinder->hight = atof(arg[4]); // todo
+    data->obj.cylinder->r = ft_atof(arg[3]) / 2; // todo
+    data->obj.cylinder->hight = ft_atof(arg[4]); // todo
     data->type = OBJ_CYLINDER;
     data->specular = 0;
     data->reflective = 0;

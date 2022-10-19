@@ -72,8 +72,8 @@ t_vector3   vector3_parse(t_vector3 *dst, char *str)
 
     if (count != 3)
         ee_error(2, "ERROR: not valid count in vector");
-    dst->x = atof(arg[0]);
-    dst->y = atof(arg[1]);
-    dst->z = atof(arg[2]);
+    dst->x = ft_atof(arg[0]);
+    dst->y = ft_atof(arg[1]);
+    dst->z = ft_atof(arg[2]);
     ee_split_clear((char **)arg);
 }

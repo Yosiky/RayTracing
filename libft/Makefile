@@ -38,7 +38,8 @@ SRC =		\
 			get_next_line	\
 			get_next_line_utils	\
 			ee_malloc		\
-			ee_error
+			ee_error		\
+			ft_atof
 
 OBJS_DIR =	objects
 
