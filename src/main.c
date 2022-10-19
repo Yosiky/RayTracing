@@ -105,10 +105,10 @@ uint    ee_color_parse(char *str)
     const uint  ind[] = {16, 8, 0};
 
     dst = 0;
-    i = 2;
-    while (i >= 0)
+    i = 0;
+    while (i < 3)
     {
-        dst += ft_atoi(str) << ind[i--];
+        dst += (uint)ft_atoi(str) << ind[i++];
         while (*str != ',' && *str != '\n')
             ++str;
         ++str;
@@ -130,7 +130,7 @@ void    create_light(const char *str, void *dst)
     i = 0;
     light->type = get_type_line(arg[i++]) - PARSE_AMBIENT;
     if (light->type == LIGHT_POINT)
-        light->position = vector3_parse(arg[i++]);
+        vector3_parse(&light->position, arg[i++]);
     light->intensity = atof(arg[i++]); // todo atof forbidden
     light->color = ee_color_parse(arg[i]);
     ee_split_clear((char **)arg);
@@ -149,7 +149,7 @@ void    create_sphere(const char *str, void *dst)
     if (count != 4)
         ee_error(2, "ERROR: invalid data in file");
     data->obj.sphere = (t_sphere *)ee_malloc(sizeof(t_sphere));
-    data->obj.sphere->center = vector3_parse(arg[1]);
+    vector3_parse(&data->obj.sphere->center, arg[1]);
     data->obj.sphere->r = atof(arg[2]) / 2;
     data->type = OBJ_SPHERE;
     data->reflective = 0;
@@ -169,8 +169,8 @@ void    create_plane(const char *str, void *dst)
     if (count != 4)
         ee_error(2, "ERROR: invalid data in file");
     data->obj.plane = (t_plane *)ee_malloc(sizeof(t_plane));
-    data->obj.plane->center = vector3_parse(arg[1]);
-    data->obj.plane->normal = vector3_parse(arg[2]);
+    vector3_parse(&data->obj.plane->center, arg[1]);
+    vector3_parse(&data->obj.plane->normal, arg[2]);
     data->type = OBJ_PLANE;
     data->specular = 0;
     data->reflective = 0;
@@ -191,8 +191,8 @@ void    create_cylinder(const char *str, void *dst)
     if (count != 6)
         ee_error(2, "ERROR: invalid data in file");
     data->obj.cylinder = (t_cylinder *)ee_malloc(sizeof(t_cylinder));
-    data->obj.cylinder->center = vector3_parse(arg[1]);
-    data->obj.cylinder->normal = vector3_parse(arg[2]);
+    vector3_parse(&data->obj.cylinder->center, arg[1]);
+    vector3_parse(&data->obj.cylinder->normal, arg[2]);
     data->obj.cylinder->r = atof(arg[3]) / 2; // todo
     data->obj.cylinder->hight = atof(arg[4]); // todo
     data->type = OBJ_CYLINDER;
@@ -200,7 +200,6 @@ void    create_cylinder(const char *str, void *dst)
     data->reflective = 0;
     data->color = ee_color_parse(arg[5]);
 }
-
 
 void    parse_data(t_file *ptr)
 {
@@ -216,8 +215,8 @@ void    parse_data(t_file *ptr)
     count[2] = count[0] & 0xffffffff;
     obj = (t_object *)ee_malloc(sizeof(t_object) * (count[1] + 1));
     light = (t_light *)ee_malloc(sizeof(t_light) * (count[2] + 1));
-    obj[--count[1]].type = OBJ_NONE;
-    light[--count[2]].type = LIGHT_NONE;
+    obj[count[1]].type = OBJ_NONE;
+    light[count[2]].type = LIGHT_NONE;
     get_object(obj);
     get_light(light);
     i = 0;
