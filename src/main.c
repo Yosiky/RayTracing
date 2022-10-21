@@ -1,4 +1,5 @@
 #include "miniRT.h"
+#include <stdio.h>
 
 int ee_exit(void)
 {
@@ -136,7 +137,7 @@ void    parse_data(t_file *ptr)
     while (i < ptr->count)
     {
         type = get_type_line(ptr->data[i]);
-        printf("i = %ld, type = %u\n", i, type);
+        printf("i = %lld, type = %u\n", i, type);
         if (type == PARSE_AMBIENT || type == PARSE_POINT)
             func[type](ptr->data[i], (void *)&light[--count[2]]);
         else if (type == PARSE_CAMERA)

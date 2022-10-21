@@ -87,6 +87,7 @@ $(NAME):	$(addprefix $(HEADER_DIR)/,$(HEADER))		\
 	$(CC) $(OBJ) $(LIB_MLX) $(LIB_$(TARGET)) $(CFLAGS) -o $@
 
 clean:
+	rm -rf src/*.h
 	@printf "Remove miniRT object files\n"
 	@rm -rf $(OBJ_DIR)
 	# @printf "Remove minilibx object files\n"

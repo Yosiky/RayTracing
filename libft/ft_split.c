@@ -6,15 +6,15 @@
 /*   By: eestelle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 18:40:02 by eestelle          #+#    #+#             */
-/*   Updated: 2022/10/20 00:01:44 by eestelle         ###   ########.fr       */
+/*   Updated: 2022/10/21 13:38:30 by eestelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-uint    ee_split_count(char **str)
+uint32_t    ee_split_count(char **str)
 {
-    uint    i;
+    uint32_t    i;
 
     i = 0;
     while (str[i] != NULL)
@@ -24,7 +24,7 @@ uint    ee_split_count(char **str)
 
 void    ee_split_clear(char **str)
 {
-    uint    i;
+    uint32_t    i;
 
     i = 0;
     while (str[i] != NULL)

@@ -68,7 +68,7 @@ void    vector3_mulv(t_vector3 *dst, const t_vector3 *src)
 t_vector3   vector3_parse(t_vector3 *dst, char *str)
 {
     char        *const  *arg = (char *const *)ft_split(str, ',');
-    const uint  count = ee_split_count((char **)arg);
+    const uint32_t  count = ee_split_count((char **)arg);
 
     if (count != 3)
         ee_error(2, "ERROR: not valid count in vector");

@@ -3,7 +3,7 @@
 static double   get_double_part(const char *str)
 {
     double  dst;
-    uint    count;
+    uint32_t    count;
     
     if (*str != '.')
         return (0);

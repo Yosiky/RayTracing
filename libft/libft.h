@@ -6,7 +6,7 @@
 /*   By: eestelle <eestelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 21:04:32 by eestelle          #+#    #+#             */
-/*   Updated: 2022/10/20 00:02:49 by eestelle         ###   ########.fr       */
+/*   Updated: 2022/10/21 13:37:38 by eestelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ double  ft_atof(const char *str);
 
 void    *ee_malloc(size_t count);
 void    ee_error(int code, const char *str);
-uint    ee_split_count(char **str);
+uint32_t    ee_split_count(char **str);
 void    ee_split_clear(char **str);
 
 #endif
