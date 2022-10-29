@@ -20,6 +20,17 @@ void    create_light(const char *str, void *dst)
 
 void    create_camera(const char *str, void *dst)
 {
+    t_camera *const data = (t_camera *const)dst;
+    char *const *arg = (char *const *)ft_split(str, ' ');
+    const uint  count = (const uint)ee_split_count((char **)arg);
+
+    if (count != 4)
+        ee_error(2, "ERROR: invalid data in file");
+    vector3_parse(&data->coordinate, arg[1]);
+    vector3_parse(&data->normal, arg[2]);
+    vector3_get_degree(&data->rotate_x, &data->rotate_y, &data->normal);
+    data->view = (uint)ft_atoi(arg[3]);
+    ee_split_clear((char **)arg);
 }
 
 void    create_sphere(const char *str, void *dst)

@@ -9,6 +9,7 @@
 # include "parser.h"
 # include "libft.h"
 # include "constants.h"
+# include "camera.h"
 
 # include "objects.h"
 # include <stdint.h>
@@ -37,8 +38,8 @@ t_object    *get_object(t_object *ptr);
 t_image     *get_image(t_image *ptr);
 t_window    *get_window(t_window *ptr);
 t_mlx       *get_mlx(t_mlx *ptr);
-t_vector3   *get_viewer(t_vector3 *ptr);
 void    print_obj(t_object *ptr);
+void    print_camera(t_camera *obj);
 uint    ee_color_parse(char *str);
 void    parse_data(t_file *ptr);
 void    create_light(const char *str, void *dst);

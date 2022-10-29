@@ -1,14 +1,5 @@
 #include "miniRT.h"
 
-t_vector3    *get_viewer(t_vector3 *ptr)
-{
-    static t_vector3 obj = {0, 0, 0};
-
-    if (ptr != NULL)
-        obj = *ptr;
-    return (&obj);
-}
-
 t_object    *get_object(t_object *ptr)
 {
     static t_object *obj = NULL;

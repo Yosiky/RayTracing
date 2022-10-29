@@ -23,7 +23,8 @@ SRC				=	main.c					\
 					get_func.c				\
 					print_info.c			\
 					parser_data.c			\
-					create_target.c
+					create_target.c			\
+					camera.c
 
 OBJ_DIR			=	obj
 OBJ				=	$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
@@ -49,7 +50,8 @@ HEADER			=	miniRT.h			\
 					plane.h				\
 					constants.h			\
 					cylinder.h			\
-					parser.h
+					parser.h			\
+					camera.h
 
 LIB_linux		=	-L$(MINILIBX_DIR) -lmlx -lXext -lX11 -lm -lz 
 

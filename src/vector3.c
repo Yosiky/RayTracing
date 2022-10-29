@@ -77,3 +77,16 @@ void   vector3_parse(t_vector3 *dst, char *str)
     dst->z = ft_atof(arg[2]);
     ee_split_clear((char **)arg);
 }
+
+void    vector3_get_degree(int *x, int *y, t_vector3 *vec)
+{
+    double  some;
+
+    *y = 90 - asin(vec->z) / PI * 180;
+    *x = 90 - asin(vec->x) / PI * 180;
+}
+
+void    vector3_print(t_vector3 *vec)
+{
+    printf("{%lf, %lf, %lf}", vec->x, vec->y, vec->z);
+}

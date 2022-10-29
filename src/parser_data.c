@@ -25,6 +25,7 @@ void    parse_data(t_file *ptr)
     static t_func_creator func[] = {create_light, create_light, create_camera, create_sphere, create_plane, create_cylinder};
     int type;
     uint64_t    count[3];
+    t_camera    *camera;
     t_object    *obj;
     t_light     *light;
     int64_t     i;
@@ -34,8 +35,10 @@ void    parse_data(t_file *ptr)
     count[2] = count[0] & 0xffffffff;
     obj = (t_object *)ee_malloc(sizeof(t_object) * (count[1] + 1));
     light = (t_light *)ee_malloc(sizeof(t_light) * (count[2] + 1));
+    camera = (t_camera *)ee_malloc(sizeof(t_camera));
     obj[count[1]].type = OBJ_NONE;
     light[count[2]].type = LIGHT_NONE;
+    get_camera(camera);
     get_object(obj);
     get_light(light);
     i = 0;
@@ -45,7 +48,7 @@ void    parse_data(t_file *ptr)
         if (type == PARSE_AMBIENT || type == PARSE_POINT)
             func[type](ptr->data[i], (void *)&light[--count[2]]);
         else if (type == PARSE_CAMERA)
-            func[type](ptr->data[i], NULL);
+            func[type](ptr->data[i], (void *)&camera);
         else if (type > PARSE_CAMERA)
             func[type](ptr->data[i], (void *)&obj[--count[1]]);
         ++i;

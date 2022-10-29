@@ -87,9 +87,11 @@ int event_move(int key, __attribute__((__unused__))void *arg)
     static int roty = 0;
 
     if (key == KEY_R)
-        rotx -= 1;
+        /* rotx -= 1; */
+        *(get_rotate_x(NULL)) -= 1;
     if (key == KEY_F)
-        rotx += 1;
+        /* rotx += 1; */
+        *(get_rotate_x(NULL)) += 1;
     if (key == KEY_Q)
         roty -= 1;
     if (key == KEY_E)

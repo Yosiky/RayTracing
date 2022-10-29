@@ -28,7 +28,6 @@ int main(int argc, char **argv)
         {
             print_obj(&obj[i]);
         }
-
         t_mlx *ptr_mlx = mlx_init();
         t_window    *ptr_window;
         t_image     *ptr_image;
