@@ -16,6 +16,7 @@
 # include <math.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
 
 
 # define WINDOW_NAME "miniRT"
@@ -37,5 +38,13 @@ t_image     *get_image(t_image *ptr);
 t_window    *get_window(t_window *ptr);
 t_mlx       *get_mlx(t_mlx *ptr);
 t_vector3   *get_viewer(t_vector3 *ptr);
+void    print_obj(t_object *ptr);
+uint    ee_color_parse(char *str);
+void    parse_data(t_file *ptr);
+void    create_light(const char *str, void *dst);
+void    create_camera(const char *str, void *dst);
+void    create_sphere(const char *str, void *dst);
+void    create_plane(const char *str, void *dst);
+void    create_cylinder(const char *str, void *dst);
 
 #endif

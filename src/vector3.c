@@ -65,7 +65,7 @@ void    vector3_mulv(t_vector3 *dst, const t_vector3 *src)
     dst->z *= src->z;
 }
 
-t_vector3   vector3_parse(t_vector3 *dst, char *str)
+void   vector3_parse(t_vector3 *dst, char *str)
 {
     char        *const  *arg = (char *const *)ft_split(str, ',');
     const uint32_t  count = ee_split_count((char **)arg);

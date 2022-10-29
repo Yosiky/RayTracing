@@ -21,6 +21,6 @@ void    vector3_normalized(t_vector3 *src);
 void    vector3_mul(t_vector3 *dst, const t_vector3 *src, const double value);
 void    vector3_mulv(t_vector3 *dst, const t_vector3 *src);
 void    vector3_cross(t_vector3 *dst, const t_vector3 *a, const t_vector3 *b);
-t_vector3   vector3_parse(t_vector3 *dst, char *str);
+void   vector3_parse(t_vector3 *dst, char *str);
 
 #endif
