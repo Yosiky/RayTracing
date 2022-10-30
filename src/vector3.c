@@ -82,8 +82,8 @@ void    vector3_get_degree(int *x, int *y, t_vector3 *vec)
 {
     double  some;
 
-    *y = 90 - asin(vec->z) / PI * 180;
-    *x = 90 - asin(vec->x) / PI * 180;
+    *x = atan2(vec->x, sqrt(vec->y * vec->y + vec->z * vec->z)) / PI * 180;
+    *y = atan2(vec->y, sqrt(vec->x * vec->x + vec->z * vec->z)) / PI * 180;
 }
 
 void    vector3_print(t_vector3 *vec)

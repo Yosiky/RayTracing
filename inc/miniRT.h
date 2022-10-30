@@ -33,7 +33,7 @@
 
 void    draw_on_img(t_image *img, t_object *objects);
 int event_move(int key, void *arg);
-void    rotate(t_vector3 *d, int x, int y, int flag);
+void    rotate(t_vector3 *d, int flag);
 t_object    *get_object(t_object *ptr);
 t_image     *get_image(t_image *ptr);
 t_window    *get_window(t_window *ptr);

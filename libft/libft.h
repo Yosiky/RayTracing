@@ -6,13 +6,14 @@
 /*   By: eestelle <eestelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 21:04:32 by eestelle          #+#    #+#             */
-/*   Updated: 2022/10/21 13:37:38 by eestelle         ###   ########.fr       */
+/*   Updated: 2022/10/30 19:31:45 by eestelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include <stdint.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <stddef.h>

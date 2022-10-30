@@ -24,6 +24,7 @@ int main(int argc, char **argv)
         t_object *obj = get_object(NULL);
         t_light *light = get_light(NULL);
 
+        print_camera(get_camera(NULL));
         for (int i = 0; obj[i].type != OBJ_NONE; ++i)
         {
             print_obj(&obj[i]);

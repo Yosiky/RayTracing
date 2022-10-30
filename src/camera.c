@@ -2,11 +2,11 @@
 
 t_vector3    *get_viewer(t_vector3 *ptr)
 {
-    static t_vector3 obj = {0, 0, 0};
+    static t_vector3 *obj = NULL;
 
     if (ptr != NULL)
-        obj = *ptr;
-    return (&obj);
+        obj = ptr;
+    return (obj);
 }
 
 t_camera    *get_camera(t_camera *ptr)
