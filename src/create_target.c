@@ -46,7 +46,7 @@ void    create_sphere(const char *str, void *dst)
     data->obj.sphere->r = ft_atof(arg[2]) / 2;
     data->type = OBJ_SPHERE;
     data->reflective = 0;
-    data->specular = 0;
+    data->specular = 500;
     data->color = ee_color_parse(arg[3]);
     ee_split_clear((char **)arg);
 }
@@ -66,7 +66,7 @@ void    create_plane(const char *str, void *dst)
     vector3_parse(&data->obj.plane->normal, arg[2]);
     data->type = OBJ_PLANE;
     data->specular = 0;
-    data->reflective = 0;
+    data->reflective = 500;
     data->color = ee_color_parse(arg[3]);
     ee_split_clear((char **)arg);
     vector3_minus(&a, &data->obj.plane->a, &data->obj.plane->b);
@@ -89,7 +89,7 @@ void    create_cylinder(const char *str, void *dst)
     data->obj.cylinder->r = ft_atof(arg[3]) / 2;
     data->obj.cylinder->hight = ft_atof(arg[4]);
     data->type = OBJ_CYLINDER;
-    data->specular = 0;
+    data->specular = 500;
     data->reflective = 0;
     data->color = ee_color_parse(arg[5]);
 }
