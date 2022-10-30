@@ -48,7 +48,7 @@ void    parse_data(t_file *ptr)
         if (type == PARSE_AMBIENT || type == PARSE_POINT)
             func[type](ptr->data[i], (void *)&light[--count[2]]);
         else if (type == PARSE_CAMERA)
-            func[type](ptr->data[i], (void *)&camera);
+            func[type](ptr->data[i], (void *)camera);
         else if (type > PARSE_CAMERA)
             func[type](ptr->data[i], (void *)&obj[--count[1]]);
         ++i;
