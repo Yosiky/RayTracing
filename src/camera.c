@@ -17,8 +17,8 @@ t_camera    *get_camera(t_camera *ptr)
     {
         obj = ptr;
         get_viewer(&obj->coordinate);
-        get_rotate_x(&obj->rotate_x);
-        get_rotate_y(&obj->rotate_y);
+        get_rotate_y(&obj->rotate_x);
+        get_rotate_x(&obj->rotate_y);
     }
     return (obj);
 }
