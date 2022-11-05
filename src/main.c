@@ -39,6 +39,7 @@ void    create_cylinder(t_object *elem, t_vector3 center, t_vector3 normal, doub
     elem->specular = specular;
     elem->reflective = ref;
     elem->obj.cylinder->center = center;
+    vector3_normalized(&normal);
     elem->obj.cylinder->normal = normal;
     elem->obj.cylinder->r = diameter / 2;
     elem->obj.cylinder->hight = hight;
@@ -116,7 +117,7 @@ int main(void)
     t_light ambient = {AMBIENT, 0.2, {0, 0, 0}};
     t_light point = {POINT, 0.6, {2, 1, 0}};
     t_light derectional = {DERECTIONAL, 0.2, {1, 4, 4}};
-    t_light *light[] = {&ambient, &point, &derectional, NULL};
+    t_light *light[] = {&ambient, &point, /*&derectional, */NULL};
     t_object    *figures = (t_object *)malloc(sizeof(t_object) * 8);
 
     get_object(figures);

@@ -2,7 +2,7 @@
 # define CONSTANTS_H
 
 # define PI 3.14
-# define EPS 0.001
+# define EPS 0.000001
 /* # define NULL (void *)0 */
 
 # ifdef __APPLE__
