@@ -39,12 +39,10 @@ double   intersect_ray_cylinder(t_vector3 *restrict o, t_vector3 *restrict d,
     res = INFINITY;
     k[3] = sqrt(k[3]);
     k[4] = (-k[1] + k[3]) / (2. * k[0]);
-    /* if (EPS < k[4] && k[4] < INFINITY && check_hight(ptr, o, d, k[4])) */
-    if (EPS < k[4] && k[4] < INFINITY)
+    if (EPS < k[4] && k[4] < INFINITY && check_hight(ptr, o, d, k[4]))
         res = fmin(k[4], res);
     k[4] = (-k[1] - k[3]) / (2. * k[0]);
-    /* if (EPS < k[4] && k[4] < INFINITY && check_hight(ptr, o, d, k[4])) */
-    if (EPS < k[4] && k[4] < INFINITY)
+    if (EPS < k[4] && k[4] < INFINITY && check_hight(ptr, o, d, k[4]))
         res = fmin(k[4], res);
     return (res);
 }
