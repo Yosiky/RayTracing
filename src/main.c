@@ -115,9 +115,9 @@ int main(void)
     init_hook(ptr_window);
 
     t_light ambient = {AMBIENT, 0.2, {0, 0, 0}};
-    t_light point = {POINT, 0.6, {2, 1, 0}};
-    t_light derectional = {DERECTIONAL, 0.2, {1, 4, 4}};
-    t_light *light[] = {&ambient, &point, /*&derectional, */NULL};
+    t_light point = {POINT, 0.6, {0, 0, 2}};
+    t_light derectional = {DERECTIONAL, 0.2, {0, 0, 10}};
+    t_light *light[] = {/*&ambient,*/ &point, /*&derectional, */NULL};
     t_object    *figures = (t_object *)malloc(sizeof(t_object) * 8);
 
     get_object(figures);
@@ -126,11 +126,11 @@ int main(void)
     get_mlx(ptr_mlx);
     /* create_sphere(&figures[0], (t_vector3){0, -1, 3}, 1, 0x00ff0000, 500, 0.2); */
     /* create_sphere(&figures[1], (t_vector3){2, 0, 4}, 1, 0x000000ff, 500, 0.3); */
-    /* create_sphere(&figures[1], (t_vector3){-2, 0, 4}, 1, 0x0000ff00, 10, 1); */
+    /* create_sphere(&figures[2], (t_vector3){-2, 0, 4}, 1, 0x0000ff00, 10, 1); */
     /* create_sphere(&figures[3], (t_vector3){0, -5001, 0}, 5000, 0x00ffff00, 1000, 0.5); */
-    /* create_plane(&figures[2], (t_vector3){-2, -1, -2}, (t_vector3){0, -1, 0}, (t_vector3){1, -1, 10}, 0x00ffff00, 1000, 0.5); */
-    /* create_plane(&figures[3], (t_vector3){-4, 1, 10}, (t_vector3){-4, 0, 0}, (t_vector3){-4, 0, 4}, 0x00ff00ff, 1000, 0.5); */
-    create_cylinder(&figures[0], (t_vector3){0, 0, 0}, (t_vector3){0, 0, 1}, 1, 1, 0x00ff0000, 1000, 0.5);
+    /* create_plane(&figures[3], (t_vector3){-2, -1, -2}, (t_vector3){0, -1, 0}, (t_vector3){1, -1, 10}, 0x00ffff00, 1000, 0.5); */
+    /* create_plane(&figures[4], (t_vector3){-4, 1, 10}, (t_vector3){-4, 0, 0}, (t_vector3){-4, 0, 4}, 0x00ff00ff, 1000, 0.5); */
+    create_cylinder(&figures[0], (t_vector3){0, -0.5, 5}, (t_vector3){0, 1, 0}, 1, 1, 0x00ff0000, 1000, 0.5);
     figures[1].type = -1;
     vector3_normalized(&derectional.position);
     get_light_all(light);

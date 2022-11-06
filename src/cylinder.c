@@ -47,6 +47,20 @@ double   intersect_ray_cylinder(t_vector3 *restrict o, t_vector3 *restrict d,
     return (res);
 }
 
+int check_point_on_cylinder(t_cylinder *ptr, t_vector3 *point)
+{
+    t_vector3   op;
+    double  length;
+
+    vector3_minus(&op, point, &ptr->center);
+    length = vector3_dot(&op, &ptr->normal);
+    if (length < EPS)
+        return (1);
+    if (length > ptr->hight - EPS)
+        return (2);
+    return (0);
+}
+
 void    get_normal_cylinder(t_vector3 *restrict res, t_vector3 *restrict a, void *data)
 {
     t_cylinder  *ptr = (t_cylinder *)data;
@@ -61,4 +75,3 @@ void    get_normal_cylinder(t_vector3 *restrict res, t_vector3 *restrict a, void
     vector3_minus(res, a, &o);
     vector3_normalized(res);
 }
-
