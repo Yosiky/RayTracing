@@ -166,16 +166,21 @@ void    draw_on_img(t_image *img, t_object *objects)
     uint        color;
     t_vector3   d;
 
-    y = -width_y;
-    while (y < width_y)
+    /* y = -width_y; */
+    /* while (y < width_y) */
+    y = 0;
+    while (y < img->y)
     {
-        x = -width_x;
-        while (x < width_x)
+        /* x = -width_x; */
+        /* while (x < width_x) */
+        x = 0;
+        while (x < img->x)
         {
-            set_coordinates(&d, (t_vector3){ (double)(x) * 1 / WINDOW_X, (double)(y) * 1 / WINDOW_Y, 1});
+            set_coordinates(&d, (t_vector3){ (double)(x - width_x) * 1 / WINDOW_X, (double)(width_y - y) * 1 / WINDOW_Y, 1});
             rotate(&d, 0, 0, 0);
             color = trace_ray(get_viewer(NULL), &d, objects, 0/*RECURSIVE_DEPTH*/);
-            ee_mlx_pixel_put(img, width_x + x, width_y - y, color);
+            /* ee_mlx_pixel_put(img, width_x + x, width_y - y, color); */
+            ee_mlx_pixel_put(img, x, y, color);
             ++x;
         }
         ++y;
