@@ -9,7 +9,7 @@ double intersect_ray(t_vector3 *o, t_vector3 *d, t_object *obj)
 
 void    get_normal(t_vector3 *dst, t_vector3 *one, t_object *obj)
 {
-    static t_get_normal func[] = { get_normal_sphere , get_normal_plane, intersect_ray_cylinder};
+    static t_get_normal func[] = { get_normal_sphere , get_normal_plane, get_normal_cylinder};
 
     func[obj->type](dst, one, obj->obj.start);
 }
