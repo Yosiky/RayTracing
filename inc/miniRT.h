@@ -6,12 +6,18 @@
 # include "vector3.h"
 # include "ee_list.h"
 # include "light.h"
+# include "parser.h"
+# include "libft.h"
+# include "constants.h"
+# include "camera.h"
 
 # include "objects.h"
+# include <stdint.h>
 # include <limits.h>
 # include <math.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
 
 
 # define WINDOW_NAME "miniRT"
@@ -25,14 +31,21 @@
 # define RECURSIVE_DEPTH 5
 # define COLOR_BACKGROUND   0X00000000
 
-void    ee_error(int code, const char *str);
 void    draw_on_img(t_image *img, t_object *objects);
 int event_move(int key, void *arg);
-void    rotate(t_vector3 *d, int x, int y, int flag);
+void    rotate(t_vector3 *d, int flag);
 t_object    *get_object(t_object *ptr);
-t_image    *get_image(t_image *ptr);
+t_image     *get_image(t_image *ptr);
 t_window    *get_window(t_window *ptr);
-t_mlx    *get_mlx(t_mlx *ptr);
-t_vector3    *get_viewer(t_vector3 *ptr);
+t_mlx       *get_mlx(t_mlx *ptr);
+void    print_obj(t_object *ptr);
+void    print_camera(t_camera *obj);
+uint    ee_color_parse(char *str);
+void    parse_data(t_file *ptr);
+void    create_light(const char *str, void *dst);
+void    create_camera(const char *str, void *dst);
+void    create_sphere(const char *str, void *dst);
+void    create_plane(const char *str, void *dst);
+void    create_cylinder(const char *str, void *dst);
 
 #endif

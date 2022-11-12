@@ -61,7 +61,7 @@ void    rotate_y(t_vector3 *d, int a)
 
 typedef void    (*t_rotate)(t_vector3 *, int a);
 
-void    rotate(t_vector3 *d, int x, int y, int flag)
+void    rotate(t_vector3 *d, int flag)
 {
     static const t_rotate   rot[] = {rotate_x, rotate_y};
     static int rotx = 0;
@@ -69,8 +69,8 @@ void    rotate(t_vector3 *d, int x, int y, int flag)
 
     if (flag)
     {
-        rotx = x;
-        roty = y;
+        rotx = *(get_rotate_x(NULL));
+        roty = *(get_rotate_y(NULL));
     }
     if (d != NULL)
     {
@@ -83,17 +83,15 @@ int event_move(int key, __attribute__((__unused__))void *arg)
 {
     write(1, "1", 1);
     t_vector3    o = {0, 0, 0};
-    static int rotx = 0;
-    static int roty = 0;
 
     if (key == KEY_R)
-        rotx -= 1;
+        *(get_rotate_x(NULL)) -= 1;
     if (key == KEY_F)
-        rotx += 1;
+        *(get_rotate_x(NULL)) += 1;
     if (key == KEY_Q)
-        roty -= 1;
+        *(get_rotate_y(NULL)) -= 1;
     if (key == KEY_E)
-        roty += 1;
+        *(get_rotate_y(NULL)) += 1;
     if (key == KEY_W)
         o.z += 0.1;
     if (key == KEY_S)
@@ -104,9 +102,8 @@ int event_move(int key, __attribute__((__unused__))void *arg)
         o.x -= 0.1;
     if (key == KEY_ESCAPE)
         exit(0);
-    rotate(&o, rotx, roty, 1);
-    vector3_plus(&o, &o, get_viewer(NULL));
-    get_viewer(&o);
+    rotate(&o, 1);
+    vector3_plus(get_viewer(NULL), &o, get_viewer(NULL));
     draw_on_img(get_image(NULL), get_object(NULL));
     mlx_put_image_to_window(get_mlx(NULL), get_window(NULL)->win, get_image(NULL)->img, 0, 0);
     write(1, "0", 1);

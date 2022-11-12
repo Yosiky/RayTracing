@@ -9,6 +9,13 @@
 typedef double  (*t_intersec_ray)(t_vector3 *, t_vector3 *, void *);
 typedef void    (*t_get_normal)(t_vector3 *, const t_vector3 *, void *);
 
+enum e_TYPE_OBJECT
+{
+    OBJ_NONE = -1,
+    OBJ_SPHERE,
+    OBJ_PLANE,
+    OBJ_CYLINDER
+};
 
 typedef struct s_object
 {
