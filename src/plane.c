@@ -5,10 +5,10 @@ double   intersect_ray_plane(t_vector3 *restrict o, t_vector3 *restrict d,
 {
     t_plane   *plane = (t_plane *)data;
     double      res;
-    double      dot = vector3_dot(&plane->n, d);
+    double      dot = vector3_dot(&plane->normal, d);
     t_vector3   v;
-    vector3_minus(&v, &plane->a, o);
-    double          lenght = vector3_dot(&plane->n, &v);
+    vector3_minus(&v, &plane->point, o);
+    double          lenght = vector3_dot(&plane->normal, &v);
     res = INFINITY;
     res = fmin(lenght / dot, res);
     if (EPS < res)
@@ -21,5 +21,5 @@ void    get_normal_plane(t_vector3 *restrict res, t_vector3 *restrict a,
 {
     t_plane *plane = (t_plane *)data;
     
-    *res = plane->n;
+    *res = plane->normal;
 }

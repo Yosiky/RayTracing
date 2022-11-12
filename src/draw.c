@@ -72,13 +72,8 @@ static double    compute_lighting(t_vector3 *p, t_vector3 *n, t_vector3 *v, uint
         light = get_light(NULL);
     while (light[++indx].type != LIGHT_NONE)
     {
-<<<<<<< HEAD
-        if (light[indx]->type == AMBIENT)
-            intensity = fmin(light[indx]->intensity + intensity, 1);
-=======
         if (light[indx].type == LIGHT_AMBIENT)
-            intensity += light[indx].intensity;
->>>>>>> parser
+            intensity = fmin(light[indx].intensity + intensity, 1);
         else 
         {
             if (light[indx].type == LIGHT_POINT)

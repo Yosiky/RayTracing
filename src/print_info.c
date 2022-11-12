@@ -16,7 +16,7 @@ static void    print_plane(void *ptr)
 
     printf("plane\n");
     printf("\tcenter = ");
-    vector3_print(&obj->center);
+    vector3_print(&obj->point);
     printf("\n\tnormal = ");
     vector3_print(&obj->normal);
     printf("\n");
@@ -27,7 +27,7 @@ static void    print_cylinder(void *ptr)
     t_cylinder    *obj = (t_cylinder *)ptr;
 
     printf("cylinder\n");
-    printf("\tcenter = ");
+    printf("\tpoint = ");
     vector3_print(&obj->center);
     printf("\n\tnormal = ");
     vector3_print(&obj->normal);

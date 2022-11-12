@@ -56,23 +56,17 @@ void    create_plane(const char *str, void *dst)
     t_object *const    data = (t_object *const)dst;
     char *const    *arg = (char *const *)ft_split(str, ' ');
     const uint      count = (const uint)ee_split_count((char **)arg);
-    t_vector3       a;
-    t_vector3       b;
 
     if (count != 4)
         ee_error(2, "ERROR: invalid data in file");
     data->obj.plane = (t_plane *)ee_malloc(sizeof(t_plane));
-    vector3_parse(&data->obj.plane->center, arg[1]);
+    vector3_parse(&data->obj.plane->point, arg[1]);
     vector3_parse(&data->obj.plane->normal, arg[2]);
     data->type = OBJ_PLANE;
-    data->specular = 0;
-    data->reflective = 500;
+    data->specular = 500;
+    data->reflective = 0;
     data->color = ee_color_parse(arg[3]);
     ee_split_clear((char **)arg);
-    vector3_minus(&a, &data->obj.plane->a, &data->obj.plane->b);
-    vector3_minus(&b, &data->obj.plane->c, &data->obj.plane->b);
-    vector3_cross(&data->obj.plane->n, &a, &b);
-    vector3_normalized(&data->obj.plane->n);
 }
 
 void    create_cylinder(const char *str, void *dst)
