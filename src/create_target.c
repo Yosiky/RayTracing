@@ -7,14 +7,17 @@ void    create_light(const char *str, void *dst)
     const uint      count = (const uint)ee_split_count((char **)arg);
     uint            i;
 
-    if (count != 3 && count != 4)
+    if ((arg[0][0] == 'A' && !(count == 2 || count == 3)) ||
+        (arg[0][0] == 'L' && !(count == 3 || count == 4)))
         ee_error(2, "ERROR: invalid data in file");
     i = 0;
     light->type = get_type_line(arg[i++]) - PARSE_AMBIENT;
     if (light->type == LIGHT_POINT)
         vector3_parse(&light->position, arg[i++]);
-    light->intensity = ft_atof(arg[i++]); // todo ft_atof forbidden
-    light->color = ee_color_parse(arg[i]);
+    light->intensity = ft_atof(arg[i++]);
+    if ((light->type == LIGHT_AMBIENT && count == 3) ||
+        (light->type == LIGHT_POINT && count == 4))
+        light->color = ee_color_parse(arg[i]);
     ee_split_clear((char **)arg);
 }
 

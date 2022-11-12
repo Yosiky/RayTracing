@@ -10,6 +10,7 @@
 # include "libft.h"
 # include "constants.h"
 # include "camera.h"
+# include "color.h"
 
 # include "objects.h"
 # include <stdint.h>
