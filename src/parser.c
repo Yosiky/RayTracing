@@ -46,7 +46,7 @@ t_file  *read_file(const char *name_file)
     file->data = (char **)ee_malloc(sizeof(char **) * file->size);
     fd = open(name_file, O_RDONLY);
     if (fd == -1)
-        ee_error(2, "can't open file");
+        ee_error(2, "ERROR: can't open file");
     while (1)
     {
         line = get_next_line(fd);

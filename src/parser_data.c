@@ -29,6 +29,7 @@ void    parse_data(t_file *ptr)
     t_object    *obj;
     t_light     *light;
     int64_t     i;
+    uint        flag;
 
     count[0] = count_type_in_file(ptr);
     count[1] = count[0] >> 32;
@@ -45,6 +46,9 @@ void    parse_data(t_file *ptr)
     while (i < ptr->count)
     {
         type = get_type_line(ptr->data[i]);
+        if ((flag & 0x1 && type == PARSE_AMBIENT) || (flag & 0x2 && type == PARSE_POINT) || (flag & 0x4 && type == PARSE_CAMERA))
+            ee_error(7, "ERROR: don't valid file");
+        flag |= 1 << type;
         if (type == PARSE_AMBIENT || type == PARSE_POINT)
             func[type](ptr->data[i], (void *)&light[--count[2]]);
         else if (type == PARSE_CAMERA)
