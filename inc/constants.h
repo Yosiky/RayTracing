@@ -3,6 +3,7 @@
 
 # define PI 3.14
 # define EPS 0.000001
+# define UNUSED __attribute__((__unused__))
 /* # define NULL (void *)0 */
 
 # ifdef __APPLE__
