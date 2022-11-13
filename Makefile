@@ -94,17 +94,20 @@ $(NAME):	$(addprefix $(HEADER_DIR)/,$(HEADER))		\
 	$(CC) $(OBJ) $(LIB_MLX) $(LIB_$(TARGET)) $(CFLAGS) -o $@
 
 clean:
-	rm -rf src/*.h
+	@rm -rf src/*.h
 	@printf "Remove miniRT object files\n"
 	@rm -rf $(OBJ_DIR)
-	# @printf "Remove minilibx object files\n"
-	# @rm -rf $(MINILIBX_DIR)/*.o
+	@printf "Remove minilibx object files\n"
+	@rm -rf $(MINILIBX_DIR)/*.o
+	@printf "Remove libft object files\n"
+	@rm -rf $(LIBFT_DIR)/*.o
 
 fclean: clean
-	@printf "Remove minilibx\n"
-	# @(MAKE) -C $(MINILIBX_DIR)
-	# @rm -rf $(MINILIBX_DIR)/$(MINILIBX)
 	@printf "Remove miniRT\n"
 	@rm -rf $(NAME)
+	@printf "Remove minilibx\n"
+	@rm -rf $(MINILIBX_DIR)/$(MINILIBX)
+	@printf "Remove libft\n"
+	@rm -rf $(LIBFT_DIR)/$(LIBFT)
 
 re: fclean all
