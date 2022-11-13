@@ -14,7 +14,9 @@ SRC				=	main.c					\
 					APIminilibx_one.c		\
 					draw.c					\
 					sphere.c				\
-					vector3.c				\
+					vector3_func1.c				\
+					vector3_func2.c				\
+					vector3_func3.c				\
 					light.c					\
 					objects.c				\
 					events.c				\
