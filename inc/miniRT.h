@@ -4,7 +4,6 @@
 # include "constants.h"
 # include "APIminilibx.h"
 # include "vector3.h"
-# include "ee_list.h"
 # include "light.h"
 # include "parser.h"
 # include "libft.h"

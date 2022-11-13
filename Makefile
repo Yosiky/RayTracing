@@ -13,7 +13,6 @@ SRC_DIR			=	src
 SRC				=	main.c					\
 					APIminilibx_one.c		\
 					draw.c					\
-					ee_list.c				\
 					sphere.c				\
 					vector3.c				\
 					light.c					\
@@ -46,7 +45,6 @@ MAKE_HEADER		=	$(addprefix -I,$(HEADER_DIR))	\
 
 HEADER			=	miniRT.h			\
 					APIminilibx.h		\
-					ee_list.h			\
 					sphere.h			\
 					vector3.h			\
 					light.h				\

@@ -2,7 +2,6 @@
 # define LIGHT_H
 
 # include "vector3.h"
-# include "ee_list.h"
 # include "stddef.h"
 
 typedef unsigned int uint;
