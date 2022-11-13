@@ -1,19 +1,21 @@
 #include "miniRT.h"
 
-static void    print_sphere(void *ptr)
+static void	print_sphere(void *ptr)
 {
-	t_sphere    *obj = (t_sphere *)ptr;
-	
+	t_sphere	*obj;
+
+	obj = (t_sphere *)ptr;
 	printf("sphere\n");
 	printf("\tcenter = ");
 	vector3_print(&obj->center);
 	printf("\tradius = %lf\n", obj->r);
 }
 
-static void    print_plane(void *ptr)
+static void	print_plane(void *ptr)
 {
-	t_plane    *obj = (t_plane *)ptr;
+	t_plane	*obj;
 
+	obj = (t_plane *)ptr;
 	printf("plane\n");
 	printf("\tcenter = ");
 	vector3_print(&obj->point);
@@ -22,10 +24,11 @@ static void    print_plane(void *ptr)
 	printf("\n");
 }
 
-static void    print_cylinder(void *ptr)
+static void	print_cylinder(void *ptr)
 {
-	t_cylinder    *obj = (t_cylinder *)ptr;
+	t_cylinder	*obj;
 
+	obj = (t_cylinder *)ptr;
 	printf("cylinder\n");
 	printf("\tpoint = ");
 	vector3_print(&obj->center);
@@ -34,20 +37,21 @@ static void    print_cylinder(void *ptr)
 	printf("\n\tr = %lf\n", obj->r);
 }
 
-typedef void    (*t_func_ptrint)(void *ptr);
+typedef void	(*t_func_ptrint)(void *ptr);
 
-void    print_obj(t_object *ptr)
+void	print_obj(t_object *ptr)
 {
-	static t_func_ptrint    func[] = {print_sphere, print_plane, print_cylinder};
+	static t_func_ptrint	func[] = {print_sphere,
+		print_plane, print_cylinder};
 
 	printf("type = %u\n", ptr->type);
 	printf("color = %06x\n", ptr->color);
 	printf("reflective = %lf\n", ptr->reflective);
 	printf("specular = %d\n", ptr->specular);
-   func[ptr->type](ptr->obj.start);
+	func[ptr->type](ptr->obj.start);
 }
 
-void    print_camera(t_camera *obj)
+void	print_camera(t_camera *obj)
 {
 	printf("camera:\n\tcoordinate = ");
 	vector3_print(&obj->coordinate);
