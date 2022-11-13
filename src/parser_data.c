@@ -4,13 +4,17 @@ uint    ee_color_parse(char *str)
 {
     uint    dst;
     int     i;
+    uint    value;
     const uint  ind[] = {16, 8, 0};
 
     dst = 0;
     i = 0;
     while (i < 3)
     {
-        dst += (uint)ft_atoi(str) << ind[i++];
+        value = (uint)ft_atoi(str);
+        if (value > 255)
+            ee_error(9, "ERROR: don't valid color");
+        dst += value << ind[i++];
         while (*str != ',' && *str != '\n')
             ++str;
         ++str;
@@ -31,6 +35,7 @@ void    parse_data(t_file *ptr)
     int64_t     i;
     uint        flag;
 
+    flag = 0;
     count[0] = count_type_in_file(ptr);
     count[1] = count[0] >> 32;
     count[2] = count[0] & 0xffffffff;

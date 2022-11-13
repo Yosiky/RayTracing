@@ -15,6 +15,8 @@ void    create_light(const char *str, void *dst)
     if (light->type == LIGHT_POINT)
         vector3_parse(&light->position, arg[i++]);
     light->intensity = ft_atof(arg[i++]);
+    if (light->intensity < EPS || light->intensity > 1 - EPS)
+        ee_error(8, "ERROR: invalid intensity in file");
     if ((light->type == LIGHT_AMBIENT && count == 3) ||
         (light->type == LIGHT_POINT && count == 4))
         light->color = ee_color_parse(arg[i]);
@@ -30,7 +32,7 @@ void    create_camera(const char *str, void *dst)
     if (count != 4)
         ee_error(2, "ERROR: invalid data in file");
     vector3_parse(&data->coordinate, arg[1]);
-    vector3_parse(&data->normal, arg[2]);
+    normal_parse(&data->normal, arg[2]);
     vector3_get_degree(&data->rotate_x, &data->rotate_y, &data->normal);
     data->view = (uint)ft_atoi(arg[3]);
     ee_split_clear((char **)arg);
@@ -64,7 +66,7 @@ void    create_plane(const char *str, void *dst)
         ee_error(2, "ERROR: invalid data in file");
     data->obj.plane = (t_plane *)ee_malloc(sizeof(t_plane));
     vector3_parse(&data->obj.plane->point, arg[1]);
-    vector3_parse(&data->obj.plane->normal, arg[2]);
+    normal_parse(&data->obj.plane->normal, arg[2]);
     data->type = OBJ_PLANE;
     data->specular = 100;
     data->reflective = 0;
@@ -82,9 +84,15 @@ void    create_cylinder(const char *str, void *dst)
         ee_error(2, "ERROR: invalid data in file");
     data->obj.cylinder = (t_cylinder *)ee_malloc(sizeof(t_cylinder));
     vector3_parse(&data->obj.cylinder->center, arg[1]);
-    vector3_parse(&data->obj.cylinder->normal, arg[2]);
+    normal_parse(&data->obj.cylinder->normal, arg[2]);
     data->obj.cylinder->r = ft_atof(arg[3]) / 2;
     data->obj.cylinder->hight = ft_atof(arg[4]);
+    if (data->obj.cylinder->hight < EPS)
+    {
+        vector3_mul(&data->obj.cylinder->normal, &data->obj.cylinder->normal, -1);
+        vector3_normalized(&data->obj.cylinder->normal);
+        data->obj.cylinder->hight = fabs(data->obj.cylinder->hight);
+    }
     data->type = OBJ_CYLINDER;
     data->specular = 100;
     data->reflective = 0;

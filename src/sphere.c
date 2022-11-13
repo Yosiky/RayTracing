@@ -24,7 +24,7 @@ double   intersect_ray_sphere(t_vector3 *o, t_vector3 *d, void *data)
     return (res);
 }
 
-void    get_normal_sphere(t_vector3 *res, const t_vector3 *a, void *data)
+void    get_normal_sphere(t_vector3 *res, t_vector3 *a, void *data)
 {
     vector3_minus(res, a, &(((t_sphere *)data)->center));
     vector3_div(res, res, ((t_sphere *)data)->r);

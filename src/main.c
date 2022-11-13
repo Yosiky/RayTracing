@@ -22,7 +22,6 @@ int main(int argc, char **argv)
         parse_data(ptr_file);
         t_file_clean(ptr_file);
         t_object *obj = get_object(NULL);
-        t_light *light = get_light(NULL);
 
         print_camera(get_camera(NULL));
         rotate(NULL, 1);

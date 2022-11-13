@@ -16,7 +16,7 @@ double   intersect_ray_plane(t_vector3 *restrict o, t_vector3 *restrict d,
     return (INFINITY);
 }
 
-void    get_normal_plane(t_vector3 *restrict res, t_vector3 *restrict a,
+void    get_normal_plane(t_vector3 *restrict res, __attribute__((__unused__))t_vector3 *restrict a,
         void *data)
 {
     t_plane *plane = (t_plane *)data;

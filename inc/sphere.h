@@ -17,7 +17,7 @@ typedef struct s_sphere
 
 double   intersect_ray_sphere(t_vector3 *restrict o, t_vector3 *restrict d,
         void *data);
-void    get_normal_sphere(t_vector3 *restrict res, const t_vector3 *restrict a,
+void    get_normal_sphere(t_vector3 *restrict res, t_vector3 *restrict a,
         void *data);
 
 #endif

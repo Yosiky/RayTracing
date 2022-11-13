@@ -1,10 +1,11 @@
 TARGET			=	$(shell uname | sed 's/[A-Z]/\L&/g')
 
 CC				=	clang
+CFLAGS			=
 CFLAGS			=	-Wall -Wextra -Werror 	\
-					-pedantic-errors -Wfloat-equal -Wshadow -Wcast-qual -Wconversion -Wsign-conversion
-# CFLAGS			+=	-g
-CFLAGS			=	-O3 -ffast-math
+					# -pedantic-errors -Wfloat-equal -Wshadow -Wcast-qual -Wconversion -Wsign-conversion
+CFLAGS			+=	-g
+CFLAGS			+=	-O0 -ffast-math
 
 NAME			=	miniRT
 

@@ -17,13 +17,6 @@ int get_type_line(const char *str)
     return (PARSE_NONE_TYPE);
 }
 
-static void *get_data(const char **arr, int type)
-{
-    if (type == -1)
-        return (NULL);
-    return (NULL);
-}
-
 static void *ee_realloc(void *src, size_t size, size_t type)
 {
     void    *res;
@@ -76,7 +69,7 @@ uint64_t    count_type_in_file(t_file *ptr)
     uint    count_obj;
     uint    count_light;
     uint    i;
-    uint    type;
+    int    type;
 
     count_obj = 0;
     count_light = 0;
@@ -84,7 +77,7 @@ uint64_t    count_type_in_file(t_file *ptr)
     while (i < ptr->count)
     {
         type = get_type_line(ptr->data[i++]);
-        if (type == -1)
+        if (type == PARSE_NONE_TYPE)
             ee_error(2, "ERROR: not valid file");
         if (type == PARSE_AMBIENT || type == PARSE_POINT)
             count_light += 1;

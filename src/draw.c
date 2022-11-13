@@ -38,7 +38,7 @@ static t_some_struct    closestIntersection(t_vector3 *o, t_vector3 *d, t_object
     return ((t_some_struct){ptr_obj, res});
 }
 
-static t_color  compute_lighting(t_vector3 *p, t_vector3 *n, t_vector3 *v, uint s, t_object *objects, t_color *dop)
+static t_color  compute_lighting(t_vector3 *p, t_vector3 *n, t_vector3 *v, int s, t_object *objects, t_color *dop)
 {
     static t_light      *light = NULL;
     static int          indx;
@@ -111,7 +111,6 @@ static t_color  trace_ray(t_vector3 *o, t_vector3 *d, t_object *objects, int dep
 {
     t_vector3   p;
     t_vector3   n;
-    double       min;
     t_some_struct res;
     t_color     local_color;
     t_color     a;
@@ -149,10 +148,10 @@ void    draw_on_img(t_image *img, t_object *objects)
     t_vector3   d;
 
     y = 0;
-    while (y < img->y)
+    while (y < (int)img->y)
     {
         x = 0;
-        while (x < img->x)
+        while (x < (int)img->x)
         {
             set_coordinates(&d, (t_vector3){ (double)(x - width_x) * 1 / WINDOW_X, (double)(width_y - y) * 1 / WINDOW_Y, 1});
             rotate(&d, 0);

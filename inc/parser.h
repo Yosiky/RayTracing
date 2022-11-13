@@ -22,8 +22,8 @@ enum PARSE_NUMBER
 typedef struct s_file
 {
     char    **data;
-    int     size;
-    int     count;
+    uint     size;
+    uint     count;
 }   t_file;
 
 uint64_t    count_type_in_file(t_file *ptr);

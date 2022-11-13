@@ -24,6 +24,7 @@ void    vector3_mul(t_vector3 *dst, const t_vector3 *src, const double value);
 void    vector3_mulv(t_vector3 *dst, const t_vector3 *src);
 void    vector3_cross(t_vector3 *dst, const t_vector3 *a, const t_vector3 *b);
 void   vector3_parse(t_vector3 *dst, char *str);
+void   normal_parse(t_vector3 *dst, char *str);
 void    vector3_get_degree(int *a, int *b, t_vector3 *vec);
 void    vector3_print(t_vector3 *vec);
 double  ft_atof(const char *str);
