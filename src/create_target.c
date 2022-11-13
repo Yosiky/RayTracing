@@ -3,8 +3,8 @@
 void    create_light(const char *str, void *dst)
 {
     t_light * const light = (t_light * const)dst;
-    char * const    *arg = (char * const *)ft_split(str, ' ');
-    const uint      count = (const uint)ee_split_count((char **)arg);
+    char **arg = (char **)ft_split(str, ' ');
+    const uint      count = (const uint)ee_split_count(arg);
     uint            i;
 
     if ((arg[0][0] == 'A' && !(count == 2 || count == 3)) ||
@@ -26,8 +26,8 @@ void    create_light(const char *str, void *dst)
 void    create_camera(const char *str, void *dst)
 {
     t_camera *const data = (t_camera *const)dst;
-    char *const *arg = (char *const *)ft_split(str, ' ');
-    const uint  count = (const uint)ee_split_count((char **)arg);
+    char **arg = (char **)ft_split(str, ' ');
+    const uint  count = (const uint)ee_split_count(arg);
 
     if (count != 4)
         ee_error(2, "ERROR: invalid data in file");
@@ -41,8 +41,8 @@ void    create_camera(const char *str, void *dst)
 void    create_sphere(const char *str, void *dst)
 {
     t_object *const data = (t_object *const)dst;
-    char *const     *arg = (char *const *)ft_split(str, ' ');
-    const uint      count = (const uint)ee_split_count((char **)arg);
+    char **arg = (char **)ft_split(str, ' ');
+    const uint      count = (const uint)ee_split_count(arg);
 
     if (count != 4)
         ee_error(2, "ERROR: invalid data in file");
@@ -59,8 +59,8 @@ void    create_sphere(const char *str, void *dst)
 void    create_plane(const char *str, void *dst)
 {
     t_object *const    data = (t_object *const)dst;
-    char *const    *arg = (char *const *)ft_split(str, ' ');
-    const uint      count = (const uint)ee_split_count((char **)arg);
+    char **arg = (char **)ft_split(str, ' ');
+    const uint      count = (const uint)ee_split_count(arg);
 
     if (count != 4)
         ee_error(2, "ERROR: invalid data in file");
@@ -77,8 +77,8 @@ void    create_plane(const char *str, void *dst)
 void    create_cylinder(const char *str, void *dst)
 {
     t_object *const    data = (t_object *const)dst;
-    char *const    *arg = (char *const *)ft_split(str, ' ');
-    const uint      count = (const uint)ee_split_count((char **)arg);
+    char **arg = (char **)ft_split(str, ' ');
+    const uint      count = (const uint)ee_split_count(arg);
 
     if (count != 6)
         ee_error(2, "ERROR: invalid data in file");

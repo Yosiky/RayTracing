@@ -72,8 +72,8 @@ static int  check_normal_value(double value)
 
 void   normal_parse(t_vector3 *dst, char *str)
 {
-    char        *const  *arg = (char *const *)ft_split(str, ',');
-    const uint32_t  count = ee_split_count((char **)arg);
+    char        **arg = (char **)ft_split(str, ',');
+    const uint32_t  count = ee_split_count(arg);
 
     if (count != 3)
         ee_error(2, "ERROR: not valid count in vector");
@@ -87,8 +87,8 @@ void   normal_parse(t_vector3 *dst, char *str)
 
 void   vector3_parse(t_vector3 *dst, char *str)
 {
-    char        *const  *arg = (char *const *)ft_split(str, ',');
-    const uint32_t  count = ee_split_count((char **)arg);
+    char        **arg = (char **)ft_split(str, ',');
+    const uint32_t  count = ee_split_count(arg);
 
     if (count != 3)
         ee_error(2, "ERROR: not valid count in vector");
@@ -100,8 +100,8 @@ void   vector3_parse(t_vector3 *dst, char *str)
 
 void    vector3_get_degree(int *x, int *y, t_vector3 *vec)
 {
-    *x = atan2(vec->x, sqrt(vec->y * vec->y + vec->z * vec->z)) / PI * 180;
-    *y = atan2(vec->y, sqrt(vec->x * vec->x + vec->z * vec->z)) / PI * 180;
+    *x = (int)round(atan2(vec->x, sqrt(vec->y * vec->y + vec->z * vec->z)) / PI * 180);
+    *y = (int)round(atan2(vec->y, sqrt(vec->x * vec->x + vec->z * vec->z)) / PI * 180);
 }
 
 void    vector3_print(t_vector3 *vec)

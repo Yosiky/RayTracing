@@ -140,20 +140,20 @@ static t_color  trace_ray(t_vector3 *o, t_vector3 *d, t_object *objects, int dep
 
 void    draw_on_img(t_image *img, t_object *objects)
 {
-    int         x;
-    int         y;
+    uint         x;
+    uint         y;
     int         width_x = img->x / 2;
     int         width_y = img->y / 2;
     t_color     color;
     t_vector3   d;
 
     y = 0;
-    while (y < (int)img->y)
+    while (y < img->y)
     {
         x = 0;
-        while (x < (int)img->x)
+        while (x < img->x)
         {
-            set_coordinates(&d, (t_vector3){ (double)(x - width_x) * 1 / WINDOW_X, (double)(width_y - y) * 1 / WINDOW_Y, 1});
+            set_coordinates(&d, (t_vector3){ ((double)x - width_x) * 1 / WINDOW_X, ((double)width_y - y) * 1 / WINDOW_Y, 1});
             rotate(&d, 0);
             color = trace_ray(get_viewer(NULL), &d, objects, RECURSIVE_DEPTH);
             ee_mlx_pixel_put(img, x, y, color_double_int(&color));

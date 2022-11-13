@@ -21,7 +21,7 @@ typedef struct s_object
 {
     int        type;
     uint        color;
-    uint        specular;
+    int        specular;
     double      reflective;
     union
     {

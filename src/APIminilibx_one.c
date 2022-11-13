@@ -1,11 +1,11 @@
 #include "APIminilibx.h"
 
-t_window    *create_window(t_mlx mlx, uint x, uint y, const char *str)
+t_window    *create_window(t_mlx mlx, int x, int y, char *str)
 {
     void        *window;
     t_window    *win;
 
-    window = (void *)mlx_new_window(mlx, x, y, (char *)str);
+    window = (void *)mlx_new_window(mlx, x, y, str);
     if (window == NULL)
         return (NULL);
     win = (t_window *)malloc(sizeof(t_window));
@@ -32,7 +32,7 @@ t_image     *create_image(t_mlx mlx, uint x, uint y)
     void        *image;                               
     t_image     *img;
                                                      
-    image = (void *)mlx_new_image(mlx, x, y);
+    image = (void *)mlx_new_image(mlx, (int)x, (int)y);
     if (image == NULL)
         return (NULL);
     img = (t_image *)malloc(sizeof(t_image));
@@ -57,5 +57,5 @@ void        destroy_image(t_mlx mlx, t_image *img)
 
 void    ee_mlx_pixel_put(t_image *img, uint x, uint y, uint color)
 {
-    img->addr[y * img->line_length + x] = color;
+    img->addr[y * (uint)img->line_length + x] = color;
 }
