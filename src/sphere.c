@@ -1,12 +1,13 @@
 #include "sphere.h"
 
-double   intersect_ray_sphere(t_vector3 *o, t_vector3 *d, void *data)
+double	intersect_ray_sphere(t_vector3 *o, t_vector3 *d, void *data)
 {
-	const t_sphere  *ptr_sphere = (t_sphere *)data;
-	t_vector3       oc;
-	double           k[6];
-	double res = INFINITY;
+	const t_sphere	*ptr_sphere = (t_sphere *)data;
+	t_vector3		oc;
+	double			k[6];
+	double			res;
 
+	res = INFINITY;
 	vector3_minus(&oc, o, &ptr_sphere->center);
 	k[0] = vector3_dot(d, d);
 	k[1] = 2 * vector3_dot(&oc, d);
@@ -24,7 +25,7 @@ double   intersect_ray_sphere(t_vector3 *o, t_vector3 *d, void *data)
 	return (res);
 }
 
-void    get_normal_sphere(t_vector3 *res, t_vector3 *a, void *data)
+void	get_normal_sphere(t_vector3 *res, t_vector3 *a, void *data)
 {
 	vector3_minus(res, a, &(((t_sphere *)data)->center));
 	vector3_div(res, res, ((t_sphere *)data)->r);
