@@ -38,8 +38,7 @@ SRC =		\
 			get_next_line	\
 			get_next_line_utils	\
 			ee_malloc		\
-			ee_error		\
-			ft_atof
+			ee_error		
 
 OBJS_DIR =	objects
 
@@ -48,6 +47,7 @@ OBJS_DIR =	objects
 OBJ =		${addprefix ${OBJS_DIR}/,${SRC:=.o}}
 
 CFLAGS =	-Wall -Wextra -Werror
+CFLAGS +=	-g
 #-O3 -ffast-math
 CC =		gcc
 

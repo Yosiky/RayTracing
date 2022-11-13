@@ -3,7 +3,8 @@ TARGET			=	$(shell uname | sed 's/[A-Z]/\L&/g')
 CC				=	clang
 CFLAGS			=	-Wall -Wextra -Werror 	\
 					-pedantic-errors -Wfloat-equal -Wshadow -Wcast-qual -Wconversion -Wsign-conversion
-CFLAGS			=	-g -O3 -ffast-math
+# CFLAGS			+=	-g
+CFLAGS			=	-O3 -ffast-math
 
 NAME			=	miniRT
 
@@ -25,7 +26,8 @@ SRC				=	main.c					\
 					parser_data.c			\
 					create_target.c			\
 					camera.c				\
-					color_func.c
+					color_func.c			\
+					ft_atof.c
 
 OBJ_DIR			=	obj
 OBJ				=	$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))

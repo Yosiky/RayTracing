@@ -85,7 +85,7 @@ uint64_t    count_type_in_file(t_file *ptr)
     {
         type = get_type_line(ptr->data[i++]);
         if (type == -1)
-            ee_error(2, "Error: not valid file");
+            ee_error(2, "ERROR: not valid file");
         if (type == PARSE_AMBIENT || type == PARSE_POINT)
             count_light += 1;
         else if (type > PARSE_CAMERA)
