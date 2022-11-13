@@ -65,7 +65,10 @@ LIB_MLX			=	-L$(LIBFT_DIR) -lft
 
 .PHONY:	all clean fclean re
 
-all:	$(OBJ_DIR) $(MINILIBX_DIR)/$(MINILIBX) $(LIBFT_DIR)/$(LIBFT) $(NAME)
+all:	$(OBJ_DIR) 
+	@$(MAKE) -C $(MINILIBX_DIR) 
+	@$(MAKE) -C $(LIBFT_DIR)
+	@$(MAKE) $(NAME)
 
 $(LIBFT_DIR)/$(LIBFT):
 	@printf	"Assembling libft\n"
