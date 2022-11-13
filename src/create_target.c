@@ -97,4 +97,5 @@ void    create_cylinder(const char *str, void *dst)
     data->specular = 100;
     data->reflective = 0;
     data->color = ee_color_parse(arg[5]);
+    ee_split_clear((char **)arg);
 }
