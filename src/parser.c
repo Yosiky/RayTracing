@@ -1,6 +1,6 @@
 #include "parser.h"
 
-int get_type_line(const char *str)
+int	get_type_line(const char *str)
 {
 	if (ft_strncmp(str, "A", 1) == 0)
 		return (PARSE_AMBIENT);
@@ -17,9 +17,9 @@ int get_type_line(const char *str)
 	return (PARSE_NONE_TYPE);
 }
 
-static void *ee_realloc(void *src, size_t size, size_t type)
+static void	*ee_realloc(void *src, size_t size, size_t type)
 {
-	void    *res;
+	void	*res;
 
 	res = ee_malloc(type * (size + SIZE_ALLOC_MEM));
 	ft_memcpy(res, src, type * size);
@@ -27,11 +27,11 @@ static void *ee_realloc(void *src, size_t size, size_t type)
 	return (res);
 }
 
-t_file  *read_file(const char *name_file)
+t_file	*read_file(const char *name_file)
 {
-	int     fd;
-	char    *line;
-	t_file  *file;
+	int		fd;
+	char	*line;
+	t_file	*file;
 
 	file = (t_file *)ee_malloc(sizeof(t_file));
 	file->size = SIZE_ALLOC_MEM;
@@ -50,13 +50,15 @@ t_file  *read_file(const char *name_file)
 		file->data[file->count++] = line;
 		if (file->count == file->size)
 		{
-			file->data = (char **)ee_realloc((void *)file->data, file->size, sizeof(char **));
+			file->data = (char **)ee_realloc((void *)file->data,
+					file->size, sizeof(char **));
 			file->size += SIZE_ALLOC_MEM;
 		}
 	}
+	return ()
 }
 
-void    t_file_clean(t_file *ptr)
+void	t_file_clean(t_file *ptr)
 {
 	while (ptr->count > 0)
 		free(ptr->data[--ptr->count]);
@@ -64,12 +66,12 @@ void    t_file_clean(t_file *ptr)
 	free(ptr);
 }
 
-uint64_t    count_type_in_file(t_file *ptr)
+uint64_t	count_type_in_file(t_file *ptr)
 {
-	uint    count_obj;
-	uint    count_light;
-	uint    i;
-	int    type;
+	uint	count_obj;
+	uint	count_light;
+	uint	i;
+	int		type;
 
 	count_obj = 0;
 	count_light = 0;
