@@ -55,7 +55,7 @@ t_file	*read_file(const char *name_file)
 			file->size += SIZE_ALLOC_MEM;
 		}
 	}
-	return ()
+	return (NULL);
 }
 
 void	t_file_clean(t_file *ptr)
