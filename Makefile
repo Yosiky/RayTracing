@@ -2,8 +2,7 @@ TARGET			=	$(shell uname | sed 's/[A-Z]/\L&/g')
 
 CC				=	clang
 CFLAGS			=
-CFLAGS			=	-Wall -Wextra -Werror 	\
-					-pedantic-errors -Wfloat-equal -Wshadow -Wcast-qual -Wconversion -Wsign-conversion
+CFLAGS			=	-Wall -Wextra -Werror
 CFLAGS			+=	-g
 CFLAGS			+=	-O0 -ffast-math
 
@@ -58,7 +57,7 @@ HEADER			=	miniRT.h			\
 					camera.h			\
 					color.h
 
-LIB_linux		=	-L$(MINILIBX_DIR) -lmlx -lXext -lX11 -lm -lz 
+LIB_linux		=	-L$(MINILIBX_DIR) -lmlx -lXext -lX11 -lm -lz
 
 LIB_LDarwin		=	-L$(MINILIBX_DIR) -lmlx				\
 					-framework OpenGL					\
@@ -68,8 +67,8 @@ LIB_MLX			=	-L$(LIBFT_DIR) -lft
 
 .PHONY:	all clean fclean re
 
-all:	$(OBJ_DIR) 
-	@$(MAKE) -C $(MINILIBX_DIR) 
+all:	$(OBJ_DIR)
+	@$(MAKE) -C $(MINILIBX_DIR)
 	@$(MAKE) -C $(LIBFT_DIR)
 	@$(MAKE) $(NAME)
 

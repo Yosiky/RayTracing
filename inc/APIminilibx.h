@@ -3,7 +3,7 @@
 
 # include "mlx.h"
 # if __APPLE__
-#  include "stdlib.h"
+#  include <stdlib.h>
 # else
 #  include "malloc.h"
 # endif

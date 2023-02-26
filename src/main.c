@@ -18,7 +18,6 @@ int	main(int argc, char **argv)
 	t_mlx		*ptr_mlx;
 	t_window	*ptr_window;
 	t_image		*ptr_image;
-
 	if (argc != 2)
 		ee_error(3, "Error: not valid count arg");
 	ptr_file = read_file(argv[1]);
