@@ -1,0 +1,1144 @@
+[
+ {
+  "directory": "/Users/eestelle/work/miniRT/minilibx_LDarwin",
+  "arguments": [
+   "cc",
+   "-O2",
+   "-DSTRINGPUTX11",
+   "-c",
+   "-o",
+   "mlx_shaders.o",
+   "mlx_shaders.c"
+  ],
+  "file": "mlx_shaders.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/minilibx_LDarwin",
+  "arguments": [
+   "cc",
+   "-O2",
+   "-DSTRINGPUTX11",
+   "-c",
+   "-o",
+   "mlx_xpm.o",
+   "mlx_xpm.c"
+  ],
+  "file": "mlx_xpm.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/minilibx_LDarwin",
+  "arguments": [
+   "cc",
+   "-O2",
+   "-DSTRINGPUTX11",
+   "-c",
+   "-o",
+   "mlx_int_str_to_wordtab.o",
+   "mlx_int_str_to_wordtab.c"
+  ],
+  "file": "mlx_int_str_to_wordtab.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/minilibx_LDarwin",
+  "arguments": [
+   "cc",
+   "-O2",
+   "-DSTRINGPUTX11",
+   "-c",
+   "-o",
+   "mlx_png.o",
+   "mlx_png.c"
+  ],
+  "file": "mlx_png.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "ft_atoi.c",
+   "-o",
+   "objects/ft_atoi.o"
+  ],
+  "file": "ft_atoi.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "ft_bzero.c",
+   "-o",
+   "objects/ft_bzero.o"
+  ],
+  "file": "ft_bzero.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "ft_calloc.c",
+   "-o",
+   "objects/ft_calloc.o"
+  ],
+  "file": "ft_calloc.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "ft_isalnum.c",
+   "-o",
+   "objects/ft_isalnum.o"
+  ],
+  "file": "ft_isalnum.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "ft_isalpha.c",
+   "-o",
+   "objects/ft_isalpha.o"
+  ],
+  "file": "ft_isalpha.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "ft_isascii.c",
+   "-o",
+   "objects/ft_isascii.o"
+  ],
+  "file": "ft_isascii.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "ft_isdigit.c",
+   "-o",
+   "objects/ft_isdigit.o"
+  ],
+  "file": "ft_isdigit.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "ft_isprint.c",
+   "-o",
+   "objects/ft_isprint.o"
+  ],
+  "file": "ft_isprint.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "ft_itoa.c",
+   "-o",
+   "objects/ft_itoa.o"
+  ],
+  "file": "ft_itoa.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "ft_memchr.c",
+   "-o",
+   "objects/ft_memchr.o"
+  ],
+  "file": "ft_memchr.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "ft_memcmp.c",
+   "-o",
+   "objects/ft_memcmp.o"
+  ],
+  "file": "ft_memcmp.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "ft_memcpy.c",
+   "-o",
+   "objects/ft_memcpy.o"
+  ],
+  "file": "ft_memcpy.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "ft_memmove.c",
+   "-o",
+   "objects/ft_memmove.o"
+  ],
+  "file": "ft_memmove.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "ft_memset.c",
+   "-o",
+   "objects/ft_memset.o"
+  ],
+  "file": "ft_memset.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "ft_putchar_fd.c",
+   "-o",
+   "objects/ft_putchar_fd.o"
+  ],
+  "file": "ft_putchar_fd.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "ft_putendl_fd.c",
+   "-o",
+   "objects/ft_putendl_fd.o"
+  ],
+  "file": "ft_putendl_fd.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "ft_putnbr_fd.c",
+   "-o",
+   "objects/ft_putnbr_fd.o"
+  ],
+  "file": "ft_putnbr_fd.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "ft_putstr_fd.c",
+   "-o",
+   "objects/ft_putstr_fd.o"
+  ],
+  "file": "ft_putstr_fd.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "ft_split.c",
+   "-o",
+   "objects/ft_split.o"
+  ],
+  "file": "ft_split.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "ft_strchr.c",
+   "-o",
+   "objects/ft_strchr.o"
+  ],
+  "file": "ft_strchr.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "ft_strdup.c",
+   "-o",
+   "objects/ft_strdup.o"
+  ],
+  "file": "ft_strdup.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "ft_striteri.c",
+   "-o",
+   "objects/ft_striteri.o"
+  ],
+  "file": "ft_striteri.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "ft_strjoin.c",
+   "-o",
+   "objects/ft_strjoin.o"
+  ],
+  "file": "ft_strjoin.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "ft_strlcat.c",
+   "-o",
+   "objects/ft_strlcat.o"
+  ],
+  "file": "ft_strlcat.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "ft_strlcpy.c",
+   "-o",
+   "objects/ft_strlcpy.o"
+  ],
+  "file": "ft_strlcpy.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "ft_strlen.c",
+   "-o",
+   "objects/ft_strlen.o"
+  ],
+  "file": "ft_strlen.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "ft_strmapi.c",
+   "-o",
+   "objects/ft_strmapi.o"
+  ],
+  "file": "ft_strmapi.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "ft_strncmp.c",
+   "-o",
+   "objects/ft_strncmp.o"
+  ],
+  "file": "ft_strncmp.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "ft_strnstr.c",
+   "-o",
+   "objects/ft_strnstr.o"
+  ],
+  "file": "ft_strnstr.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "ft_strrchr.c",
+   "-o",
+   "objects/ft_strrchr.o"
+  ],
+  "file": "ft_strrchr.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "ft_strtrim.c",
+   "-o",
+   "objects/ft_strtrim.o"
+  ],
+  "file": "ft_strtrim.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "ft_substr.c",
+   "-o",
+   "objects/ft_substr.o"
+  ],
+  "file": "ft_substr.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "ft_tolower.c",
+   "-o",
+   "objects/ft_tolower.o"
+  ],
+  "file": "ft_tolower.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "ft_toupper.c",
+   "-o",
+   "objects/ft_toupper.o"
+  ],
+  "file": "ft_toupper.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "get_next_line.c",
+   "-o",
+   "objects/get_next_line.o"
+  ],
+  "file": "get_next_line.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "get_next_line_utils.c",
+   "-o",
+   "objects/get_next_line_utils.o"
+  ],
+  "file": "get_next_line_utils.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "ee_malloc.c",
+   "-o",
+   "objects/ee_malloc.o"
+  ],
+  "file": "ee_malloc.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT/libft",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-c",
+   "ee_error.c",
+   "-o",
+   "objects/ee_error.o"
+  ],
+  "file": "ee_error.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT",
+  "arguments": [
+   "clang",
+   "src/main.c",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-pedantic-errors",
+   "-Wfloat-equal",
+   "-Wshadow",
+   "-Wcast-qual",
+   "-Wconversion",
+   "-Wsign-conversion",
+   "-g",
+   "-O0",
+   "-ffast-math",
+   "-Iinc",
+   "-Iminilibx_LDarwin",
+   "-Ilibft",
+   "-c",
+   "-o",
+   "obj/main.o"
+  ],
+  "file": "src/main.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT",
+  "arguments": [
+   "clang",
+   "src/APIminilibx_one.c",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-pedantic-errors",
+   "-Wfloat-equal",
+   "-Wshadow",
+   "-Wcast-qual",
+   "-Wconversion",
+   "-Wsign-conversion",
+   "-g",
+   "-O0",
+   "-ffast-math",
+   "-Iinc",
+   "-Iminilibx_LDarwin",
+   "-Ilibft",
+   "-c",
+   "-o",
+   "obj/APIminilibx_one.o"
+  ],
+  "file": "src/APIminilibx_one.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT",
+  "arguments": [
+   "clang",
+   "src/draw.c",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-pedantic-errors",
+   "-Wfloat-equal",
+   "-Wshadow",
+   "-Wcast-qual",
+   "-Wconversion",
+   "-Wsign-conversion",
+   "-g",
+   "-O0",
+   "-ffast-math",
+   "-Iinc",
+   "-Iminilibx_LDarwin",
+   "-Ilibft",
+   "-c",
+   "-o",
+   "obj/draw.o"
+  ],
+  "file": "src/draw.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT",
+  "arguments": [
+   "clang",
+   "src/sphere.c",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-pedantic-errors",
+   "-Wfloat-equal",
+   "-Wshadow",
+   "-Wcast-qual",
+   "-Wconversion",
+   "-Wsign-conversion",
+   "-g",
+   "-O0",
+   "-ffast-math",
+   "-Iinc",
+   "-Iminilibx_LDarwin",
+   "-Ilibft",
+   "-c",
+   "-o",
+   "obj/sphere.o"
+  ],
+  "file": "src/sphere.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT",
+  "arguments": [
+   "clang",
+   "src/vector3_func1.c",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-pedantic-errors",
+   "-Wfloat-equal",
+   "-Wshadow",
+   "-Wcast-qual",
+   "-Wconversion",
+   "-Wsign-conversion",
+   "-g",
+   "-O0",
+   "-ffast-math",
+   "-Iinc",
+   "-Iminilibx_LDarwin",
+   "-Ilibft",
+   "-c",
+   "-o",
+   "obj/vector3_func1.o"
+  ],
+  "file": "src/vector3_func1.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT",
+  "arguments": [
+   "clang",
+   "src/vector3_func2.c",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-pedantic-errors",
+   "-Wfloat-equal",
+   "-Wshadow",
+   "-Wcast-qual",
+   "-Wconversion",
+   "-Wsign-conversion",
+   "-g",
+   "-O0",
+   "-ffast-math",
+   "-Iinc",
+   "-Iminilibx_LDarwin",
+   "-Ilibft",
+   "-c",
+   "-o",
+   "obj/vector3_func2.o"
+  ],
+  "file": "src/vector3_func2.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT",
+  "arguments": [
+   "clang",
+   "src/vector3_func3.c",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-pedantic-errors",
+   "-Wfloat-equal",
+   "-Wshadow",
+   "-Wcast-qual",
+   "-Wconversion",
+   "-Wsign-conversion",
+   "-g",
+   "-O0",
+   "-ffast-math",
+   "-Iinc",
+   "-Iminilibx_LDarwin",
+   "-Ilibft",
+   "-c",
+   "-o",
+   "obj/vector3_func3.o"
+  ],
+  "file": "src/vector3_func3.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT",
+  "arguments": [
+   "clang",
+   "src/light.c",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-pedantic-errors",
+   "-Wfloat-equal",
+   "-Wshadow",
+   "-Wcast-qual",
+   "-Wconversion",
+   "-Wsign-conversion",
+   "-g",
+   "-O0",
+   "-ffast-math",
+   "-Iinc",
+   "-Iminilibx_LDarwin",
+   "-Ilibft",
+   "-c",
+   "-o",
+   "obj/light.o"
+  ],
+  "file": "src/light.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT",
+  "arguments": [
+   "clang",
+   "src/objects.c",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-pedantic-errors",
+   "-Wfloat-equal",
+   "-Wshadow",
+   "-Wcast-qual",
+   "-Wconversion",
+   "-Wsign-conversion",
+   "-g",
+   "-O0",
+   "-ffast-math",
+   "-Iinc",
+   "-Iminilibx_LDarwin",
+   "-Ilibft",
+   "-c",
+   "-o",
+   "obj/objects.o"
+  ],
+  "file": "src/objects.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT",
+  "arguments": [
+   "clang",
+   "src/events.c",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-pedantic-errors",
+   "-Wfloat-equal",
+   "-Wshadow",
+   "-Wcast-qual",
+   "-Wconversion",
+   "-Wsign-conversion",
+   "-g",
+   "-O0",
+   "-ffast-math",
+   "-Iinc",
+   "-Iminilibx_LDarwin",
+   "-Ilibft",
+   "-c",
+   "-o",
+   "obj/events.o"
+  ],
+  "file": "src/events.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT",
+  "arguments": [
+   "clang",
+   "src/plane.c",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-pedantic-errors",
+   "-Wfloat-equal",
+   "-Wshadow",
+   "-Wcast-qual",
+   "-Wconversion",
+   "-Wsign-conversion",
+   "-g",
+   "-O0",
+   "-ffast-math",
+   "-Iinc",
+   "-Iminilibx_LDarwin",
+   "-Ilibft",
+   "-c",
+   "-o",
+   "obj/plane.o"
+  ],
+  "file": "src/plane.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT",
+  "arguments": [
+   "clang",
+   "src/cylinder.c",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-pedantic-errors",
+   "-Wfloat-equal",
+   "-Wshadow",
+   "-Wcast-qual",
+   "-Wconversion",
+   "-Wsign-conversion",
+   "-g",
+   "-O0",
+   "-ffast-math",
+   "-Iinc",
+   "-Iminilibx_LDarwin",
+   "-Ilibft",
+   "-c",
+   "-o",
+   "obj/cylinder.o"
+  ],
+  "file": "src/cylinder.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT",
+  "arguments": [
+   "clang",
+   "src/parser.c",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-pedantic-errors",
+   "-Wfloat-equal",
+   "-Wshadow",
+   "-Wcast-qual",
+   "-Wconversion",
+   "-Wsign-conversion",
+   "-g",
+   "-O0",
+   "-ffast-math",
+   "-Iinc",
+   "-Iminilibx_LDarwin",
+   "-Ilibft",
+   "-c",
+   "-o",
+   "obj/parser.o"
+  ],
+  "file": "src/parser.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT",
+  "arguments": [
+   "clang",
+   "src/get_func.c",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-pedantic-errors",
+   "-Wfloat-equal",
+   "-Wshadow",
+   "-Wcast-qual",
+   "-Wconversion",
+   "-Wsign-conversion",
+   "-g",
+   "-O0",
+   "-ffast-math",
+   "-Iinc",
+   "-Iminilibx_LDarwin",
+   "-Ilibft",
+   "-c",
+   "-o",
+   "obj/get_func.o"
+  ],
+  "file": "src/get_func.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT",
+  "arguments": [
+   "clang",
+   "src/print_info.c",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-pedantic-errors",
+   "-Wfloat-equal",
+   "-Wshadow",
+   "-Wcast-qual",
+   "-Wconversion",
+   "-Wsign-conversion",
+   "-g",
+   "-O0",
+   "-ffast-math",
+   "-Iinc",
+   "-Iminilibx_LDarwin",
+   "-Ilibft",
+   "-c",
+   "-o",
+   "obj/print_info.o"
+  ],
+  "file": "src/print_info.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT",
+  "arguments": [
+   "clang",
+   "src/parser_data.c",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-pedantic-errors",
+   "-Wfloat-equal",
+   "-Wshadow",
+   "-Wcast-qual",
+   "-Wconversion",
+   "-Wsign-conversion",
+   "-g",
+   "-O0",
+   "-ffast-math",
+   "-Iinc",
+   "-Iminilibx_LDarwin",
+   "-Ilibft",
+   "-c",
+   "-o",
+   "obj/parser_data.o"
+  ],
+  "file": "src/parser_data.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT",
+  "arguments": [
+   "clang",
+   "src/create_target.c",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-pedantic-errors",
+   "-Wfloat-equal",
+   "-Wshadow",
+   "-Wcast-qual",
+   "-Wconversion",
+   "-Wsign-conversion",
+   "-g",
+   "-O0",
+   "-ffast-math",
+   "-Iinc",
+   "-Iminilibx_LDarwin",
+   "-Ilibft",
+   "-c",
+   "-o",
+   "obj/create_target.o"
+  ],
+  "file": "src/create_target.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT",
+  "arguments": [
+   "clang",
+   "src/camera.c",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-pedantic-errors",
+   "-Wfloat-equal",
+   "-Wshadow",
+   "-Wcast-qual",
+   "-Wconversion",
+   "-Wsign-conversion",
+   "-g",
+   "-O0",
+   "-ffast-math",
+   "-Iinc",
+   "-Iminilibx_LDarwin",
+   "-Ilibft",
+   "-c",
+   "-o",
+   "obj/camera.o"
+  ],
+  "file": "src/camera.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT",
+  "arguments": [
+   "clang",
+   "src/color_func.c",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-pedantic-errors",
+   "-Wfloat-equal",
+   "-Wshadow",
+   "-Wcast-qual",
+   "-Wconversion",
+   "-Wsign-conversion",
+   "-g",
+   "-O0",
+   "-ffast-math",
+   "-Iinc",
+   "-Iminilibx_LDarwin",
+   "-Ilibft",
+   "-c",
+   "-o",
+   "obj/color_func.o"
+  ],
+  "file": "src/color_func.c"
+ },
+ {
+  "directory": "/Users/eestelle/work/miniRT",
+  "arguments": [
+   "clang",
+   "src/ft_atof.c",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-pedantic-errors",
+   "-Wfloat-equal",
+   "-Wshadow",
+   "-Wcast-qual",
+   "-Wconversion",
+   "-Wsign-conversion",
+   "-g",
+   "-O0",
+   "-ffast-math",
+   "-Iinc",
+   "-Iminilibx_LDarwin",
+   "-Ilibft",
+   "-c",
+   "-o",
+   "obj/ft_atof.o"
+  ],
+  "file": "src/ft_atof.c"
+ }
+]
