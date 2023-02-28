@@ -40,7 +40,7 @@ t_window    *get_window(t_window *ptr);
 t_mlx       *get_mlx(t_mlx *ptr);
 void    print_obj(t_object *ptr);
 void    print_camera(t_camera *obj);
-uint    ee_color_parse(char *str);
+t_uint    ee_color_parse(char *str);
 void    parse_data(t_file *ptr);
 void    create_light(const char *str, void *dst);
 void    create_camera(const char *str, void *dst);

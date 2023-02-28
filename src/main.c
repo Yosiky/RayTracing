@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eestelle <eestelle@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/27 23:35:35 by eestelle          #+#    #+#             */
+/*   Updated: 2023/02/27 23:35:37 by eestelle         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "miniRT.h"
 #include <stdio.h>
 
@@ -18,15 +30,16 @@ int	main(int argc, char **argv)
 	t_mlx		*ptr_mlx;
 	t_window	*ptr_window;
 	t_image		*ptr_image;
+
 	if (argc != 2)
-		ee_error(3, "Error: not valid count arg");
+		ee_error(3, "Error: not valid count arg\n");
 	ptr_file = read_file(argv[1]);
 	parse_data(ptr_file);
 	t_file_clean(ptr_file);
 	rotate(NULL, 1);
 	ptr_mlx = mlx_init();
 	if (ptr_mlx == NULL)
-		ee_error(1, "Can't init mlx");
+		ee_error(1, "Can't init mlx\n");
 	ptr_image = create_image(ptr_mlx, IMG_X, IMG_Y);
 	ptr_window = create_window(ptr_mlx, WINDOW_X, WINDOW_Y, WINDOW_NAME);
 	init_hook(ptr_window);

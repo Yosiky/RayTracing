@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_info.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eestelle <eestelle@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/27 23:33:44 by eestelle          #+#    #+#             */
+/*   Updated: 2023/02/28 22:44:37 by eestelle         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "miniRT.h"
 
 static void	print_sphere(void *ptr)
@@ -48,7 +60,7 @@ void	print_obj(t_object *ptr)
 	printf("color = %06x\n", ptr->color);
 	printf("reflective = %lf\n", ptr->reflective);
 	printf("specular = %d\n", ptr->specular);
-	func[ptr->type](ptr->obj.start);
+	func[ptr->type](ptr->u_obj.start);
 }
 
 void	print_camera(t_camera *obj)

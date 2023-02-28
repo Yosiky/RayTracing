@@ -1,25 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eestelle <eestelle@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/27 23:43:50 by eestelle          #+#    #+#             */
+/*   Updated: 2023/02/28 20:32:34 by eestelle         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "miniRT.h"
 
 typedef struct s_some_struct
 {
-	t_object    *ptr;
-	double      value;
-}   t_some_struct;
+	t_object	*ptr;
+	double		value;
+}	t_some_struct;
 
-t_vector3   reflect_ray(t_vector3 *r, t_vector3 *n)
+t_vector3	reflect_ray(t_vector3 *r, t_vector3 *n)
 {
-	t_vector3   res;
+	t_vector3	res;
 
 	vector3_mul(&res, n, vector3_dot(n, r) * 2);
 	vector3_minus(&res, &res, r);
 	return (res);
 }
 
-static t_some_struct    closestIntersection(t_vector3 *o, t_vector3 *d, t_object *objects, char flag)
+static struct s_some_struct	closestIntersection(
+		t_vector3 *o, t_vector3 *d, t_object *objects, char flag)
 {
-	double      res;
-	double      min_value;
-	t_object    *ptr_obj;
+	double		res;
+	double		min_value;
+	t_object	*ptr_obj;
 
 	ptr_obj = NULL;
 	res = INFINITY;
@@ -38,19 +51,19 @@ static t_some_struct    closestIntersection(t_vector3 *o, t_vector3 *d, t_object
 	return ((t_some_struct){ptr_obj, res});
 }
 
-static t_color  compute_lighting(t_vector3 *p, t_vector3 *n, t_vector3 *v, int s, t_object *objects, t_color *dop)
+static t_color	compute_lighting(
+		t_vector3 *p, t_vector3 *n, t_vector3 *v,
+		int s, t_object *objects, t_color *dop)
 {
-	static t_light      *light = NULL;
-	static int          indx;
-	static double       intensity;
-	static double       max;
-	static t_vector3    l;
-	double       n_dot_l;
-	t_vector3           len;
-	t_color             color;
-	t_color             buff;
+	static t_light		*light = NULL;
+	static int			indx;
+	static t_vector3	l;
+	double				n_dot_l;
+	t_vector3			len;
+	t_color				color;
+	t_color				buff;
 
-	intensity = 0;
+    /* max = 0; */
 	indx = -1;
 	if (light == NULL)
 		light = get_light(NULL);
@@ -59,19 +72,19 @@ static t_color  compute_lighting(t_vector3 *p, t_vector3 *n, t_vector3 *v, int s
 	{
 		if (light[indx].type == LIGHT_AMBIENT)
 			color_add(&color, &color, color_create(&buff, light[indx].color, light[indx].intensity));
-		else 
+		else
 		{
 			if (light[indx].type == LIGHT_POINT)
 			{
 				vector3_minus(&l, &(light[indx].position), p);
 				vector3_normalized(&l);
-				max = 1;
+				/* max = 1; */
 				vector3_minus(&len, p, &(light[indx].position));
 			}
 			else
 			{
 				l = light[indx].position;
-				max = INFINITY;
+				/* max = INFINITY; */
 			}
 			t_some_struct   va = closestIntersection(p, &l, objects, 1);
 			if (va.ptr != NULL && ((light[indx].type == LIGHT_POINT && vector3_length(&len) > va.value) || light[indx].type == LIGHT_DERECTIONAL))
@@ -138,14 +151,14 @@ static t_color  trace_ray(t_vector3 *o, t_vector3 *d, t_object *objects, int dep
 	return (get_right_color(&local_color, &reflect_color, r));
 }
 
-void    draw_on_img(t_image *img, t_object *objects)
+void	draw_on_img(t_image *img, t_object *objects)
 {
-	uint         x;
-	uint         y;
-	int         width_x = img->x / 2;
-	int         width_y = img->y / 2;
-	t_color     color;
-	t_vector3   d;
+	uint		x;
+	uint		y;
+	int			width_x = img->x / 2;
+	int			width_y = img->y / 2;
+	t_color 	color;
+	t_vector3	d;
 
 	y = 0;
 	while (y < img->y)
@@ -153,7 +166,9 @@ void    draw_on_img(t_image *img, t_object *objects)
 		x = 0;
 		while (x < img->x)
 		{
-			set_coordinates(&d, (t_vector3){ ((double)x - width_x) * 1 / WINDOW_X, ((double)width_y - y) * 1 / WINDOW_Y, 1});
+			set_coordinates(&d,
+				(t_vector3){ ((double)x - width_x) * 1 / WINDOW_X,
+				((double)width_y - y) * 1 / WINDOW_Y, 1});
 			rotate(&d, 0);
 			color = trace_ray(get_viewer(NULL), &d, objects, RECURSIVE_DEPTH);
 			ee_mlx_pixel_put(img, x, y, color_double_int(&color));

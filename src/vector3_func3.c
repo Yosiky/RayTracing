@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vector3_func3.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eestelle <eestelle@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/27 23:34:03 by eestelle          #+#    #+#             */
+/*   Updated: 2023/02/27 23:34:05 by eestelle         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "vector3.h"
 
 static int	check_normal_value(double value)
@@ -13,13 +25,13 @@ void	normal_parse(t_vector3 *dst, char *str)
 	arg = ft_split(str, ',');
 	count = ee_split_count(arg);
 	if (count != 3)
-		ee_error(2, "ERROR: not valid count in vector");
+		ee_error(2, "ERROR: not valid count in vector\n");
 	dst->x = ft_atof(arg[0]);
 	dst->y = ft_atof(arg[1]);
 	dst->z = ft_atof(arg[2]);
 	if (check_normal_value(dst->x) || check_normal_value(dst->y)
 		|| check_normal_value(dst->z))
-		ee_error(10, "ERROR: not valid normal vector");
+		ee_error(10, "ERROR: not valid normal vector\n");
 	ee_split_clear((char **)arg);
 }
 
@@ -31,7 +43,7 @@ void	vector3_parse(t_vector3 *dst, char *str)
 	arg = (char **)ft_split(str, ',');
 	count = ee_split_count(arg);
 	if (count != 3)
-		ee_error(2, "ERROR: not valid count in vector");
+		ee_error(2, "ERROR: not valid count in vector\n");
 	dst->x = ft_atof(arg[0]);
 	dst->y = ft_atof(arg[1]);
 	dst->z = ft_atof(arg[2]);

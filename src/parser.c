@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eestelle <yosiky@list.ru>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/27 22:18:28 by eestelle          #+#    #+#             */
+/*   Updated: 2023/02/27 22:34:32 by eestelle         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parser.h"
 
 int	get_type_line(const char *str)
@@ -29,9 +41,9 @@ static void	*ee_realloc(void *src, size_t size, size_t type)
 
 t_file	*read_file(const char *name_file)
 {
-	int		fd;
-	char	*line;
-	t_file	*file;
+	int				fd;
+	char			*line;
+	static t_file	*file;
 
 	file = (t_file *)ee_malloc(sizeof(t_file));
 	file->size = SIZE_ALLOC_MEM;
@@ -39,7 +51,7 @@ t_file	*read_file(const char *name_file)
 	file->data = (char **)ee_malloc(sizeof(char **) * file->size);
 	fd = open(name_file, O_RDONLY);
 	if (fd == -1)
-		ee_error(2, "ERROR: can't open file");
+		ee_error(2, "ERROR: can't open file\n");
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -50,12 +62,10 @@ t_file	*read_file(const char *name_file)
 		file->data[file->count++] = line;
 		if (file->count == file->size)
 		{
-			file->data = (char **)ee_realloc((void *)file->data,
-					file->size, sizeof(char **));
+			file->data = ee_realloc(file->data, file->size, sizeof(char **));
 			file->size += SIZE_ALLOC_MEM;
 		}
 	}
-	return (NULL);
 }
 
 void	t_file_clean(t_file *ptr)
@@ -80,7 +90,7 @@ uint64_t	count_type_in_file(t_file *ptr)
 	{
 		type = get_type_line(ptr->data[i++]);
 		if (type == PARSE_NONE_TYPE)
-			ee_error(2, "ERROR: not valid file");
+			ee_error(2, "ERROR: not valid file\n");
 		if (type == PARSE_AMBIENT || type == PARSE_POINT)
 			count_light += 1;
 		else if (type > PARSE_CAMERA)
@@ -88,4 +98,3 @@ uint64_t	count_type_in_file(t_file *ptr)
 	}
 	return (((uint64_t)count_obj << 32) + count_light);
 }
-

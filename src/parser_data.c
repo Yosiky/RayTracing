@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser_data.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eestelle <yosiky@list.ru>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/27 22:19:17 by eestelle          #+#    #+#             */
+/*   Updated: 2023/02/27 22:19:20 by eestelle         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "miniRT.h"
 
 uint	ee_color_parse(char *str)
@@ -12,13 +24,13 @@ uint	ee_color_parse(char *str)
 	arg = ft_split(str, ',');
 	value = ee_split_count(arg);
 	if (value != 3)
-		ee_error(11, "ERROR: not valid count color");
+		ee_error(11, "ERROR: not valid count color\n");
 	i = 0;
 	while (i < 3)
 	{
 		value = (uint)ft_atoi(arg[i]);
 		if (value > 255)
-			ee_error(9, "ERROR: don't valid color");
+			ee_error(9, "ERROR: don't valid color\n");
 		dst += value << ind[i];
 		++i;
 	}
@@ -68,7 +80,7 @@ void	parse_data(t_file *ptr)
 		if ((count[4] & 0x1 && count[5] == PARSE_AMBIENT)
 			|| (count[4] & 0x2 && count[5] == PARSE_POINT)
 			|| (count[4] & 0x4 && count[5] == PARSE_CAMERA))
-			ee_error(7, "ERROR: don't valid file");
+			ee_error(7, "ERROR: don't valid file\n");
 		count[4] |= 1 << count[5];
 		if (count[5] == PARSE_AMBIENT || count[5] == PARSE_POINT)
 			func[count[5]](ptr->data[count[3]], (void *)&light[--count[2]]);
