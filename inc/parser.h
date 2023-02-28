@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eestelle <eestelle@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/28 23:05:42 by eestelle          #+#    #+#             */
+/*   Updated: 2023/02/28 23:07:38 by eestelle         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PARSER_H
 # define PARSER_H
 
@@ -7,8 +19,7 @@
 # include "fcntl.h"
 # include "objects.h"
 
-
-enum PARSE_NUMBER
+enum e_PARSE_NUMBER
 {
 	PARSE_NONE_TYPE = -1,
 	PARSE_AMBIENT,

@@ -1,10 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   constants.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eestelle <eestelle@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/28 22:55:56 by eestelle          #+#    #+#             */
+/*   Updated: 2023/02/28 22:57:32 by eestelle         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CONSTANTS_H
 # define CONSTANTS_H
 
 # define PI 3.14
 # define EPS 0.000001
-# define UNUSED __attribute__((__unused__))
-/* # define NULL (void *)0 */
+# define UNUSED __attribute__((unused))
 
 # ifdef __APPLE__
 #  define KEY_Q 12
@@ -124,6 +135,6 @@
 #  define KEY_DOWN 65364
 #  define KEY_LEFT 65361
 #  define KEY_RIGHT 65363
-#  endif
+# endif
 
 #endif
