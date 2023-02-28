@@ -13,9 +13,9 @@ SRC				=	main.c					\
 					APIminilibx_one.c		\
 					draw.c					\
 					sphere.c				\
-					vector3_func1.c				\
-					vector3_func2.c				\
-					vector3_func3.c				\
+					vector3_func1.c			\
+					vector3_func2.c			\
+					vector3_func3.c			\
 					light.c					\
 					objects.c				\
 					events.c				\
@@ -27,7 +27,8 @@ SRC				=	main.c					\
 					parser_data.c			\
 					create_target.c			\
 					camera.c				\
-					color_func.c			\
+					color_func1.c			\
+					color_func2.c			\
 					ft_atof.c
 
 OBJ_DIR			=	obj
