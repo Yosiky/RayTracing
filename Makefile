@@ -39,7 +39,7 @@ MINILIBX		=	libmlx.a
 LIBFT_DIR		=	libft
 LIBFT			=	libft.a
 
-HEADER_DIR		=	inc
+HEADER_DIR		=	include
 MAKE_HEADER		=	$(addprefix -I,$(HEADER_DIR))	\
 					$(addprefix -I,$(MINILIBX_DIR))	\
 					$(addprefix -I,$(LIBFT_DIR))
