@@ -33,7 +33,7 @@ SRC				=	main.c					\
 OBJ_DIR			=	obj
 OBJ				=	$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 
-MINILIBX_DIR	=	minilibx_$(TARGET)
+MINILIBX_DIR	=	graphic_lib/minilibx_$(TARGET)
 MINILIBX		=	libmlx.a
 
 LIBFT_DIR		=	libft
