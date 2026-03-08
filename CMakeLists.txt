@@ -75,6 +75,12 @@ if(NOT DEFINED CMAKE_INSTALL_PREFIX)
     set(CMAKE_INSTALL_PREFIX ${CMAKE_BUILD_DIR})
 endif()
 
+# add_custom_target(clang-tidy-check
+#     clang-tidy -p ${CMAKE_BUILD_DIR}/compile_commands.json
+#     --checks=* ${PROJECT_NAME}
+#     DEPENDS ${PROJECT_NAME}
+# )
+
 # Install rules
 install(TARGETS ${PROJECT_NAME}
     RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}
