@@ -1,8 +1,16 @@
 cmake_minimum_required(VERSION 3.20)
 project(RayTracing LANGUAGES C CXX ASM)
 
+if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin|Linux")
+    if($CMAKE_SYSTEM_NAME MATCHES "Darwin")
+        set(CMAKE_OSX_ARCHITECTURES "arm64")
+        set(CMAKE_C_COMPILER_ID "Clang")
+        set(SDL_FRAMEWORK ON)
+        set(SDL_EXAMPLES ON)
+    endif()
+endif()
+
 # Set build keys
-set(CMAKE_VERBOSE_MAKEFILE ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Set C++ standard
